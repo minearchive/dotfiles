@@ -11,14 +11,8 @@
   programs.home-manager.enable = true;
 
   #####################################
-  #          H Y P R L A N D          #
+  #           D E F A U L T           #
   #####################################
-
-  ##########  N O T H I N G  ##########
-
-  ###################################
-  #          D E F A U L T          #
-  ###################################
 
   home.file = {
     "wallpaper.jpg" = {
@@ -34,17 +28,12 @@
     ripgrep
     ffmpeg
     tree
-
-    # HYPRLAND STUFF
-    hypridle
-    hyprlock
-    hyprpaper
-    hyprpicker
   ];
 
   imports = [
     ./home-manager/git.nix
     ./home-manager/development.nix
     ./home-manager/app.nix
+    ./home-manager/hyprland.nix
   ];
 }

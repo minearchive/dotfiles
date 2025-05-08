@@ -9,19 +9,19 @@
     };
 
     "hypr/hyprland/animation.conf" = {
-      source = builtins.toString ./hyprland/animation.conf
+      source = builtins.toString ./hyprland/animation.conf;
     };
 
     "hypr/hyprland/general.conf" = {
-      source = builtins.toString ./hyprland/general.conf
+      source = builtins.toString ./hyprland/general.conf;
     };
 
     "hypr/hyprland/keybind.conf" = {
-      source = builtins.toString ./hyprland/keybind.conf
+      source = builtins.toString ./hyprland/keybind.conf;
     };
 
     "hypr/hyprland/startup.conf" = {
-      source = builtins.toString ./hyprland/startup.conf
+      source = builtins.toString ./hyprland/startup.conf;
     };
   };
 

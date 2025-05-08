@@ -28,6 +28,7 @@
     ripgrep
     ffmpeg
     tree
+    jq
   ];
 
   imports = [

@@ -9,6 +9,7 @@
     discord
     spotify
     vscodium
+    obsidian
   ];
 }
 

@@ -34,11 +34,10 @@
   programs.ags.enable = true;
 
   imports = [
-    inputs.ags.homeManagerModules.default
-
     ./home-manager/git.nix
     ./home-manager/development.nix
     ./home-manager/app.nix
     ./home-manager/hyprland.nix
+    ./home-manager/ags.nix
   ];
 }

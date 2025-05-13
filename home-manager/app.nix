@@ -10,6 +10,9 @@
     spotify
     vscodium
     obsidian
+
+    slurp
+    grim
   ];
 }
 

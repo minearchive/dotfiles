@@ -9,5 +9,8 @@
     python312
     jdk
     dart
+
+    #IDE
+    jetbrains.rust-rover
   ];
 }

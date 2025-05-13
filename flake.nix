@@ -8,6 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
+    ags.url = "github:Aylur/ags";
   };
 
   outputs = inputs: {
@@ -15,7 +16,7 @@
       myNixOS = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./configuration.nix
+          ./system/configuration.nix
 	  ./system/hyprland.nix
         ];
 	specialArgs = {

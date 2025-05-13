@@ -23,6 +23,10 @@
     "hypr/hyprland/startup.conf" = {
       source = builtins.toString ./hyprland/startup.conf;
     };
+
+    "hypr/script/workpace_jump.sh" = {
+      source = builtins.toString ./script/workspace_jump.sh;
+    };
   };
 
   home.packages = with pkgs; [

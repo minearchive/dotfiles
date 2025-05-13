@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   home = rec { 
@@ -17,7 +17,7 @@
   home.file = {
     "wallpaper.jpg" = {
       target = "Wallpaper/wallpaper.jpg";
-      source = builtins.toString ./wallpaper/wallpaper_atri.jpg;
+      source = builtins.toString ./home-manager/wallpaper/wallpaper_atri.jpg;
     };
   };
 
@@ -31,7 +31,11 @@
     jq
   ];
 
+  programs.ags.enable = true;
+
   imports = [
+    inputs.ags.homeManagerModules.default
+
     ./home-manager/git.nix
     ./home-manager/development.nix
     ./home-manager/app.nix

@@ -1,5 +1,11 @@
 { pkgs, ... }: {
 
+  xdg.configFile = {
+    "wallpaper.jpg" = {
+      source = builtins.toString ./wallpaper/wallpaper_atri.jpg;
+    };
+  };
+
   imports = [
     ./hypr/hypr.nix
   ];

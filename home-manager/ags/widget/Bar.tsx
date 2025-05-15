@@ -1,7 +1,9 @@
 import { App, Astal, Gtk, Gdk } from "astal/gtk3"
-import {GLib, Variable} from "astal"
-
-const time = Variable("").poll(1000, "date")
+import {bind, GLib, Variable} from "astal"
+import Battery from "gi://AstalBattery"
+import Wifi from "gi://AstalNetwork"
+import Bluetooth from "gi://AstalBluetooth"
+// import Workspace from "gi://AstalWorkspace"
 
 export default function Bar(gdkMonitor: Gdk.Monitor) {
     const { TOP, LEFT, RIGHT } = Astal.WindowAnchor
@@ -23,13 +25,17 @@ export default function Bar(gdkMonitor: Gdk.Monitor) {
             </box>
 
             <box halign={Gtk.Align.CENTER}>
-                <label className={"icon"} halign={Gtk.Align.CENTER} valign={Gtk.Align.CENTER}>
-                    
-                </label>
+
             </box>
 
             <box halign={Gtk.Align.END}>
-
+                <box className={"onBackground"} halign={Gtk.Align.END}>
+                    <BluetoothLabel/>
+                    <Separator/>
+                    <WifiLabel/>
+                    <Separator/>
+                    <BatteryLevel/>
+                </box>
             </box>
         </centerbox>
     </window>
@@ -59,4 +65,56 @@ function Time() {
         onDestroy={() => time.drop()}
         label={time()}>
     </label>;
+}
+
+function WorkspaceLabel() {
+
+}
+
+function BluetoothLabel() {
+    const bluetooth = Bluetooth.get_default()
+    const connected = bind(bluetooth, "is_connected")
+    const className = connected.as(c => c ? "Bluetooth connected" : "Bluetooth")
+
+    const icon = bind(bluetooth, "is_powered").as(c => c ? "bluetooth-active-symbolic" : "bluetooth-disabled-symbolic")
+
+    return <box>
+        <icon className={className} icon={icon}/>
+    </box>
+}
+
+function WifiLabel() {
+    const network = Wifi.get_default()
+    const wifi = bind(network, "wifi")
+
+    return <box visible={wifi.as(Boolean)}>
+        {wifi.as(wifi => wifi && (
+            <box>
+                <icon
+                    tooltipText={bind(wifi, "ssid").as(String)}
+                    className="Wifi systemIcon"
+                    icon={bind(wifi, "iconName")}
+                />
+                <label
+                    label={bind(wifi, "ssid").as(p => p)}
+                    className="WifiLabel"/>
+            </box>
+        ))}
+    </box>
+}
+
+function BatteryLevel() {
+    const bat = Battery.get_default()
+
+    return <box className="tray"
+                visible={bind(bat, "isPresent")}>
+        <icon icon={bind(bat, "batteryIconName")} className={"systemIcon"} />
+        <label label={bind(bat, "percentage").as(p =>
+            `${Math.floor(p * 100)}%`
+        )} />
+    </box>
+}
+
+function Separator() {
+    return <label className={"Separator"} label={"|"} />
 }

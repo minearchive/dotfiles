@@ -4,7 +4,7 @@ $color-1: #1a1f3d;
 $color-2: #3b4a8c;
 $color-3: #587ebb;
 $color-4: #87b8e8;
-$color-5: #f1fcff; // 明るくした色
+$color-5: #f1fcff;
 
 // SCSS Classes using variables
 .color-1 {
@@ -36,7 +36,7 @@ window.Bar {
         margin-top: 10px;
         margin-left: 10px;
         margin-right: 10px;
-        border-radius: 15px;
+        border-radius: 18px;
     }
 
     .onBackground {
@@ -44,15 +44,29 @@ window.Bar {
         color: $color-5;
         padding: 8px;
         margin: 3px;
-        border-radius: 15px;
+        border-radius: 22px;
     }
 
     .icon {
         background: $color-2;
         color: $color-5;
         padding: 8px 16px 8px 11px;
-        margin: 3px;
-        border-radius: 23px;
+        margin: 4px;
+        border-radius: 22px;
+    }
+
+    .tray {
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+
+    .systemIcon {
+        margin-right: 2px;
+    }
+
+    .Separator {
+        margin-left: 2px;
+        margin-right: 2px;
     }
 
     button {

@@ -27,6 +27,10 @@
     "hypr/script/workpace_jump.sh" = {
       source = builtins.toString ./script/workspace_jump.sh;
     };
+
+    "hypr/script/move_window_to_ws.sh" = {
+      source = builtins.toString ./script/move_window_to_ws.sh;
+    };
   };
 
   home.packages = with pkgs; [

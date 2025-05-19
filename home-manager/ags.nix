@@ -15,6 +15,7 @@
       inputs.ags.packages.${pkgs.system}.network
       inputs.ags.packages.${pkgs.system}.bluetooth
       inputs.ags.packages.${pkgs.system}.tray
+      inputs.ags.packages.${pkgs.system}.hyprland
       fzf
     ];
   };

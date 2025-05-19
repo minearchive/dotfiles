@@ -3,7 +3,7 @@ import {bind, GLib, Variable} from "astal"
 import Battery from "gi://AstalBattery"
 import Wifi from "gi://AstalNetwork"
 import Bluetooth from "gi://AstalBluetooth"
-// import Workspace from "gi://AstalWorkspace"
+import Hyprland from "gi://AstalHyprland"
 
 export default function Bar(gdkMonitor: Gdk.Monitor) {
     const { TOP, LEFT, RIGHT } = Astal.WindowAnchor
@@ -25,7 +25,7 @@ export default function Bar(gdkMonitor: Gdk.Monitor) {
             </box>
 
             <box halign={Gtk.Align.CENTER}>
-
+                <WorkspaceLabel/>
             </box>
 
             <box halign={Gtk.Align.END}>
@@ -68,7 +68,22 @@ function Time() {
 }
 
 function WorkspaceLabel() {
+    const hypr = Hyprland.get_default()
 
+    return <box className="Workspaces">
+        {bind(hypr, "workspaces").as(wss => wss
+            .filter(ws => !(ws.id >= -99 && ws.id <= -2)) // filter out special workspaces
+            .sort((a, b) => a.id - b.id)
+            .map(ws => (
+                <button
+                    className={bind(hypr, "focusedWorkspace").as(fw =>
+                        ws === fw ? "focused" : "")}
+                    onClicked={() => ws.focus()}>
+                    {ws.id}
+                </button>
+            ))
+        )}
+    </box>
 }
 
 function BluetoothLabel() {

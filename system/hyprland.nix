@@ -41,5 +41,6 @@
     hyprlock
     hyprpaper
     hyprpicker
+    hyprsunset
   ];
 }

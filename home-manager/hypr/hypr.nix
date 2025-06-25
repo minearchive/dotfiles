@@ -24,7 +24,11 @@
       source = builtins.toString ./hyprland/startup.conf;
     };
 
-    "hypr/script/workpace_jump.sh" = {
+    "hypr/hyprland/rule.conf" = {
+      source = builtins.toString ./hyprland/rule.conf;
+    };
+
+    "hypr/script/workspace_jump.sh" = {
       source = builtins.toString ./script/workspace_jump.sh;
     };
 

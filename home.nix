@@ -9,11 +9,7 @@
 
   # home-manager enable
   programs.home-manager.enable = true;
-
-  #####################################
-  #           D E F A U L T           #
-  #####################################
-
+  
   home.file = {
     "wallpaper.jpg" = {
       target = "Wallpaper/wallpaper.jpg";
@@ -29,6 +25,7 @@
     ffmpeg
     tree
     jq
+    # quickshell
   ];
 
   programs.ags.enable = true;
@@ -39,5 +36,7 @@
     ./home-manager/app.nix
     ./home-manager/hyprland.nix
     ./home-manager/ags.nix
+
+    inputs.spicetify-nix.homeManagerModules.default
   ];
 }

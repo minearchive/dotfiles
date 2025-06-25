@@ -1,6 +1,13 @@
 {
     "name": "astal-shell",
     "dependencies": {
-        "astal": "/home/minearchive/.local/share/ags"
+        "@material/material-color-utilities": "^0.3.0",
+        "astal": "/home/minearchive/.local/share/ags",
+        "quantize": "^1.0.2",
+        "sharp": "^0.34.2"
+    },
+    "devDependencies": {
+        "@types/node": "^24.0.4",
+        "@types/quantize": "^1.0.2"
     }
 }

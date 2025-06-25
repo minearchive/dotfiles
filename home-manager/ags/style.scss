@@ -1,74 +1,13 @@
-// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
-// SCSS Variables
-$color-1: #1a1f3d;
-$color-2: #3b4a8c;
-$color-3: #587ebb;
-$color-4: #87b8e8;
-$color-5: #f1fcff;
-
-// SCSS Classes using variables
-.color-1 {
-    color: $color-1;
-}
-.color-2 {
-    color: $color-2;
-}
-.color-3 {
-    color: $color-3;
-}
-.color-4 {
-    color: $color-4;
-}
-.color-5 {
-    color: $color-5;
-}
-
-
 window.Bar {
-    background: transparent;
-    color: $color-1;
-    font-weight: bold;
-    font-family: "JetBrainsMono Nerd Font", "FiraCode Nerd Font", monospace;
-
-    >centerbox {
-        background: $color-1;
-        color: transparent;
-        margin-top: 10px;
-        margin-left: 10px;
-        margin-right: 10px;
-        border-radius: 18px;
-    }
-
-    .onBackground {
-        background: $color-2;
-        color: $color-5;
-        padding: 8px;
-        margin: 3px;
-        border-radius: 22px;
+    .main {
+        background-color: #f0f0f0;
+        padding: 6px;
+        color: black;
+        //backdrop-filter: blur(50px);
     }
 
     .icon {
-        background: $color-2;
-        color: $color-5;
-        padding: 8px 16px 8px 11px;
-        margin: 4px;
-        border-radius: 22px;
-    }
-
-    .tray {
-        margin-left: 2px;
-        margin-right: 2px;
-    }
-
-    .systemIcon {
-        margin-right: 2px;
-    }
-
-    .Separator {
-        margin-left: 2px;
-        margin-right: 2px;
-    }
-
-    button {
+        font-family: "JetBrainsMono NF", "JetBrainsMonoNL NF", emoji
     }
 }
+

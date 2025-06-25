@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, options, ... }:
 
 {
   imports =
@@ -9,6 +9,8 @@
   ++ [
     inputs.xremap.nixosModules.default
   ];
+
+    networking.timeServers = options.networking.timeServers.default ++ [ "ntp.nict.jp" ]; 
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -21,6 +23,7 @@
 
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
+  time.hardwareClockInLocalTime = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "ja_JP.UTF-8";
@@ -92,8 +95,9 @@
     };
   };
 
+  services.timesyncd.enable = true;
+  services.ntp.enable = true;
   services.seatd.enable = true;
-
   services.flatpak.enable = true;
 
   # Enable the X11 windowing system.
@@ -155,6 +159,9 @@
     seatd
     kitty
     foot
+    rustup
+    cargo
+    fcitx5-gtk
   ];
   system.stateVersion = "24.11";
 
@@ -247,4 +254,10 @@
   };
 
   environment.variables.NIXOS_OZONE_WL = "1";
+
+  networking.firewall = rec {
+    allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+    allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
+  };
+
 }

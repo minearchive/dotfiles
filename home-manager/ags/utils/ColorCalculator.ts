@@ -3,9 +3,12 @@ import {Theme, themeFromSourceColor} from "@material/material-color-utilities";
 import fs from 'fs';
 import quantize, {RgbPixel} from 'quantize';
 
-function registerFile(path: string) {
+async function registerFile(path: string) {
     fs.watch(path, { persistent: true }, (eventType, filename) => {
         if (eventType == 'change') {
+            generateFromImage(path).then(it => {
+                writeToCss("~/.local/share/ags-bar/_theme.css", it);
+            });
         }
     });
 }
@@ -46,4 +49,48 @@ async function extractDominantColorsFromImage(imagePath: string, colorCount: num
     }
 
     return palette.at(0) as quantize.RgbPixel;
+}
+
+function writeToCss(file: string, theme: Theme) {
+    fs.writeFileSync(file, themeToCSS(theme))
+}
+
+export function themeToCSS(theme: Theme): string {
+    // schemes.dark.primary, schemes.dark.secondary などを抽出
+    const dark = theme.schemes.dark;
+    const cssVars = [
+        ['primary', dark.primary],
+        ['on-primary', dark.onPrimary],
+        ['primary-container', dark.primaryContainer],
+        ['on-primary-container', dark.onPrimaryContainer],
+        ['secondary', dark.secondary],
+        ['on-secondary', dark.onSecondary],
+        ['secondary-container', dark.secondaryContainer],
+        ['on-secondary-container', dark.onSecondaryContainer],
+        ['tertiary', dark.tertiary],
+        ['on-tertiary', dark.onTertiary],
+        ['tertiary-container', dark.tertiaryContainer],
+        ['on-tertiary-container', dark.onTertiaryContainer],
+        ['error', dark.error],
+        ['on-error', dark.onError],
+        ['background', dark.background],
+        ['on-background', dark.onBackground],
+        ['surface', dark.surface],
+        ['on-surface', dark.onSurface],
+        ['outline', dark.outline],
+    ];
+    const toHex = (color: number) => `#${color.toString(16).padStart(6, '0')}`;
+    let css = ':root {\n';
+    for (const [name, value] of cssVars) {
+        if (typeof value === 'number') {
+            css += `  --${name}: ${toHex(value)};\n`;
+        }
+    }
+    css += '}\n';
+    return css;
+}
+
+export {
+    registerFile,
+    generateFromImage
 }

@@ -1,13 +1,17 @@
 window.Bar {
     .main {
         background-color: #f0f0f0;
-        padding: 6px;
         color: black;
+        padding: 3px 10px;
         //backdrop-filter: blur(50px);
     }
 
     .icon {
         font-family: "JetBrainsMono NF", "JetBrainsMonoNL NF", emoji
+    }
+
+    .icon-label {
+        font-size: 20px;
     }
 }
 

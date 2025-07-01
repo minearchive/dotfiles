@@ -9,10 +9,15 @@
     jdk
     dart
     nodejs_22
-    
+    deno
+
     devenv
     
     #IDE
     jetbrains.rust-rover
+    jetbrains.idea-ultimate
+
+    #Jetbrain plugins
+    github-copilot-intellij-agent
   ];
 }

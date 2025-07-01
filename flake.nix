@@ -43,5 +43,21 @@
 	      ];
       };
     };
+     # flake-utils.lib.eachDefaultSystem (
+     # system:
+     # let
+     #   pkgs = import nixpkgs {
+     #     inherit system;
+     #     overlays = [ rust-overlay.overlays.default ];
+     #   };
+     # in
+     # {
+     #   devShells.default = pkgs.mkShell {
+     #     packages = [
+     #       pkgs.rust-bin.stable.latest.default
+     #     ];
+     #   };
+     # }
+     # );
   };
 }

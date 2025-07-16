@@ -10,6 +10,7 @@
     dart
     nodejs_22
     deno
+    cmake
 
     devenv
     

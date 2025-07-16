@@ -25,17 +25,14 @@
     ffmpeg
     tree
     jq
-    # quickshell
   ];
-
-  programs.ags.enable = true;
 
   imports = [
     ./home-manager/git.nix
     ./home-manager/development.nix
     ./home-manager/app.nix
     ./home-manager/hyprland.nix
-    ./home-manager/ags.nix
+    ./home-manager/quickshell.nix
 
     inputs.spicetify-nix.homeManagerModules.default
   ];

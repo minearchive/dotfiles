@@ -35,6 +35,10 @@
     "hypr/script/move_window_to_ws.sh" = {
       source = builtins.toString ./script/move_window_to_ws.sh;
     };
+
+    "hypr/script/wallpaper_change.sh" = {
+      source = builtins.toString ./script/wallpaper_change.sh;
+    };
   };
 
   home.packages = with pkgs; [

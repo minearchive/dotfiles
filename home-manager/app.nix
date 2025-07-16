@@ -11,6 +11,8 @@
     vscode
     obsidian
 
+    tetrio-desktop
+
     vmware-horizon-client
 
     slurp

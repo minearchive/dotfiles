@@ -162,7 +162,10 @@
     rustup
     cargo
     fcitx5-gtk
+    inputs.swww.packages.${system}.swww
+    inputs.matugen.packages.${system}.default
   ];
+
   system.stateVersion = "24.11";
 
   nix = {
@@ -224,16 +227,13 @@
       vimAlias = true;
     };
 
-    starship = {
-      enable = true;
-
-      settings = {
-
-      };
-    };
-
     zsh = {
       enable = true;
+    };
+
+    starship = {
+      enable = true;
+      # settings = pkgs.lib.importTOML ../home-manager/starship/settings.toml;
     };
 
     fish.enable = true;

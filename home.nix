@@ -28,7 +28,6 @@
   ];
 
   imports = [
-    ./home-manager/git.nix
     ./home-manager/development.nix
     ./home-manager/app.nix
     ./home-manager/hyprland.nix

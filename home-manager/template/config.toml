@@ -1,0 +1,18 @@
+[config]
+
+[templates.rofi]
+input_path = "~/.local/share/matugen/template/template.rasi"
+output_path = "~/.config/rofi/colors.rasi"
+
+[templates.qt5ct]
+input_path = '~/.local/share/matugen/template/qt.conf'
+output_path = '~/.config/qt5ct/colors/matugen.conf'
+
+[templates.starship]
+input_path = '~/.local/share/matugen/template/settings.toml'
+output_path = '~/.config/starship.toml'
+
+[templates.kitty]
+input_path = '~/.local/share/matugen/template/kitty-colors.conf'
+output_path = '~/.config/kitty/colors.conf'
+post_hook = 'pkill -SIGUSR1 kitty'

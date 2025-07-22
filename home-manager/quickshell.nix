@@ -2,35 +2,30 @@
 
 let
   quickshell = inputs.quickshell.packages.${pkgs.system}.default;
-
-  material-color-extractor = pkgs.stdenv.mkDerivation {
-    pname = "material-color-extractor";
-    version = "1.0.0";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "minearchive";
-      repo = "material-color-extractor";
-      rev = "23045ca931c3b87068fe8abce33039001edb3ac4";
-      sha256 = "sha256-Xr2Bt/yfaDyklc7PEq3Yq5yBUd6NSTxa0CcBpwvK/M8="; # 正しいhashに
-    };
-
-    nativeBuildInputs = with pkgs; [ cmake git ];
-
-    cmakeFlags = [
-      "-DCMAKE_BUILD_TYPE=Release"
-      "-DCMAKE_INSTALL_PREFIX=$out"
-    ];
-
-    installPhase = ''
-      mkdir -p $out/bin
-      cp ./extract_material_color $out/bin/
-    '';
-  };
-
 in
 {
+  imports = [
+    inputs.matugen.nixosModules.default
+  ];
+
+  xdg.configFile."matugen/config.toml".source = builtins.toString ./template/config.toml;
+  
+  home.activation.copyfile = lib.mkAfter ''
+    echo "Copying matugen templates..."
+    rm -rf "$HOME/.local/share/matugen/template"
+    mkdir -p "$HOME/.local/share/matugen/template"
+    cp -r ${./template/templates}/. "$HOME/.local/share/matugen/template"
+    echo "Matugen templates copied."
+  '';
+
+  home.activation.runqs = lib.mkAfter ''
+    rm -rf "$HOME/.local/share/qs-bar"
+    mkdir -p "$HOME/.local/share/qs-bar"
+    cp  -ri ${./quickshell}/. "$HOME/.local/share/qs-bar"
+  '';
+
   home.packages = [
     quickshell
-    material-color-extractor
   ];
 }
+

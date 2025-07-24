@@ -1,5 +1,4 @@
 { pkgs, ... }: {
-  # デスクトップカスタマイズ系設定
   imports = [
     ./cursor.nix
     ./hyprland.nix
@@ -11,6 +10,11 @@
     grim
     swappy
     slurp
+
+    tetrio-desktop
+
+    cmatrix
+    cava
   ];
 
   # カーソル設定
@@ -21,4 +25,11 @@
     gtk.enable = true;
   };
 
+  programs.firefox = {
+    profiles = {
+      default = {
+        userChrome = builtins.readFile ./firefox/userChrome.css;
+      };
+    };
+  };
 }

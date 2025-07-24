@@ -16,3 +16,7 @@ output_path = '~/.config/starship.toml'
 input_path = '~/.local/share/matugen/template/kitty-colors.conf'
 output_path = '~/.config/kitty/colors.conf'
 post_hook = 'pkill -SIGUSR1 kitty'
+
+[templates.quickshell]
+input_path = '~/.local/share/matugen/template/template.qml'
+output_path = '~/.local/share/qs-bar/Theme/Colors.qml'

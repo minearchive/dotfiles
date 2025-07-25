@@ -11,7 +11,19 @@ ShellRoot {
             right: true
         }
 
-        color: Colors.primary
+        color: Colors.surface
+
+        Row {
+            spacing: 10
+
+            Rectangle {
+                width: 30
+                height: 30
+                radius: 5
+                color: Colors.primary
+                border.color: Colors.outline
+            }
+        }
 
         implicitHeight: 35
     }

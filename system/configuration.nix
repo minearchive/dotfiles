@@ -10,7 +10,7 @@
     inputs.xremap.nixosModules.default
   ];
 
-    networking.timeServers = options.networking.timeServers.default ++ [ "ntp.nict.jp" ]; 
+  networking.timeServers = options.networking.timeServers.default ++ [ "ntp.nict.jp" ]; 
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -22,8 +22,8 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Asia/Tokyo";
-  time.hardwareClockInLocalTime = true;
+  time.timeZone = "Asia/Tokyo"; # ok fuck this setting
+  time.hardwareClockInLocalTime = false;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "ja_JP.UTF-8";
@@ -57,9 +57,9 @@
     fontconfig = {
       defaultFonts = {
         serif = ["Noto Serif CJK JP" "Noto Color Emoji"];
-	sansSerif = ["Noto Sans CJK JP" "Noto Color Emoji"];
-	monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
-	emoji = ["Noto Color Emoji"];
+	      sansSerif = ["Noto Sans CJK JP" "Noto Color Emoji"];
+	      monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
+	      emoji = ["Noto Color Emoji"];
       };
     };
   };
@@ -75,28 +75,29 @@
     config = {
       modmap = [
         {
-	  name = "CapsLock is Ctrl";
-	  remap = {
-	    CapsLock = "Ctrl_L";
-	  };
-	}
+	        name = "CapsLock is Ctrl";
+	        remap = {
+	          CapsLock = "Ctrl_L";
+	        };
+	      }
       ];
       keymap = [
         {
-	  name = "Ctrl+H should be enabled on all apps as BackSpace";
-	  remap = {
-	    C-h = "Backspace";
-	  };
-	  application = {
-	    not = ["Aracritty" "Kitty"  "Wezterm"];
-	  };
-	}
+	        name = "Ctrl+H should be enabled on all apps as BackSpace";
+	        remap = {
+	          C-h = "Backspace";
+	        };
+	        application = {
+	          not = ["Aracritty" "Kitty"  "Wezterm"];
+	        };
+	      }
       ];
     };
   };
 
   services.timesyncd.enable = true;
-  services.ntp.enable = true;
+  #services.ntp.enable = true;
+  services.chrony.enable = true;
   services.seatd.enable = true;
   services.flatpak.enable = true;
 
@@ -152,6 +153,7 @@
   programs.firefox.enable = true;
 
   environment.systemPackages = with pkgs; [
+    tzdata
     zsh
     vim
     wget
@@ -247,7 +249,7 @@
       binPath = "/run/current-system/sw/bin/Hyprland";
     };
   };
-
+
   nix.extraOptions = ''
     extra-substituters = https://devenv.cachix.org
     extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=

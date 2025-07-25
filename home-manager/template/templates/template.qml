@@ -60,4 +60,12 @@ QtObject {
     readonly property color outline_variant: "{{colors.outline_variant.default.hex}}"
     readonly property color shadow: "{{colors.shadow.default.hex}}"
     readonly property color scrim: "{{colors.scrim.default.hex}}"
+
+    // Source Color
+    readonly property color source_color: "{{colors.source_color.default.hex}}"
+
+    // Background Colors
+    readonly property color background: "{{colors.background.default.hex}}"
+    readonly property color on_background: "{{colors.on_background.default.hex}}"
+    readonly property color surface_variant: "{{colors.surface_variant.default.hex}}"
 }

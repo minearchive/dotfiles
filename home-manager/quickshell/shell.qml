@@ -11,7 +11,7 @@ ShellRoot {
             right: true
         }
 
-        color: Colors.background
+        color: Colors.primary
 
         implicitHeight: 35
     }

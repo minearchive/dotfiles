@@ -4,7 +4,7 @@
   home = rec { 
     username="minearchive";
     homeDirectory = "/home/${username}"; # 文字列に値を埋め込む
-    stateVersion = "24.11";
+    stateVersion = "25.05";
   };
 
   # home-manager enable

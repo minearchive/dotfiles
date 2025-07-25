@@ -10,6 +10,7 @@ $nodejs\
 $rust\
 $golang\
 $php\
+$python\
 [](fg:#ffffff bg:surface_bright)\
 $time\
 $battery\
@@ -114,6 +115,11 @@ format = '[[ $symbol ($version) ](fg:on_secondary_fixed_variant bg:#ffffff)]($st
 symbol = ""
 style = "bg:#ffffff"
 format = '[[ $symbol ($version) ](fg:on_secondary_fixed_variant bg:#ffffff)]($style)'
+
+[python]
+symbol = ""
+style = "bg:#ffffff"
+format = '[[ $symbol ($version) \($virtualenv\) ](fg:on_secondary_fixed_variant bg:#ffffff)]($style)'
 
 [time]
 disabled = false

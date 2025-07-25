@@ -247,6 +247,13 @@
       binPath = "/run/current-system/sw/bin/Hyprland";
     };
   };
+
+  nix.extraOptions = ''
+    extra-substituters = https://devenv.cachix.org
+    extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+  '';
+
+  # cachix.enable = false;
 
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];

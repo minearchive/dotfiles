@@ -1,2 +1,1 @@
-nix run nixpkgs#home-manager -- switch --flake .#myHome -b backup;
-
+nix run nixpkgs#home-manager -- switch --flake .#defaultSetup  -b backup;

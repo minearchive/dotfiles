@@ -28,10 +28,10 @@
   ];
 
   imports = [
-    ./home-manager/development.nix
-    ./home-manager/app.nix
-    ./home-manager/hyprland.nix
-    ./home-manager/quickshell.nix
+    ./defaultSetup/development.nix
+    ./defaultSetup/app.nix
+    ./defaultSetup/hyprland.nix
+    ./defaultSetup/quickshell.nix
 
     inputs.spicetify-nix.homeManagerModules.default
   ];

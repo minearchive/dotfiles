@@ -26,10 +26,16 @@
   };
 
   programs.firefox = {
-    profiles = {
-      default = {
-        userChrome = builtins.readFile ./firefox/userChrome.css;
-      };
+    enable = true;
+    policies = {
+      DisableAppUpdate = false;
     };
   };
+  # programs.firefox = {
+    # profiles = {
+      # default = {
+        # userChrome = builtins.readFile ./firefox/userChrome.css;
+      # };
+    # };
+  # };
 }

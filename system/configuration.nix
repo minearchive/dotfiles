@@ -150,7 +150,6 @@
   systemd.services."autovt@tty1".enable = false;
 
   # Install firefox.
-  programs.firefox.enable = true;
 
   environment.systemPackages = with pkgs; [
     tzdata

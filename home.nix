@@ -13,7 +13,7 @@
   home.file = {
     "wallpaper.jpg" = {
       target = "Wallpaper/wallpaper.jpg";
-      source = builtins.toString ./home-manager/wallpaper/wallpaper_atri.jpg;
+      source = builtins.toString ./defaultSetup/wallpaper/wallpaper_atri.jpg;
     };
   };
 

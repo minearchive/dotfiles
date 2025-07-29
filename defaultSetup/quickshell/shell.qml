@@ -16,12 +16,6 @@ ShellRoot {
             right: true
         }
         color: Colors.surface
-        Rectangle {
-            anchors.fill: parent
-            color: Colors.surface
-            height: 35
-            width: parent.width
-        }
 
         Row {
             anchors.verticalCenter: parent.verticalCenter
@@ -30,10 +24,10 @@ ShellRoot {
             spacing: 20
 
             Rectangle {
-                width: 35
+                width: 25
                 color: Colors.surface_container_high
                 radius: 5
-                height: 35
+                height: 25
             }
         }
         implicitHeight: 35

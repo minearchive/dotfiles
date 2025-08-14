@@ -100,6 +100,7 @@
   services.chrony.enable = true;
   services.seatd.enable = true;
   services.flatpak.enable = true;
+  services.blueman.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;

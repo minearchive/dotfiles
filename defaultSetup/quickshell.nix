@@ -10,6 +10,9 @@ in
 
   xdg.configFile."matugen/config.toml".source = builtins.toString ./template/config.toml;
   xdg.configFile."qt5ct/qt5ct.conf".source = builtins.toString ./template/qtct.conf;
+  xdg.configFile."gtk-3.0/gtk.css".source = builtins.toString ./template/gtk.css;
+  xdg.configFile."gtk-4.0/gtk.css".source = builtins.toString ./template/gtk.css;
+
 
   home.activation.copyfile = lib.mkAfter ''
     echo "Copying matugen templates..."

@@ -1,14 +1,14 @@
 import QtQuick
 import QtQuick.Controls
 import Quickshell
-
 import Quickshell.Services.UPower
+import Quickshell.Hyprland
 import "Theme"
+import "widgets"
 
 ShellRoot {
-
     ReloadPopout { }
-
+    
     PanelWindow {
         anchors {
             top: true
@@ -16,20 +16,44 @@ ShellRoot {
             right: true
         }
         color: Colors.surface
-
+        implicitHeight: 35
+        
+        // Left section
         Row {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
-            anchors.right: parent.right
-            spacing: 20
-
+            spacing: 10
+            
+            // Left spacing
             Rectangle {
-                width: 25
-                color: Colors.surface_container_high
-                radius: 5
-                height: 25
+                width: 10
+                height: 1
+                color: Colors.surface
             }
+            
+            // App launcher icon
+            AppLauncherIcon {}
+            
+            // Workspaces
+            Workspaces {}
+            
+            // Active window title
+            WindowTitle {}
         }
-        implicitHeight: 35
+        
+        // Right section
+        Row {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            spacing: 10
+            
+            SystemTray {}
+            NetworkStatus {}
+            Volume {}
+            Battery {}
+            Clock {}
+            PowerMenu {}
+        }
     }
 }

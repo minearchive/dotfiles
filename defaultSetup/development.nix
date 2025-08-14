@@ -23,6 +23,8 @@
     vscode
     vesktop
     obs-studio
+    protonvpn-gui
+    wireguard-tools
   ];
 
   programs.git = {

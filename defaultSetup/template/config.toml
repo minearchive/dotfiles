@@ -20,3 +20,12 @@ post_hook = 'pkill -SIGUSR1 kitty'
 [templates.quickshell]
 input_path = '~/.local/share/matugen/template/template.qml'
 output_path = '~/.local/share/qs-bar/Theme/Colors.qml'
+
+[templates.gtk3]
+input_path = '~/.local/share/matugen/template/gtk_theme.css'
+output_path = '~/.config/gtk-3.0/colors.css'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-{{mode}}'
+
+[templates.gtk4]
+input_path = '~/.local/share/matugen/template/gtk_theme.css'
+output_path = '~/.config/gtk-4.0/colors.css'

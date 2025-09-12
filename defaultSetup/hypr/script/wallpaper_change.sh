@@ -9,7 +9,10 @@ if [ -z "$FILE" ]; then
   exit 1
 fi
 
-matugen image "$FILE" -c ~/.config/matugen/config.toml
+scheme="${MATUGEN_SCHEME:-dark}"
+echo "Using color scheme: $scheme"
+
+matugen image "$FILE" -c ~/.config/matugen/config.toml --mode "$scheme" 
 
 swww img "$FILE" --transition-type outer --transition-pos 0.857,0.977 --transition-step 90 --transition-fps 60
 

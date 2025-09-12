@@ -11,6 +11,10 @@ Rectangle {
     height: 25
     radius: 8
     color: Colors.surface_variant
+
+    PwObjectTracker {
+        objects: [ Pipewire.defaultAudioSink ]
+    }
     
     Row {
         anchors.centerIn: parent
@@ -18,9 +22,19 @@ Rectangle {
         
         Text {
             text: {
-                const device = Pipewire.defaultAudioSink;
-                if (!device) return ""; // No audio device available
-                console.log("Volume:", device.audio);
+                const sink = Pipewire.defaultAudioSink
+                const volume = sink.audio.volume
+                if (volume == 0) {
+                    return ""
+                }
+
+                if (volume > 0 && volume < 20) {
+                    return ""
+                }
+                if (volume <= 20) {
+                    return ""
+                }
+                return "w"
             }
             font.pixelSize: 14
             color: Colors.on_surface
@@ -28,7 +42,11 @@ Rectangle {
         }
         
         Text {
-            text: "75%"
+            text: {
+                const sink = Pipewire.defaultAudioSink
+                const volume = sink.audio.volume
+                return volume + "%"
+            }
             font.pixelSize: 10
             color: Colors.on_surface
             anchors.verticalCenter: parent.verticalCenter

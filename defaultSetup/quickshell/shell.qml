@@ -5,6 +5,7 @@ import Quickshell.Services.UPower
 import Quickshell.Hyprland
 import "Theme"
 import "widgets"
+import "popup"
 
 ShellRoot {
     ReloadPopout { }

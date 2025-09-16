@@ -1,6 +1,7 @@
 { lib, pkgs, inputs, ... }:
 
 with lib; let
+  hyprlandPkg = inputs.hyprland.packages.${pkgs.system}.hyprland;
   hyprPluginPkgs = inputs.hyprland-plugins.packages.${pkgs.system};
   hypr-plugin-dir = pkgs.symlinkJoin {
     name = "hyrpland-plugins";
@@ -45,6 +46,7 @@ in
 
   # Enable Hyprland
   programs.hyprland = {
+    package = hyprlandPkg;
     enable = true;
     xwayland.enable = true;
     withUWSM = true; # recommended for most users

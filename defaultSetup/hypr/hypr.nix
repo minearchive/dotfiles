@@ -28,6 +28,10 @@
       source = builtins.toString ./hyprland/rule.conf;
     };
 
+    "hypr/hyprland/plugins.conf" = {
+      source = builtins.toString ./hyprland/plugins.conf;
+    };
+
     "hypr/script/workspace_jump.sh" = {
       source = builtins.toString ./script/workspace_jump.sh;
     };

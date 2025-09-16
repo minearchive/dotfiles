@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   # デスクトップカスタマイズ系設定のみ残す
   xdg.configFile = {
     "wallpaper.jpg" = {
@@ -13,6 +13,14 @@
   home.packages = with pkgs; [
     rofi
     zenity
-    hyprlandPlugins.hyprgrass
   ];
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    systemd.enable = false; # we use UWSM instead
+    plugins = [
+      pkgs.hyprlandPlugins.hyprexpo
+      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
+    ];
+  };
 }

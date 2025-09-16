@@ -30,6 +30,7 @@
   programs.kitty = lib.mkForce {
     enable = true;
     settings = {
+      include = "colors.conf";
       confirm_os_window_close = 0;
       dynamic_background_opacity = true;
       allow_remote_control = true;

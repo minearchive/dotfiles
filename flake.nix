@@ -1,15 +1,25 @@
 {
   inputs = {
+    #Nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    
+    # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     xremap.url = "github:xremap/nix-flake";
+    
+    # Hyprland
     hyprland.url = "github:hyprwm/Hyprland";
-    ags.url = "github:Aylur/ags";
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland"; # Prevents version mismatch.
+    };
+
+    # Ricing stuff
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +28,9 @@
       url = "github:InioX/Matugen";
     };
     swww.url = "github:LGFae/swww";
+    
+    ags.url = "github:Aylur/ags";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
   outputs = inputs: {

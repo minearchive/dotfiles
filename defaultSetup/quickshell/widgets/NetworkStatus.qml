@@ -1,9 +1,9 @@
 import QtQuick
 import QtQuick.Controls
-import "../Theme"
+import "../theme"
 
 Rectangle {
-    width: 60
+    width: 25
     height: 25
     radius: 8
     color: Colors.surface_variant
@@ -15,13 +15,6 @@ Rectangle {
         Text {
             text: "󰤨"
             font.pixelSize: 14
-            color: Colors.on_surface
-            anchors.verticalCenter: parent.verticalCenter
-        }
-        
-        Text {
-            text: "100%"
-            font.pixelSize: 10
             color: Colors.on_surface
             anchors.verticalCenter: parent.verticalCenter
         }

@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import Quickshell.Hyprland
-import "../Theme"
+import "../theme"
 
 Rectangle {
     width: 25
@@ -21,7 +21,6 @@ Rectangle {
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            Hyprland.dispatchKeyword("exec", "rofi -show drun")
         }
     }
 }

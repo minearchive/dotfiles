@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import Quickshell.Hyprland
-import "../Theme"
+import "../theme"
 
 Rectangle {
     width: Math.min(300, windowTitle.implicitWidth + 20)

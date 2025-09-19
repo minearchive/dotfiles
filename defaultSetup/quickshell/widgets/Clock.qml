@@ -1,19 +1,20 @@
 import QtQuick
 import QtQuick.Controls
-import "../Theme"
+import "../theme"
 
 Rectangle {
     width: 120
     height: 25
     radius: 8
     color: Colors.primary
-    
+
     Text {
         id: clockText
         anchors.centerIn: parent
         color: Colors.on_primary
-        font.pixelSize: 12
-        font.weight: Font.Medium
+        font.pixelSize: 14
+        font.weight: 600
+        font.family: Fonts.noto
     }
     
     Timer {

@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import Quickshell.Services.UPower
-import "../Theme"
+import "../theme"
 
 Rectangle {
     width: 70

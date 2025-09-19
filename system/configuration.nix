@@ -157,7 +157,6 @@
     zsh
     vim
     wget
-    neovim
     seatd
     kitty
     foot

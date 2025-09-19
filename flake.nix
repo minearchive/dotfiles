@@ -31,6 +31,11 @@
     
     ags.url = "github:Aylur/ags";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: {

@@ -15,12 +15,12 @@
     zenity
   ];
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    systemd.enable = false; # we use UWSM instead
-    plugins = [
-      pkgs.hyprlandPlugins.hyprexpo
-      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
-    ];
-  };
+  # wayland.windowManager.hyprland = {
+  #   enable = true;
+  #   systemd.enable = false; # we use UWSM instead
+  #   plugins = [
+  #     pkgs.hyprlandPlugins.hyprexpo
+  #     inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
+  #   ];
+  # };
 }

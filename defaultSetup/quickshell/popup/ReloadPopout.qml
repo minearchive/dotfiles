@@ -2,8 +2,6 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 
-import "../Theme"
-
 Scope {
 	id: root
 	property bool failed;

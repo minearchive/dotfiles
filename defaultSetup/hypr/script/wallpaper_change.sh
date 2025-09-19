@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Open zenity file selector for image files
-FILE=$(zenity --file-selection --title="Select Wallpaper Image" --file-filter="Images | *.png *.jpg *.jpeg *.bmp *.webp *.gif *.mp4")
+FILE=$(zenity --file-selection --title="Choose wallpaper" --file-filter="Images | *.png *.jpg *.jpeg *.bmp *.webp *.gif *.mp4")
 
 # Check if a file was selected
 if [ -z "$FILE" ]; then

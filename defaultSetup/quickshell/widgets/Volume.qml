@@ -4,7 +4,7 @@ import Quickshell.Hyprland
 
 import Quickshell.Services.Pipewire
 
-import "../Theme"
+import "../theme"
 
 Rectangle {
     width: 60

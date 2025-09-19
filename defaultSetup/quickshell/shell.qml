@@ -3,7 +3,7 @@ import QtQuick.Controls
 import Quickshell
 import Quickshell.Services.UPower
 import Quickshell.Hyprland
-import "Theme"
+import "theme"
 import "widgets"
 import "popup"
 
@@ -17,7 +17,7 @@ ShellRoot {
             right: true
         }
         color: Colors.surface
-        implicitHeight: 35
+        implicitHeight: 45
         
         // Left section
         Row {
@@ -41,6 +41,15 @@ ShellRoot {
             // Active window title
             WindowTitle {}
         }
+
+        // Center section
+        Row {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: 10
+            // Empty for now
+            MediaPlayer { }
+        }
         
         // Right section
         Row {
@@ -50,7 +59,6 @@ ShellRoot {
             spacing: 10
             
             SystemTray {}
-            NetworkStatus {}
             Volume {}
             Battery {}
             Clock {}

@@ -19,6 +19,9 @@
     #Jetbrain plugins
     github-copilot-intellij-agent
 
+    zed-editor
+    figma-linux
+
     discord
     vscode
     vesktop

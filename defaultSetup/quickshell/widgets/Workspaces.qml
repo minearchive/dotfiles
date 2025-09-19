@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import Quickshell.Hyprland
-import "../Theme"
+import "../theme"
 
 Rectangle {
     id: workspaces

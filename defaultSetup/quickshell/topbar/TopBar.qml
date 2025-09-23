@@ -8,6 +8,8 @@ import "../config"
 import "../component"
 import "../theme"
 import "workspace"
+import "media"
+import "other"
 
 Variants {
         model: Quickshell.screens
@@ -26,13 +28,13 @@ Variants {
                 right: true
             }
 
-            implicitHeight: 30
+            implicitHeight: 40
 
             Row {
-                id: layout
-                anchors.fill: parent
-                anchors.margins: 10
-                spacing: 10
+                id: left
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: 10
 
                 Rectangle {
                     width: 180
@@ -42,8 +44,19 @@ Variants {
 
                     Workspace { }
                 }
+            }
 
+            Row {
+                id: center
+                anchors.centerIn: parent
+                spacing: 10
+
+                MediaPlayer { }
             }
         }
+
+        VolumeNotification { }
+        SystemNotification { }
+        // ActivateLinux { }
     }
 }

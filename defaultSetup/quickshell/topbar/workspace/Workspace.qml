@@ -28,11 +28,11 @@ Row {
                 : Colors.on_primary_container
 
             Behavior on width {
-                NumberAnimation { duration: Appearance.animation.durations.extraLarge; easing.type: Easing.OutQuint }
+                NumberAnimation { duration: Appearance.animation.durations.large; easing.type: Easing.OutQuint }
             }
 
             Behavior on color {
-                ColorAnimation { duration: 500; easing.type: Easing.OutQuint }
+                ColorAnimation { duration: Appearance.animation.durations.medium; easing.type: Easing.OutExpo }
             }
 
             MouseArea {

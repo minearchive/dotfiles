@@ -11,7 +11,7 @@ in {
     plugins.lualine.enable = true;
 
     extraPlugins = [
-      pkgs.vimPlugins.quick-scope
+      # pkgs.vimPlugins.quick-scope
     ];
   };
 }

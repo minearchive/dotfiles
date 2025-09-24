@@ -101,6 +101,7 @@
   services.seatd.enable = true;
   services.flatpak.enable = true;
   services.blueman.enable = true;
+  services.systembus-notify.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -159,12 +160,14 @@
     wget
     seatd
     kitty
-    foot
     rustup
     cargo
     fcitx5-gtk
     inputs.swww.packages.${system}.swww
     inputs.matugen.packages.${system}.default
+
+    libnotify
+    mako
   ];
 
   system.stateVersion = "24.11";

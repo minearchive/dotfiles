@@ -15,12 +15,16 @@
     zenity
   ];
 
-  # wayland.windowManager.hyprland = {
-  #   enable = true;
-  #   systemd.enable = false; # we use UWSM instead
-  #   plugins = [
-  #     pkgs.hyprlandPlugins.hyprexpo
-  #     inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
-  #   ];
-  # };
+  # notification daemon
+  home.file.".config/mako/config".text = ''
+    default-timeout=1
+    background-color=#00000000
+    text-color=#00000000
+    border-size=0
+    padding=0
+    width=1
+    height=1
+  '';
+
+
 }

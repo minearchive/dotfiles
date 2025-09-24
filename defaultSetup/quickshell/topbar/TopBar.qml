@@ -8,8 +8,9 @@ import "../config"
 import "../component"
 import "../theme"
 import "workspace"
-import "media"
-import "other"
+import "component/media"
+import "component/popup"
+import "component/clock"
 
 Variants {
         model: Quickshell.screens
@@ -36,27 +37,29 @@ Variants {
                 anchors.left: parent.left
                 anchors.leftMargin: 10
 
-                Rectangle {
-                    width: 180
-                    height: 20
-                    radius: 15
-                    color: Colors.primary
-
-                    Workspace { }
-                }
+                Workspace { }   
             }
 
             Row {
                 id: center
                 anchors.centerIn: parent
-                spacing: 10
+                anchors.horizontalCenter: parent.horizontalCenter
 
                 MediaPlayer { }
+            }
+
+            Row {
+                id: right
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.rightMargin: 10
+
+                Clock { }
             }
         }
 
         VolumeNotification { }
-        SystemNotification { }
+        // SystemNotification { }
         // ActivateLinux { }
     }
 }

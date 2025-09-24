@@ -1,8 +1,8 @@
 import QtQuick
 import Quickshell
 
-import "../../theme"
-import "../../config"
+import "../../../theme"
+import "../../../config"
 
 Scope {
     id: root

@@ -4,8 +4,8 @@ import Quickshell.Widgets
 import Quickshell.Services.Pipewire
 import Quickshell.Wayland
 
-import "../../theme"
-import "../../config"
+import "../../../theme"
+import "../../../config"
 
 Scope {
     id: root
@@ -44,6 +44,7 @@ Scope {
         active: true
 
         PanelWindow {
+            id: w
             anchors {
                 top: true
             }
@@ -55,7 +56,30 @@ Scope {
 
             margins.top: 20
 
-            mask: Region { }
+            mask: Region {
+                item: Rectangle {
+                    x: 0
+                    y: 0
+                    width: w.implicitWidth * background.scale
+                    height: w.implicitHeight * background.scale
+                    radius: 20 * background.scale
+                    
+                    // マスクの透明度も連動
+                    opacity: background.opacity
+                    
+                    Behavior on width {
+                        NumberAnimation { duration: Appearance.animation.durations.medium; easing.type: Easing.OutBack }
+                    }
+                    
+                    Behavior on height {
+                        NumberAnimation { duration: Appearance.animation.durations.medium; easing.type: Easing.OutBack }
+                    }
+                    
+                    Behavior on radius {
+                        NumberAnimation { duration: Appearance.animation.durations.medium; easing.type: Easing.OutBack }
+                    }
+                }
+            }
 
             WlrLayershell.layer: WlrLayer.Overlay
 
@@ -69,7 +93,7 @@ Scope {
                 color: Colors.background
                 radius: 20
 
-                scale: root.shouldShowOsd ? 1 : 0.5
+                scale: root.shouldShowOsd ? 1 : 0.9
 
                 Behavior on scale {
                     NumberAnimation { duration: Appearance.animation.durations.medium; easing.type: Easing.OutBack }
@@ -105,6 +129,25 @@ Scope {
 
                             Behavior on width {
                                 NumberAnimation { duration: Appearance.animation.durations.medium; easing.type: Easing.OutQuint }
+                            }
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onPressed: event => {
+                                if (Pipewire.defaultAudioSink && root.shouldShowOsd) {
+                                    changePercent(event.x / parent.width);
+                                }
+                            }
+                            hoverEnabled: true
+                            onPositionChanged: event => {
+                                if (Pipewire.defaultAudioSink && root.shouldShowOsd && event.buttons === Qt.LeftButton) {
+                                    changePercent(event.x / parent.width);
+                                }
+                            }
+
+                            function changePercent(perc) {
+                                Pipewire.defaultAudioSink.audio.volume = perc;
                             }
                         }
                     }

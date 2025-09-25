@@ -43,6 +43,10 @@
     "hypr/script/wallpaper_change.sh" = {
       source = builtins.toString ./script/wallpaper_change.sh;
     };
+
+    "hypr/script/floating.sh" = {
+      source = builtins.toString ./script/floating.sh;
+    };
   };
 
   home.packages = with pkgs; [

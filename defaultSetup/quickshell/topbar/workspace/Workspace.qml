@@ -7,7 +7,7 @@ import "../../config"
 
 Rectangle {
     width: 180
-    height: 20
+    height: 25
     radius: 15
     color: Colors.primary
     Row {
@@ -23,17 +23,17 @@ Rectangle {
             delegate: Rectangle {
                 id: workspaceIndicator
                 width: ((Hyprland.focusedWorkspace.id === groupStart + index + 1) ? 20 : 10)
-                height: 10
+                height: 12
                 radius: 10
                 property int groupStart: Math.floor((Hyprland.focusedWorkspace.id - 1) / 10) * 10
                 property int groupEnd: groupStart + 9
 
                 color: (Hyprland.focusedWorkspace.id === groupStart + index + 1)
-                    ? Colors.primary_container
+                    ? Colors.on_primary
                     : Colors.on_primary_container
 
                 Behavior on width {
-                    NumberAnimation { duration: Appearance.animation.durations.large; easing.type: Easing.OutQuint }
+                    NumberAnimation { duration: Appearance.animation.durations.large; easing.type: Easing.OutExpo }
                 }
 
                 Behavior on color {

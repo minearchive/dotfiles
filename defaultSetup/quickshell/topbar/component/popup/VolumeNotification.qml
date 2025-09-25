@@ -64,9 +64,6 @@ Scope {
                     height: w.implicitHeight * background.scale
                     radius: 20 * background.scale
                     
-                    // マスクの透明度も連動
-                    opacity: background.opacity
-                    
                     Behavior on width {
                         NumberAnimation { duration: Appearance.animation.durations.medium; easing.type: Easing.OutBack }
                     }
@@ -125,7 +122,7 @@ Scope {
                             width: Math.min((Pipewire.defaultAudioSink?.audio?.muted ? 0 : (Pipewire.defaultAudioSink?.audio?.volume || 0)) * parent.width, parent.width)
                             height: parent.height
                             radius: parent.radius
-                            color: Colors.primary
+                            color: Pipewire.defaultAudioSink?.audio.volume > 0.7 ? Colors.error : Colors.primary
 
                             Behavior on width {
                                 NumberAnimation { duration: Appearance.animation.durations.medium; easing.type: Easing.OutQuint }

@@ -9,13 +9,15 @@ Scope {
 
     Loader {
         id: mediaPlayerLoader
-        active: false
+        active: true
 
         sourceComponent: PanelWindow {
 
             anchors {
                 top: true
             }
+
+            mask: Region { }
 
             color: "transparent"
 
@@ -24,14 +26,14 @@ Scope {
 
             exclusiveZone: 0
 
-            Rectangle {
-                id: background
+            // Rectangle {
+            //     id: background
 
-                anchors.fill: parent
+            //     anchors.fill: parent
 
-                color: Colors.background
-                radius: 20
-            }
+            //     color: Colors.primary
+            //     radius: 20
+            // }
         }
     }
 

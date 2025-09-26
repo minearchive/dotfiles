@@ -19,7 +19,7 @@ post_hook = 'pkill -SIGUSR1 kitty'
 
 [templates.quickshell]
 input_path = '~/.local/share/matugen/template/template.qml'
-output_path = '~/.local/share/qs-bar/Theme/Colors.qml'
+output_path = '~/.local/share/qs-bar/theme/Colors.qml'
 
 [templates.gtk3]
 input_path = '~/.local/share/matugen/template/gtk_theme.css'

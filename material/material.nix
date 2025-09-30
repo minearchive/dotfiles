@@ -1,11 +1,18 @@
 { pkgs, ... }: {
+  xdg.configFile = {
+    "gtk-3.0/settings.ini".text = ''
+      [Settings]
+      gtk-cursor-theme-name=phinger-cursors-light
+    '';
+  };
+
   imports = [
-    ./cursor.nix
     ./hyprland.nix
+    ./quickshell.nix
+    ./development.nix
     ./quickshell.nix
   ];
 
-  # import pkgs
   home.packages = with pkgs; [
     grim
     swappy
@@ -31,11 +38,4 @@
       DisableAppUpdate = false;
     };
   };
-  # programs.firefox = {
-    # profiles = {
-      # default = {
-        # userChrome = builtins.readFile ./firefox/userChrome.css;
-      # };
-    # };
-  # };
 }

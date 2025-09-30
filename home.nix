@@ -9,13 +9,6 @@
 
   # home-manager enable
   programs.home-manager.enable = true;
-  
-  home.file = {
-    "wallpaper.jpg" = {
-      target = "Wallpaper/wallpaper.jpg";
-      source = builtins.toString ./defaultSetup/wallpaper/wallpaper_atri.jpg;
-    };
-  };
 
   home.packages = with pkgs; [
     bat
@@ -28,10 +21,7 @@
   ];
 
   imports = [
-    ./defaultSetup/development.nix
-    ./defaultSetup/app.nix
-    ./defaultSetup/hyprland.nix
-    ./defaultSetup/quickshell.nix
+    ./material/material.nix
 
     inputs.spicetify-nix.homeManagerModules.default
   ];

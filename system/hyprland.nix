@@ -55,7 +55,6 @@ in
   environment.systemPackages = with pkgs; [
     hypridle
     hyprlock
-    hyprpaper
     hyprpicker
     hyprsunset
   ];

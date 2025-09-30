@@ -4,9 +4,9 @@
       source = builtins.toString ./hyprland.conf;
     };
 
-    "hypr/hyprpaper.conf" = {
-      source = builtins.toString ./hyprpaper.conf;
-    };
+    # "hypr/hyprpaper.conf" = {
+    #   source = builtins.toString ./hyprpaper.conf;
+    # };
 
     "hypr/hyprland/animation.conf" = {
       source = builtins.toString ./hyprland/animation.conf;
@@ -48,8 +48,4 @@
       source = builtins.toString ./script/floating.sh;
     };
   };
-
-  home.packages = with pkgs; [
-    rofi
-  ];
 }

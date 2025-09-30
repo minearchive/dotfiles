@@ -1,0 +1,41 @@
+{ config, lib, pkgs, inputs, ... }:
+
+let
+  quickshell = inputs.quickshell.packages.${pkgs.system}.default;
+in
+{
+  imports = [
+    ./templates.nix
+  ];
+
+  # QuickShellのファイルをコピー
+  home.activation.runqs = lib.mkAfter ''
+    chmod -R u+w "$HOME/.local/share/qs-bar" 2>/dev/null || true
+    rm -rf "$HOME/.local/share/qs-bar"
+    mkdir -p "$HOME/.local/share/qs-bar"
+    cp -ri ${./quickshell}/. "$HOME/.local/share/qs-bar"
+    chmod -R u+w "$HOME/.local/share/qs-bar"
+    echo "QuickShell files copied to ~/.local/share/qs-bar"
+  '';
+
+  # Qt5ct設定
+  xdg.configFile."qt5ct/qt5ct.conf".text = ''
+    [Appearance]
+    color_scheme_path=minearchive/.config/qt5ct/colors/matugen.conf
+    custom_palette=true
+  '';
+
+  # GTK設定
+  xdg.configFile."gtk-3.0/gtk.css".text = ''
+    @import 'colors.css';
+  '';
+  
+  xdg.configFile."gtk-4.0/gtk.css".text = ''
+    @import 'colors.css';
+  '';
+
+  home.packages = [
+    quickshell
+    pkgs.libsForQt5.qt5ct
+  ];
+}

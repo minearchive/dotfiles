@@ -1,5 +1,6 @@
-{ pkgs, lib, ... }: {
-  # 開発系設定のみ残す
+{ pkgs, lib, inputs, ... }: let 
+
+in {
   home.packages = with pkgs; [
     gcc
     go
@@ -81,5 +82,18 @@
     settings = {
       editor = "nvim";
     };
+  };
+
+  imports = [
+    inputs.nixvim.homeManagerModules.nixvim
+  ];
+
+  programs.nixvim = {
+    enable = true;
+    plugins.lualine.enable = true;
+
+    extraPlugins = [
+      # pkgs.vimPlugins.quick-scope
+    ];
   };
 }

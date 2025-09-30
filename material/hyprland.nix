@@ -1,4 +1,5 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ./hypr/hypr.nix
   ];

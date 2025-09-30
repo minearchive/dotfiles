@@ -1,4 +1,9 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 let
   quickshell = inputs.quickshell.packages.${pkgs.system}.default;
@@ -27,7 +32,7 @@ in
   xdg.configFile."gtk-3.0/gtk.css".text = ''
     @import 'colors.css';
   '';
-  
+
   xdg.configFile."gtk-4.0/gtk.css".text = ''
     @import 'colors.css';
   '';

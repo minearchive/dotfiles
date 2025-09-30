@@ -1,6 +1,12 @@
-{ lib, pkgs, inputs, ... }:
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
-with lib; let
+with lib;
+let
   hyprlandPkg = inputs.hyprland.packages.${pkgs.system}.hyprland;
   hyprPluginPkgs = inputs.hyprland-plugins.packages.${pkgs.system};
   hypr-plugin-dir = pkgs.symlinkJoin {
@@ -32,7 +38,7 @@ in
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
   security.pam.services = {
-    hyprlock = {};
+    hyprlock = { };
     gdm.enableGnomeKeyring = true;
   };
 

@@ -3,7 +3,7 @@
     #Nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    
+
     # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -11,7 +11,7 @@
     };
 
     xremap.url = "github:xremap/nix-flake";
-    
+
     # Hyprland
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-plugins = {
@@ -28,7 +28,7 @@
       url = "github:InioX/Matugen";
     };
     swww.url = "github:LGFae/swww";
-    
+
     ags.url = "github:Aylur/ags";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
@@ -44,25 +44,25 @@
         system = "x86_64-linux";
         modules = [
           ./system/configuration.nix
-	        ./system/hyprland.nix
+          ./system/hyprland.nix
         ];
-	      specialArgs = {
-           inherit inputs;
-       };
+        specialArgs = {
+          inherit inputs;
+        };
       };
     };
     homeConfigurations = {
       material = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = import inputs.nixpkgs {
-	        system = "x86_64-linux";
-	        config.allowUnfree = true;
-	      };
-	      extraSpecialArgs = {
-	        inherit inputs;
-	      };
-	      modules = [
-	        ./home.nix
-	      ];
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+        extraSpecialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./home.nix
+        ];
       };
     };
   };

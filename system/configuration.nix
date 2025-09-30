@@ -1,16 +1,21 @@
-{ inputs, config, pkgs, options, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  options,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ]
+  imports = [
+    ./hardware-configuration.nix
+  ]
 
   ++ [
     inputs.xremap.nixosModules.default
   ];
 
-  networking.timeServers = options.networking.timeServers.default ++ [ "ntp.nict.jp" ]; 
+  networking.timeServers = options.networking.timeServers.default ++ [ "ntp.nict.jp" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -42,7 +47,7 @@
 
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx5.addons = [pkgs.fcitx5-mozc];
+    fcitx5.addons = [ pkgs.fcitx5-mozc ];
   };
 
   fonts = {
@@ -56,10 +61,19 @@
     fontDir.enable = true;
     fontconfig = {
       defaultFonts = {
-        serif = ["Noto Serif CJK JP" "Noto Color Emoji"];
-	      sansSerif = ["Noto Sans CJK JP" "Noto Color Emoji"];
-	      monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
-	      emoji = ["Noto Color Emoji"];
+        serif = [
+          "Noto Serif CJK JP"
+          "Noto Color Emoji"
+        ];
+        sansSerif = [
+          "Noto Sans CJK JP"
+          "Noto Color Emoji"
+        ];
+        monospace = [
+          "JetBrainsMono Nerd Font"
+          "Noto Color Emoji"
+        ];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
   };
@@ -75,22 +89,26 @@
     config = {
       modmap = [
         {
-	        name = "CapsLock is Ctrl";
-	        remap = {
-	          CapsLock = "Ctrl_L";
-	        };
-	      }
+          name = "CapsLock is Ctrl";
+          remap = {
+            CapsLock = "Ctrl_L";
+          };
+        }
       ];
       keymap = [
         {
-	        name = "Ctrl+H should be enabled on all apps as BackSpace";
-	        remap = {
-	          C-h = "Backspace";
-	        };
-	        application = {
-	          not = ["Aracritty" "Kitty"  "Wezterm"];
-	        };
-	      }
+          name = "Ctrl+H should be enabled on all apps as BackSpace";
+          remap = {
+            C-h = "Backspace";
+          };
+          application = {
+            not = [
+              "Aracritty"
+              "Kitty"
+              "Wezterm"
+            ];
+          };
+        }
       ];
     };
   };
@@ -140,6 +158,7 @@
           }
         '')
       ];
+    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -149,9 +168,10 @@
   users.users.minearchive = {
     isNormalUser = true;
     description = "MineArchive";
-    extraGroups = [ "networkmanager" "wheel" "seat"];
-    packages = with pkgs; [
-    #  thunderbird
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "seat"
     ];
     shell = pkgs.zsh;
   };
@@ -187,7 +207,10 @@
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
     gc = {
       automatic = true;
@@ -203,8 +226,7 @@
     extraPackages = with pkgs; [
       vpl-gpu-rt
     ];
-  }; 
-
+  };
 
   #tailscale vpn
   services.tailscale.enable = true;
@@ -212,8 +234,21 @@
     enable = true;
     # tailscaleの仮想NICを信頼する
     # `<Tailscaleのホスト名>:<ポート番号>`のアクセスが可能になる
-    trustedInterfaces = ["tailscale0"];
-    allowedUDPPorts = [config.services.tailscale.port];
+    trustedInterfaces = [ "tailscale0" ];
+    allowedUDPPorts = [ config.services.tailscale.port ];
+
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+    allowedUDPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
   };
 
   virtualisation = {
@@ -227,7 +262,10 @@
   };
 
   boot.kernelParams = [ "i915.force_probe=a7aa" ];
-  hardware.graphics.extraPackages = with pkgs; [ vaapiIntel intel-media-driver ];
+  hardware.graphics.extraPackages = with pkgs; [
+    vaapiIntel
+    intel-media-driver
+  ];
 
   programs = {
     noisetorch.enable = true;
@@ -272,16 +310,9 @@
   # cachix.enable = false;
 
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    substituters = [ "https://hyprland.cachix.org" ];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
   environment.variables.NIXOS_OZONE_WL = "1";
-
-  networking.firewall = rec {
-    allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
-    allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
-  };
-
-  # programs.nix-ld.enable = true;
 }

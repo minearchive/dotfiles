@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ ... }:
+{
   xdg.configFile = {
     "hypr/hyprland.conf" = {
       source = builtins.toString ./hyprland.conf;
@@ -50,14 +51,18 @@
           echo "No file selected, exiting."
           exit 1
         fi
+        # Check if MATUGEN_SCHEME is set, otherwise default to dark
 
-        scheme="${MATUGEN_SCHEME:-dark}"
+        if [ -z "$MATUGEN_SCHEME" ]; then
+          MATUGEN_SCHEME="dark"
+        fi
+
         echo "Using color scheme: $scheme"
 
-        matugen image "$FILE" -c ~/.config/matugen/config.toml --mode "$scheme" 
+        matugen image "$FILE" -c ~/.config/matugen/config.toml --mode "$scheme"
 
         swww img "$FILE" --transition-type outer --transition-pos 0.857,0.977 --transition-step 90 --transition-fps 60
-      ''
+      '';
     };
   };
 }

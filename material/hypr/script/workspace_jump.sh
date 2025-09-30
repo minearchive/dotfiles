@@ -11,7 +11,6 @@ fi
 currentWS=$(hyprctl activeworkspace -j | jq '.id')
 targetWS=$((currentWS + OFFSET))
 
-# アニメーションの設定（上向き/下向き）
 if [ "$1" == "1" ]; then
     hyprctl keyword animation "workspaces, 1, 14, $ANIMATION, slidevert"
 else

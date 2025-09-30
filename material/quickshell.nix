@@ -4,7 +4,7 @@ let
   quickshell = inputs.quickshell.packages.${pkgs.system}.default;
 in
 {
-  # QuickShellのファイルをコピー
+  # Idk i have no idea.
   home.activation.runqs = lib.mkAfter ''
     export PATH=${quickshell}/bin:${pkgs.gawk}/bin:$PATH:${pkgs.hyprland}/bin
 
@@ -18,14 +18,12 @@ in
     echo "QuickShell files copied to ~/.local/share/qs-bar"
   '';
 
-  # Qt5ct設定
   xdg.configFile."qt5ct/qt5ct.conf".text = ''
     [Appearance]
     color_scheme_path=minearchive/.config/qt5ct/colors/matugen.conf
     custom_palette=true
   '';
 
-  # GTK設定
   xdg.configFile."gtk-3.0/gtk.css".text = ''
     @import 'colors.css';
   '';

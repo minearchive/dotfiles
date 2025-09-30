@@ -24,7 +24,6 @@
     cava
   ];
 
-  # カーソル設定
   home.pointerCursor = {
     name = "phinger-cursors-light";
     package = pkgs.phinger-cursors;

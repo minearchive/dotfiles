@@ -1,6 +1,4 @@
 { pkgs, inputs, ... }: {
-  # デスクトップカスタマイズ系設定のみ残す
-
   imports = [
     ./hypr/hypr.nix
   ];

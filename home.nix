@@ -6,7 +6,7 @@
     homeDirectory = "/home/${username}"; # 文字列に値を埋め込む
     stateVersion = "25.05";
   };
-
+  
   # home-manager enable
   programs.home-manager.enable = true;
 
@@ -22,7 +22,6 @@
 
   imports = [
     ./material/material.nix
-
     inputs.spicetify-nix.homeManagerModules.default
   ];
 }

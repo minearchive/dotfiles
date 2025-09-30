@@ -8,9 +8,9 @@
 
   imports = [
     ./hyprland.nix
-    ./quickshell.nix
     ./development.nix
     ./quickshell.nix
+    ./templates.nix
   ];
 
   home.packages = with pkgs; [

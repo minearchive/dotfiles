@@ -9,6 +9,7 @@ in {
     python312
     jdk
     dart
+    bun
     nodejs_22
     cmake
     devenv
@@ -94,4 +95,11 @@ in {
       # pkgs.vimPlugins.quick-scope
     ];
   };
+
+  # Theming of vscode
+  home.file.".config/vscode.css".text = ''
+    body {
+      --radius: 8px;
+    }
+  '';
 }

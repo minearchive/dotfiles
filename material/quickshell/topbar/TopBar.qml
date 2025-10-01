@@ -37,7 +37,7 @@ Variants {
                 anchors.left: parent.left
                 anchors.leftMargin: 10
 
-                Workspace { }   
+                Workspace { }
             }
 
             Row {
@@ -45,7 +45,7 @@ Variants {
                 anchors.centerIn: parent
                 anchors.horizontalCenter: parent.horizontalCenter
 
-                MediaPlayer { }
+                // MediaPlayer { }
             }
 
             Row {

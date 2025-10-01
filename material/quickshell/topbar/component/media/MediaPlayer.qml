@@ -12,12 +12,13 @@ Scope {
         active: true
 
         sourceComponent: PanelWindow {
+            id: window
 
             anchors {
                 top: true
             }
 
-            mask: Region { }
+            // mask: Region { }
 
             color: "transparent"
 
@@ -26,14 +27,23 @@ Scope {
 
             exclusiveZone: 0
 
-            // Rectangle {
-            //     id: background
+            Rectangle {
+                id: background
 
-            //     anchors.fill: parent
+                anchors.fill: parent
 
-            //     color: Colors.primary
-            //     radius: 20
-            // }
+                color: Colors.primary
+                radius: 20
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onClicked: {
+                        console.log("clicked");
+                        window.expanding = !window.expanding;
+                    }
+                }
+            }
         }
     }
 

@@ -29,7 +29,6 @@
     };
     swww.url = "github:LGFae/swww";
 
-    ags.url = "github:Aylur/ags";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
     nixvim = {
@@ -62,6 +61,19 @@
         };
         modules = [
           ./home.nix
+        ];
+      };
+
+      pastel = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = import inputs.nixpkgs {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+        extraSpecialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./pastel/pastel.nix
         ];
       };
     };

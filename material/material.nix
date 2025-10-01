@@ -1,4 +1,9 @@
 { pkgs, ... }:
+# let
+#   logseq-patched = pkgs.logseq.override {
+#     electron_27 = pkgs.electron_35;
+#   };
+# in
 {
   xdg.configFile = {
     "gtk-3.0/settings.ini".text = ''
@@ -20,6 +25,9 @@
     slurp
 
     tetrio-desktop
+
+    # logseq-patched
+    logseq
 
     cmatrix
     cava

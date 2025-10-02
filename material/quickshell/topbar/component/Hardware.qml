@@ -1,0 +1,10 @@
+import QtQuick
+import Quickshell
+import Quickshell.Services.SystemTray
+
+Scope {
+    id: hardwareScope
+    Repeater {
+        model: SystemTray.items
+    }
+}

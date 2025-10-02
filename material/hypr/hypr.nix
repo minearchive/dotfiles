@@ -63,6 +63,8 @@
         matugen image "$FILE" -c ~/.config/matugen/config.toml --mode "$MATUGEN_SCHEME"
 
         swww img "$FILE" --transition-type outer --transition-pos 0.857,0.977 --transition-step 90 --transition-fps 60
+
+        echo "$FILE" > ~/.config/wallpaper.info
       '';
     };
   };

@@ -4,8 +4,8 @@ import Quickshell.Widgets
 import Quickshell.Services.Pipewire
 import Quickshell.Wayland
 
-import "../../../theme"
-import "../../../config"
+import "../../theme"
+import "../../config"
 
 Scope {
     id: root
@@ -63,15 +63,15 @@ Scope {
                     width: w.implicitWidth * background.scale
                     height: w.implicitHeight * background.scale
                     radius: 20 * background.scale
-                    
+
                     Behavior on width {
                         NumberAnimation { duration: Appearance.animation.durations.medium; easing.type: Easing.OutBack }
                     }
-                    
+
                     Behavior on height {
                         NumberAnimation { duration: Appearance.animation.durations.medium; easing.type: Easing.OutBack }
                     }
-                    
+
                     Behavior on radius {
                         NumberAnimation { duration: Appearance.animation.durations.medium; easing.type: Easing.OutBack }
                     }
@@ -99,7 +99,7 @@ Scope {
                 opacity: root.shouldShowOsd ? 1 : 0
 
                 Behavior on opacity {
-                    NumberAnimation { 
+                    NumberAnimation {
                         duration: Appearance.animation.durations.medium;
                         easing.type: Easing.OutQuint
                     }

@@ -8,9 +8,7 @@ import "../config"
 import "../component"
 import "../theme"
 import "workspace"
-import "component/media"
-import "component/popup"
-import "component/clock"
+import "component"
 
 Variants {
         model: Quickshell.screens
@@ -55,6 +53,7 @@ Variants {
                 anchors.rightMargin: 10
 
                 Clock { }
+                Hardware { }
             }
         }
 

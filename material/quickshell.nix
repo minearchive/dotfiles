@@ -11,7 +11,7 @@ in
 {
   # Idk i have no idea.
   home.activation.runqs = lib.mkAfter ''
-    export PATH=${quickshell}/bin:${pkgs.gawk}/bin:$PATH:${pkgs.hyprland}/bin
+    export PATH=${quickshell}/bin:${pkgs.gawk}/bin:$PATH:${pkgs.hyprland}/bin:${pkgs.matugen}/bin:${pkgs.procps}/bin:${pkgs.glib}/bin
 
     chmod -R u+w "$HOME/.local/share/qs-bar" 2>/dev/null || true
     kill $(quickshell list --all | grep Process | awk '{print $3}')
@@ -19,7 +19,14 @@ in
     mkdir -p "$HOME/.local/share/qs-bar"
     cp -ri ${./quickshell}/. "$HOME/.local/share/qs-bar"
     chmod -R u+w "$HOME/.local/share/qs-bar"
-    hyprctl dispatch exec "quickshell -p ~/.local/share/qs-bar"
+    hyprctl dispatch exec "quickshell -p ~/.local/share/qs-bar" > /dev/null
+
+    MATUGEN_SCHEME="''${MATUGEN_SCHEME:-dark}"
+
+    echo "Using color scheme: $MATUGEN_SCHEME"
+
+    matugen image $(cat $HOME/.config/wallpaper.info) -c ~/.config/matugen/config.toml --mode "$MATUGEN_SCHEME" > /dev/null
+
     echo "QuickShell files copied to ~/.local/share/qs-bar"
   '';
 

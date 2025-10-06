@@ -302,6 +302,16 @@
     };
   };
 
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc
+    openssl
+    zlib
+    curl
+    glib
+    libgcc
+  ];
+
   nix.extraOptions = ''
     extra-substituters = https://devenv.cachix.org
     extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=

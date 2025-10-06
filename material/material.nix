@@ -5,15 +5,8 @@
 #   };
 # in
 {
-  xdg.configFile = {
-    "gtk-3.0/settings.ini".text = ''
-      [Settings]
-      gtk-cursor-theme-name=phinger-cursors-light
-    '';
-  };
 
   imports = [
-    ./hyprland.nix
     ./development.nix
     ./quickshell.nix
     ./templates.nix
@@ -25,6 +18,12 @@
     slurp
 
     tetrio-desktop
+    discord
+    vscode
+    vesktop
+    obs-studio
+    protonvpn-gui
+    wireguard-tools
 
     # logseq-patched
     logseq
@@ -40,10 +39,10 @@
     gtk.enable = true;
   };
 
-  programs.firefox = {
-    enable = true;
-    policies = {
-      DisableAppUpdate = false;
-    };
+  xdg.configFile = {
+    "gtk-3.0/settings.ini".text = ''
+      [Settings]
+      gtk-cursor-theme-name=phinger-cursors-light
+    '';
   };
 }

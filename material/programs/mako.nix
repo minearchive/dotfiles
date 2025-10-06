@@ -1,14 +1,5 @@
-{ pkgs, ... }:
+{ ... }:
 {
-  imports = [
-    ./hypr/hypr.nix
-  ];
-
-  home.packages = with pkgs; [
-    rofi
-    zenity
-  ];
-
   # notification daemon
   home.file.".config/mako/config".text = ''
     default-timeout=1

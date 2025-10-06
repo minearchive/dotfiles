@@ -3,8 +3,12 @@
 
 ## Overview
 
-This repository provides an automated dotfiles management environment using NixOS and Home Manager.  
+This repository provides an automated dotfiles management environment using NixOS and Home Manager.
 It includes a rich desktop experience with Hyprland, QuickShell, Matugen, and unified configuration for various tools and applications.
+
+| blue | red |
+|---|---|
+| ![Desktop Screenshot](./readme/material-desktop-blue.png) | ![Desktop Screenshot](./readme/material-desktop-red.png) |
 
 ## Features
 
@@ -24,11 +28,11 @@ It includes a rich desktop experience with Hyprland, QuickShell, Matugen, and un
      cd ~/.dotfiles
      ```
 3. **Apply Home Manager / System configuration**
-     - System:  
+     - System:
          ```sh
          sudo nixos-rebuild switch --flake .#msiLaptop
          ```
-     - User:  
+     - User:
          ```sh
          home-manager switch --flake .#material
          ```
@@ -63,6 +67,3 @@ It includes a rich desktop experience with Hyprland, QuickShell, Matugen, and un
 ## License
 
 MIT
-
-
-

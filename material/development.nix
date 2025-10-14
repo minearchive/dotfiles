@@ -15,6 +15,7 @@
     nodejs_22
     cmake
     devenv
+    direnv
     #IDE
     jetbrains.rust-rover
     jetbrains.idea-ultimate

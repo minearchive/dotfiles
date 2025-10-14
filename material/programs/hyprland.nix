@@ -127,6 +127,7 @@
         bind = SUPER, Q, killactive
         bind = SUPER, M, exec, hyprctl dispatch exit
         bind = SUPER, E, exec, nautilus
+        bind = SUPER, L, exec, hyprlock
 
         bind = SUPER, R, exec, rofi -show run
 

@@ -4,7 +4,5 @@ import Quickshell.Services.SystemTray
 
 Scope {
     id: hardwareScope
-    Repeater {
-        model: SystemTray.items
-    }
+    
 }

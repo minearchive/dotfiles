@@ -42,8 +42,18 @@
       msiLaptop = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./system/configuration.nix
-          ./system/hyprland.nix
+          ./system/msiLaptop/configuration.nix
+          ./system/msiLaptop/hyprland.nix
+        ];
+        specialArgs = {
+          inherit inputs;
+        };
+      };
+
+      desktop = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./system/desktop/configuration.nix
         ];
         specialArgs = {
           inherit inputs;

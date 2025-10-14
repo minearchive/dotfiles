@@ -19,7 +19,7 @@ Variants {
         StyledWindow {
             title: "topbar"
 
-            color: Colors.background
+            color: "transparent"
 
             anchors {
                 top: true
@@ -27,38 +27,78 @@ Variants {
                 right: true
             }
 
-            implicitHeight: 40
+            implicitHeight: 500
+            exclusiveZone: 40
 
-            Row {
-                id: left
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: parent.left
-                anchors.leftMargin: 10
+            Rectangle {
+                id: mask_region
 
-                Workspace { }
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    top: parent.top
+                }
+
+                implicitWidth: parent.width
+                implicitHeight: 40
+                color: Colors.background
             }
 
-            Row {
-                id: center
-                anchors.centerIn: parent
-                anchors.horizontalCenter: parent.horizontalCenter
-
-                // MediaPlayer { }
+            mask: Region {
+                item: mask_region
+                Region {
+                    item: mediaPlayer.container
+                }
             }
 
-            Row {
-                id: right
-                anchors.right: parent.right
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.rightMargin: 10
+            Rectangle {
+                // set center in parent
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    top: parent.top
+                    topMargin: 5
+                }
 
-                Clock { }
-                Hardware { }
+                implicitWidth: parent.width
+                implicitHeight: 35
+                color: Colors.background
+
+                Row {
+                    id: left
+                    anchors.top: parent.top
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+
+                    Workspace { }
+                }
+
+                Row {
+                    id: center
+                    anchors.top: parent.top
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    MediaPlayer {
+                        id: mediaPlayer
+                    }
+                }
+
+                Row {
+                    id: right
+                    anchors.top: parent.top
+                    anchors.right: parent.right
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.rightMargin: 10
+
+                    Clock { }
+                    Hardware { }
+                }
             }
+
+            VolumeNotification { }
+            // SystemNotification { }
+            // ActivateLinux { }
         }
-
-        VolumeNotification { }
-        // SystemNotification { }
-        // ActivateLinux { }
     }
 }

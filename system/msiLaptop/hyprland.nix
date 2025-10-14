@@ -52,7 +52,7 @@ in
 
   # Enable Hyprland
   programs.hyprland = {
-    package = hyprlandPkg;
+    package = hyprlandPkg; # fuck nix pkgs
     enable = true;
     xwayland.enable = true;
     withUWSM = true; # recommended for most users

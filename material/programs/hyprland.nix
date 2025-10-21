@@ -217,8 +217,6 @@
 
         # Some of config are from end-4 dotfile
 
-        layerrule = animation slide left, sideleft.*
-        layerrule = animation slide right, sideright.*
         layerrule = blur, session[0-9]*
         layerrule = blur, bar[0-9]*
         layerrule = ignorealpha 0.6, bar[0-9]*
@@ -240,6 +238,7 @@
         layerrule = ignorealpha 0.6, indicator.*
         layerrule = blur, osk[0-9]*
         layerrule = ignorealpha 0.6, osk[0-9]*
+        layerrule = noanim, hyprpicker
 
         windowrulev2 = center, title:^(Open File)(.*)$
         windowrulev2 = float, title:^(Open File)(.*)$

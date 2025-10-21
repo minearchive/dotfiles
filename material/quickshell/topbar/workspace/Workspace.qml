@@ -2,8 +2,8 @@ import QtQuick
 import Quickshell
 import Quickshell.Hyprland
 
-import "../../theme"
-import "../../config"
+import "root:/theme"
+import "root:/config"
 
 Rectangle {
     width: 180

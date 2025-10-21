@@ -60,6 +60,7 @@
         };
       };
     };
+
     homeConfigurations = {
       material = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = import inputs.nixpkgs {

@@ -47,5 +47,7 @@ in
   home.packages = [
     quickshell
     pkgs.libsForQt5.qt5ct
+    pkgs.libsForQt5.qt5.qtgraphicaleffects
+    pkgs.libsForQt5.qt5.qttools
   ];
 }

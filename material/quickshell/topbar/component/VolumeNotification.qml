@@ -4,8 +4,8 @@ import Quickshell.Widgets
 import Quickshell.Services.Pipewire
 import Quickshell.Wayland
 
-import "../../theme"
-import "../../config"
+import "root:/theme"
+import "root:/config"
 
 Scope {
     id: root

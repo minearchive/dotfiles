@@ -4,14 +4,16 @@ import Quickshell
 import Quickshell.Widgets
 import Quickshell.Hyprland
 
-import "../config"
-import "../component"
-import "../theme"
+import "root:/config"
+import "root:/component"
+import "root:/theme"
+import "root:/service"
 import "workspace"
 import "component"
+import "component/other"
 
 Variants {
-        model: Quickshell.screens
+    model: Quickshell.screens
     Scope {
         id: screenScope
         required property ShellScreen modelData
@@ -71,7 +73,7 @@ Variants {
                     anchors.left: parent.left
                     anchors.leftMargin: 10
 
-                    Workspace { }
+                    Workspace {}
                 }
 
                 Row {
@@ -91,12 +93,12 @@ Variants {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.rightMargin: 10
 
-                    Clock { }
-                    Hardware { }
+                    Clock {}
+                    Hardware {}
                 }
             }
 
-            VolumeNotification { }
+            VolumeNotification {}
             // SystemNotification { }
             // ActivateLinux { }
         }

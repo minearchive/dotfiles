@@ -4,5 +4,4 @@ import Quickshell.Services.SystemTray
 
 Scope {
     id: hardwareScope
-    
 }

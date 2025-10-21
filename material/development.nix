@@ -24,6 +24,7 @@
 
     nixd
     nil
+    qt6.qtdeclarative
 
     # zed-editor
     figma-linux
@@ -44,5 +45,7 @@
     ./programs/mako.nix
     ./programs/neovim.nix
     ./programs/zed.nix
+    ./programs/spotify.nix
+    ./programs/wlogout.nix
   ];
 }

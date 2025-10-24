@@ -57,6 +57,7 @@
         env=GTK_IM_MODULE=fcitx
         env=QT_IM_MODULE=fcitx
         env=XMODIFIERS=@im=fcitx
+        env=GLFW_IM_MODULE=fcitx
 
         input {
           kb_layout = jp
@@ -67,10 +68,10 @@
             natural_scroll = yes
             disable_while_typing = true
             clickfinger_behavior = true
-            scroll_factor = 0.8
+            scroll_factor = 0.6
           }
 
-          sensitivity = 0.6
+          sensitivity = 0
         }
 
         gestures {
@@ -195,6 +196,8 @@
         bind = SUPER+SHIFT, s, exec, grim -g "$(slurp)" - | swappy -f -
         bind = SHIFT, Print, exec, grim - | wl-copy && wl-paste > ~/Pictures/screenshots/Screenshot-$(date +%F_%T).png && dunstify "Screenshot of the whole screen taken" -t 1000
         bind = Super, I, exec, XDG_CURRENT_DESKTOP=gnome gnome-control-center
+        bind = SUPER, N, exec, hyprpicker -a
+        bind = SUPER, P, exec, wlogout
       '';
     };
 
@@ -263,6 +266,8 @@
         windowrulev2 = center, class:org.gnome.clocks
         windowrulev2 = float, class:org.gnome.clocks
         windowrulev2 = size 800 500, class:org.gnome.clocks
+
+        windowrulev2 = noanim, class:^(wlogout)$
       '';
     };
 

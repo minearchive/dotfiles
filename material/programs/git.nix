@@ -2,8 +2,10 @@
 {
   programs.git = {
     enable = true;
-    userName = "minearchive";
-    userEmail = "102400088+minearchive@users.noreply.github.com";
+    settings = {
+      user.email = "102400088+minearchive@users.noreply.github.com";
+      user.name = "minearchive";
+    };
   };
 
   # GitHub CLI

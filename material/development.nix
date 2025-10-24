@@ -22,6 +22,8 @@
     #Jetbrain plugins
     github-copilot-intellij-agent
 
+    omnissa-horizon-client
+    clock-rs
     nixd
     nil
     qt6.qtdeclarative

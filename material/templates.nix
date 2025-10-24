@@ -34,6 +34,10 @@
       input_path = '~/.local/share/matugen/template/gtk_theme.css'
       output_path = '~/.config/gtk-4.0/colors.css'
 
+      [templates.wlogout]
+      input_path = '~/.local/share/matugen/template/colors.css'
+      output_path = '~/.config/wlogout/colors.css'
+
       [templates.one_material3_zed]
       input_path = '~/.local/share/matugen/template/one-material3.json'
       output_path = '~/.config/zed/themes/material-you.json'
@@ -806,6 +810,16 @@
         background-color: var(--md-sys-color-background);
         color: var(--md-sys-color-on-background);
       }
+    '';
+
+    ".local/share/matugen/template/colors.css".text = ''
+    /*
+    * Css Colors
+    * Generated with Matugen
+    */
+    <* for name, value in colors *>
+        @define-color {{name}} {{value.default.hex}};
+    <* endfor *>
     '';
   };
 }

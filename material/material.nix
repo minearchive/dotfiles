@@ -17,7 +17,6 @@
     swappy
     slurp
 
-    tetrio-desktop
     discord
     vscode
     vesktop
@@ -27,6 +26,7 @@
 
     # logseq-patched
     logseq
+    fastfetch
 
     cmatrix
     cava

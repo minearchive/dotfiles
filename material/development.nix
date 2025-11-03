@@ -28,6 +28,7 @@
     nil
     qt6.qtdeclarative
 
+    ffmpeg_8-full
     # zed-editor
     figma-linux
   ];
@@ -49,5 +50,6 @@
     ./programs/zed.nix
     ./programs/spotify.nix
     ./programs/wlogout.nix
+    ./programs/zen.nix
   ];
 }

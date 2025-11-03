@@ -148,7 +148,7 @@ Rectangle {
 
         onPressed: {
             if (!MprisState.getPlayer()) return;
-            return; // Disable toggling for now
+            // return; // Disable toggling for now
             mediaPlayerContainer.expand = !mediaPlayerContainer.expand;
             
             if (mediaPlayerContainer.expand) {

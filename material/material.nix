@@ -30,6 +30,8 @@
 
     cmatrix
     cava
+
+    nwg-displays
   ];
 
   home.pointerCursor = {

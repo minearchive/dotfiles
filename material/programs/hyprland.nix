@@ -329,5 +329,6 @@
   home.packages = with pkgs; [
     rofi
     zenity
+    grim
   ];
 }

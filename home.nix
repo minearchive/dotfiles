@@ -17,7 +17,6 @@
       bottom
       httpie
       ripgrep
-      ffmpeg
       tree
       jq
     ];

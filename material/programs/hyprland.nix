@@ -72,7 +72,12 @@
           }
 
           sensitivity = 0
+
         }
+
+	cursor {
+	  no_hardware_cursors = true
+	}
 
         gestures {
           #workspace_swipe = true
@@ -124,7 +129,7 @@
         # hyprexpo-gesture = 3, down, expo, off
 
         bind = SUPER, T, exec, kitty --session ~/.bashrc
-        bind = SUPER, F, exec, firefox
+        bind = SUPER, F, exec, zen
         bind = SUPER, Q, killactive
         bind = SUPER, M, exec, hyprctl dispatch exit
         bind = SUPER, E, exec, nautilus

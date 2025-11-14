@@ -31,6 +31,8 @@
     cmatrix
     cava
 
+    manix
+
     nwg-displays
   ];
 

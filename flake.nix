@@ -1,8 +1,13 @@
 {
   inputs = {
     #Nixpkgs
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    };
+
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+    };
 
     # Home Manager
     home-manager = {
@@ -10,10 +15,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    xremap.url = "github:xremap/nix-flake";
+    xremap = {
+      url = "github:xremap/nix-flake";
+    };
 
     # Hyprland
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
+
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland"; # Prevents version mismatch.
@@ -24,12 +34,18 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     matugen = {
       url = "github:InioX/Matugen";
     };
-    swww.url = "github:LGFae/swww";
 
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    swww = {
+      url = "github:LGFae/swww";
+    };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+    };
 
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -43,6 +59,8 @@
   };
 
   outputs = inputs: {
+    formatter.x86_64-linux = inputs.nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+
     nixosConfigurations = {
       msiLaptop = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

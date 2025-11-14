@@ -20,13 +20,14 @@
     jetbrains.rust-rover
     jetbrains.idea-ultimate
     #Jetbrain plugins
-    github-copilot-intellij-agent
 
     omnissa-horizon-client
     clock-rs
     nixd
     nil
     qt6.qtdeclarative
+
+    slack
 
     ffmpeg_8-full
     # zed-editor
@@ -41,6 +42,7 @@
   '';
 
   imports = [
+    ./programs/chromium.nix
     ./programs/firefox.nix
     ./programs/git.nix
     ./programs/hyprland.nix

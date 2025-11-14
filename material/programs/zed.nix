@@ -1,37 +1,93 @@
-{ ... }:
+{ pkgs, ... }:
 {
+
+	# home.packages = with pkgs; [
+	# 	zed
+	# ];
+
   programs.zed-editor = {
     enable = true;
     # add java make latex dart kotlin python
     extensions = [
+      "Dart"
+      "Dockerfile"
+      "Flutter Snippets"
+      "Github MCP Server"
+      "HTML"
+      "Java"
+      "LaTeX"
+      "Make"
+      "Material Icon Theme"
+      "Nix"
+      "Not Material Theme"
+      "Svelte"
+      "TOML"
+      "Terraform"
+      "Vue"
+      "wakatime"
+      "dart"
+      "java"
+      "kotlin"
+      "latex"
+      "make"
       "nix"
       "toml"
-      "java"
-      "make"
-      "latex"
-      "dart"
-      "kotlin"
     ];
 
     userSettings = {
-      home = {
-        mode = "system";
-        dark = "catppuccin frappe";
-        light = "catppuccin latte";
+      theme = {
+        light = "Catppuccin Latte";
+        dark = "Catppuccin Frappé";
       };
-      default_model = {
-        provider = "copilot_chat";
-        model = "gpt-4.1";
+
+      icon_theme = {
+     		light = "Catppuccin Latte";
+      	dark = "Catppuccin Frappé";
       };
-      inline_alternatives = [
-        {
-          provider = "copilot_chat";
-          model = "gpt-3.5-turbo";
-        }
-      ];
+
+      lsp = {
+     	rust-analyzer = {
+        binary = {
+            # path = lib.getExe pkgs.rust-analyzer;
+            path_lookup = true;
+          };
+        };
+
+        nix = {
+          binary = {
+            path_lookup = true;
+          };
+        };
+      };
+
+      languages = {
+      	Markdown = {
+       		formatter = "prettier";
+       	};
+
+        Nix = {
+        	formatter = {
+         		external = {
+           		command = "nix";
+             	arguments = ["fmt" "."];
+           	};
+         	};
+        };
+      };
+
+      features = {
+        edit_prediction_provider = "copilot";
+      };
+
+      autosave = {
+        after_delay = {
+          milliseconds = 1000;
+        };
+      };
+
       auto_update = false;
       hour_format = "hour24";
-      vim_mode = true;
+      vim_mode = false;
 
       terminal = {
         font = "JetBrainsMono Nerd Font";

@@ -813,13 +813,13 @@
     '';
 
     ".local/share/matugen/template/colors.css".text = ''
-    /*
-    * Css Colors
-    * Generated with Matugen
-    */
-    <* for name, value in colors *>
-        @define-color {{name}} {{value.default.hex}};
-    <* endfor *>
+      /*
+      * Css Colors
+      * Generated with Matugen
+      */
+      <* for name, value in colors *>
+          @define-color {{name}} {{value.default.hex}};
+      <* endfor *>
     '';
   };
 }

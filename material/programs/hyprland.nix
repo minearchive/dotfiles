@@ -50,72 +50,72 @@
 
     "hypr/hyprland/general.conf" = {
       text = ''
-        monitor = eDP-1, 1920x1200@60, 0x0, 1
+                monitor = eDP-1, 1920x1200@60, 0x0, 1
 
-        env=XCURSOR_THEME,breeze
+                env=XCURSOR_THEME,breeze
 
-        env=GTK_IM_MODULE=fcitx
-        env=QT_IM_MODULE=fcitx
-        env=XMODIFIERS=@im=fcitx
-        env=GLFW_IM_MODULE=fcitx
+                env=GTK_IM_MODULE=fcitx
+                env=QT_IM_MODULE=fcitx
+                env=XMODIFIERS=@im=fcitx
+                env=GLFW_IM_MODULE=fcitx
 
-        input {
-          kb_layout = jp
-          repeat_delay = 400
-          repeat_rate = 60
+                input {
+                  kb_layout = jp
+                  repeat_delay = 400
+                  repeat_rate = 60
 
-          touchpad {
-            natural_scroll = yes
-            disable_while_typing = true
-            clickfinger_behavior = true
-            scroll_factor = 0.6
-          }
+                  touchpad {
+                    natural_scroll = yes
+                    disable_while_typing = true
+                    clickfinger_behavior = true
+                    scroll_factor = 0.6
+                  }
 
-          sensitivity = 0
+                  sensitivity = 0
 
-        }
+                }
 
-	cursor {
-	  no_hardware_cursors = true
-	}
+        	cursor {
+        	  no_hardware_cursors = true
+        	}
 
-        gestures {
-          #workspace_swipe = true
-          workspace_swipe_distance = 700
-          #workspace_swipe_fingers = 3
-          workspace_swipe_cancel_ratio = 0.2
-          workspace_swipe_min_speed_to_force = 5
-          workspace_swipe_direction_lock = true
-          workspace_swipe_direction_lock_threshold = 10
-          workspace_swipe_create_new = true
-        }
+                gestures {
+                  #workspace_swipe = true
+                  workspace_swipe_distance = 700
+                  #workspace_swipe_fingers = 3
+                  workspace_swipe_cancel_ratio = 0.2
+                  workspace_swipe_min_speed_to_force = 5
+                  workspace_swipe_direction_lock = true
+                  workspace_swipe_direction_lock_threshold = 10
+                  workspace_swipe_create_new = true
+                }
 
-        decoration {
-          rounding = 15
+                decoration {
+                  rounding = 15
 
-          shadow {
-            enabled = true
-            ignore_window = true
-            range = 20
-            offset = 0 2
-            render_power = 4
-            color = rgba(0000002A)
-          }
-        }
+                  shadow {
+                    enabled = true
+                    ignore_window = true
+                    range = 20
+                    offset = 0 2
+                    render_power = 4
+                    color = rgba(0000002A)
+                  }
+                }
 
-        misc {
-          disable_splash_rendering = true
-          disable_hyprland_logo = true
-        }
+                misc {
+                  disable_splash_rendering = true
+                  disable_hyprland_logo = true
+                }
 
-        general {
-          gaps_out = 10, 10, 10, 10
-          col.active_border = rgba(3b4a8cff) rgba(3b4a8cff) 45deg
-        }
+                general {
+                  gaps_out = 10, 10, 10, 10
+                  col.active_border = rgba(3b4a8cff) rgba(3b4a8cff) 45deg
+                }
 
-        ecosystem {
-          no_update_news = true
-        }
+                ecosystem {
+                  no_update_news = true
+                }
       '';
     };
 

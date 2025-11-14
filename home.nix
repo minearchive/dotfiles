@@ -9,7 +9,7 @@
 
   home = rec {
     username = "minearchive";
-    homeDirectory = "/home/${username}"; # 文字列に値を埋め込む
+    homeDirectory = "/home/${username}";
     stateVersion = "25.05";
 
     packages = with pkgs; [

@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ ... }:
 {
 
-	# home.packages = with pkgs; [
-	# 	zed
-	# ];
+  # home.packages = with pkgs; [
+  # 	zed
+  # ];
 
   programs.zed-editor = {
     enable = true;
@@ -41,13 +41,13 @@
       };
 
       icon_theme = {
-     		light = "Catppuccin Latte";
-      	dark = "Catppuccin Frappé";
+        light = "Catppuccin Latte";
+        dark = "Catppuccin Frappé";
       };
 
       lsp = {
-     	rust-analyzer = {
-        binary = {
+        rust-analyzer = {
+          binary = {
             # path = lib.getExe pkgs.rust-analyzer;
             path_lookup = true;
           };
@@ -61,17 +61,24 @@
       };
 
       languages = {
-      	Markdown = {
-       		formatter = "prettier";
-       	};
+        Markdown = {
+          formatter = "prettier";
+        };
 
         Nix = {
-        	formatter = {
-         		external = {
-           		command = "nix";
-             	arguments = ["fmt" "."];
-           	};
-         	};
+          language_servers = [
+            "nixd"
+            "!nil"
+          ];
+          formatter = {
+            external = {
+              command = "nixfmt";
+              arguments = [
+                "--quiet"
+                "--"
+              ];
+            };
+          };
         };
       };
 

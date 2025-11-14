@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     gcc
@@ -25,6 +22,7 @@
     clock-rs
     nixd
     nil
+    nixfmt-rfc-style
     qt6.qtdeclarative
 
     slack

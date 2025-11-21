@@ -7,6 +7,7 @@
 
 let
   quickshell = inputs.quickshell.packages.${pkgs.system}.default;
+  caelestia = inputs.caelestia-shell.packages.${pkgs.system}.default;
 in
 {
   # Idk i have no idea.
@@ -49,5 +50,7 @@ in
     pkgs.libsForQt5.qt5ct
     pkgs.libsForQt5.qt5.qtgraphicaleffects
     pkgs.libsForQt5.qt5.qttools
+
+    caelestia
   ];
 }

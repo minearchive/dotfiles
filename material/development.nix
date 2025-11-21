@@ -40,6 +40,7 @@
   '';
 
   imports = [
+    ./programs/antigravity.nix
     ./programs/chromium.nix
     ./programs/firefox.nix
     ./programs/git.nix

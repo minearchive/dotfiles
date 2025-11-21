@@ -16,6 +16,7 @@
     #IDE
     jetbrains.rust-rover
     jetbrains.idea-ultimate
+    jetbrains.clion
     #Jetbrain plugins
 
     omnissa-horizon-client
@@ -26,6 +27,8 @@
     qt6.qtdeclarative
 
     slack
+
+    prismlauncher
 
     ffmpeg_8-full
     # zed-editor

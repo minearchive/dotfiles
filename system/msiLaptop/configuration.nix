@@ -46,12 +46,13 @@
   };
 
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    enable = true;
+    type = "fcitx5";
     fcitx5.addons = [ pkgs.fcitx5-mozc ];
   };
 
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       noto-fonts-cjk-serif
       noto-fonts-cjk-sans
       noto-fonts-emoji
@@ -84,6 +85,7 @@
   };
 
   services.xremap = {
+    enable = true;
     userName = "minearchive";
     serviceMode = "system";
     config = {
@@ -125,8 +127,8 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -137,7 +139,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -177,8 +179,8 @@
   };
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "minearchive";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "minearchive";
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
@@ -200,6 +202,7 @@
 
     libnotify
     mako
+    cloudflare-warp
   ];
 
   system.stateVersion = "24.11";
@@ -221,10 +224,12 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       vpl-gpu-rt
+      vaapiIntel
+      intel-media-driver
     ];
   };
 
@@ -262,10 +267,6 @@
   };
 
   boot.kernelParams = [ "i915.force_probe=a7aa" ];
-  hardware.graphics.extraPackages = with pkgs; [
-    vaapiIntel
-    intel-media-driver
-  ];
 
   programs = {
     noisetorch.enable = true;
@@ -318,6 +319,8 @@
     libgcc
   ];
 
+  
+
   nix.extraOptions = ''
     extra-substituters = https://devenv.cachix.org
     extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
@@ -331,4 +334,6 @@
   };
 
   environment.variables.NIXOS_OZONE_WL = "1";
+  systemd.packages = [ pkgs.cloudflare-warp ];
+  systemd.targets.multi-user.wants = [ "warp-svc.service" ];
 }

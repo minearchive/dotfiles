@@ -11,6 +11,7 @@
     bun
     nodejs_22
     cmake
+    gradle
     devenv
     direnv
     #IDE
@@ -27,7 +28,7 @@
     qt6.qtdeclarative
 
     slack
-
+    cloudflare-warp
     prismlauncher
 
     ffmpeg_8-full

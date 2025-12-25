@@ -14,13 +14,14 @@
     gradle
     devenv
     direnv
+    gemini-cli
     #IDE
-    jetbrains.rust-rover
+    # jetbrains.rust-rover
     jetbrains.idea-ultimate
-    jetbrains.clion
+    # jetbrains.clion
     #Jetbrain plugins
 
-    omnissa-horizon-client
+    # omnissa-horizon-client
     clock-rs
     nixd
     nil

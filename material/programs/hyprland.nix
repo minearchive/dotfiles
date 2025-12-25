@@ -51,6 +51,7 @@
     "hypr/hyprland/general.conf" = {
       text = ''
                 monitor = eDP-1, 1920x1200@60, 0x0, 1
+		# monitor = HDMI-A-1, preferred, auto, 1, mirror, eDP-1
 
                 env=XCURSOR_THEME,breeze
 
@@ -71,8 +72,7 @@
                     scroll_factor = 0.6
                   }
 
-                  sensitivity = 0
-
+                  sensitivity = 0.3
                 }
 
         	cursor {

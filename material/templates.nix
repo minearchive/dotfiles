@@ -132,23 +132,23 @@
 
     ".local/share/matugen/template/settings.toml".text = ''
       format = """
-      [╭╴ ](primary)\
-      [](primary)\
-      $directory\
-      [](fg:primary bg:secondary_fixed)\
-      $git_branch\
-      $git_status\
-      [](fg:secondary_fixed bg:#ffffff)\
-      $nodejs\
-      $rust\
-      $golang\
-      $php\
-      $python\
-      [](fg:#ffffff bg:surface_bright)\
-      $time\
-      $battery\
-      [ ](fg:surface_bright)\
-      \n$character"""
+      [╭╴ ](primary)\\
+      [](primary)\\
+      $directory\\
+      [](fg:primary bg:secondary_fixed)\\
+      $git_branch\\
+      $git_status\\
+      [](fg:secondary_fixed bg:#ffffff)\\
+      $nodejs\\
+      $rust\\
+      $golang\\
+      $php\\
+      $python\\
+      [](fg:#ffffff bg:surface_bright)\\
+      $time\\
+      $battery\\
+      [ ](fg:surface_bright)\\
+      \\n$character"""
 
       add_newline = false
       palette = 'colors'

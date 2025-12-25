@@ -8,7 +8,7 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
+    ./msiLaptop/hardware-configuration.nix
   ]
 
   ++ [
@@ -55,7 +55,7 @@
     packages = with pkgs; [
       noto-fonts-cjk-serif
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       nerd-fonts.jetbrains-mono
     ];
 
@@ -228,7 +228,7 @@
     enable = true;
     extraPackages = with pkgs; [
       vpl-gpu-rt
-      vaapiIntel
+      intel-vaapi-driver
       intel-media-driver
     ];
   };

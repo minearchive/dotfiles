@@ -57,7 +57,7 @@
       msiLaptop = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./system/msiLaptop/configuration.nix
+          ./system/configuration.nix
           ./system/msiLaptop/hyprland.nix
         ];
         specialArgs = {

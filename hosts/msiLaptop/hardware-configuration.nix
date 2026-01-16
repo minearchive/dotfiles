@@ -53,4 +53,14 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  #
+  #  MOVED FROM CONFIGURATION.NIX
+  #
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  time.hardwareClockInLocalTime = false;
+
 }

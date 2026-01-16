@@ -28,6 +28,8 @@
     nixfmt-rfc-style
     qt6.qtdeclarative
 
+    cloudflared
+
     slack
     cloudflare-warp
     prismlauncher
@@ -57,5 +59,6 @@
     ./programs/spotify.nix
     ./programs/wlogout.nix
     ./programs/zen.nix
+    ./programs/reaper.nix
   ];
 }

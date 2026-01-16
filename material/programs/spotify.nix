@@ -4,7 +4,7 @@ let
 in
 {
   programs.spicetify = {
-    enable = false;
+    enable = true;
     enabledExtensions = with spicePkgs.extensions; [
       adblock
       beautifulLyrics
@@ -13,6 +13,6 @@ in
       marketplace
       ncsVisualizer
     ];
-    theme = spicePkgs.theme.starryNight;
+    theme = spicePkgs.themes.starryNight;
   };
 }

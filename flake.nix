@@ -25,6 +25,8 @@
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,8 +59,8 @@
       msiLaptop = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./system/configuration.nix
-          ./system/msiLaptop/hyprland.nix
+          ./hosts/msiLaptop/configuration.nix
+          ./hosts/msiLaptop/hyprland.nix
         ];
         specialArgs = {
           inherit inputs;
@@ -68,7 +70,7 @@
       desktop = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./system/desktop/configuration.nix
+          ./hosts/desktop/configuration.nix
         ];
         specialArgs = {
           inherit inputs;

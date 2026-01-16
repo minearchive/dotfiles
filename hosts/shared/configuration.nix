@@ -8,10 +8,6 @@
 
 {
   imports = [
-    ./msiLaptop/hardware-configuration.nix
-  ]
-
-  ++ [
     inputs.xremap.nixosModules.default
   ];
 
@@ -224,14 +220,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      vpl-gpu-rt
-      intel-vaapi-driver
-      intel-media-driver
-    ];
-  };
+  hardware.graphics.enable = true;
 
   #tailscale vpn
   services.tailscale.enable = true;
@@ -264,12 +253,20 @@
         setSocketVariable = true; # $DOCKER_HOSTを設定
       };
     };
-  };
 
-  boot.kernelParams = [ "i915.force_probe=a7aa" ];
+    waydroid = {
+      enable = true;
+      package = pkgs.waydroid-nftables;
+    };
+  };
 
   programs = {
     noisetorch.enable = true;
+
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
 
     git = {
       enable = true;
@@ -318,8 +315,6 @@
     glib
     libgcc
   ];
-
-  
 
   nix.extraOptions = ''
     extra-substituters = https://devenv.cachix.org

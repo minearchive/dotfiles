@@ -52,6 +52,11 @@
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: {
@@ -71,10 +76,24 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/desktop/configuration.nix
+          inputs.lanzaboote.nixosModules.lanzaboote
+
+          (
+            { lib, ... }:
+            {
+              boot.loader.systemd-boot.enable = lib.mkForce false;
+
+              boot.lanzaboote = {
+                enable = true;
+                pkiBundle = "/var/lib/sbctl";
+              };
+            }
+          )
         ];
         specialArgs = {
           inherit inputs;
         };
+
       };
     };
 

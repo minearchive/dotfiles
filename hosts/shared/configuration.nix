@@ -199,6 +199,7 @@
     libnotify
     mako
     cloudflare-warp
+    sbctl
   ];
 
   system.stateVersion = "24.11";

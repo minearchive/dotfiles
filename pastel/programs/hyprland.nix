@@ -15,6 +15,8 @@
         "QT_IM_MODULE,fcitx"
         "XMODIFIERS,@im=fcitx"
         "GLFW_IM_MODULE,fcitx"
+        "XCURSOR_THEME,Bibata-Modern-Ice"
+        "XCURSOR_SIZE,24"
       ];
 
       input = {

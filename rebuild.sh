@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo nixos-rebuild switch --flake .#msiLaptop
+sudo nixos-rebuild switch --flake .#desktop

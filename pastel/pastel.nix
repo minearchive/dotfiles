@@ -23,20 +23,27 @@
       swappy
       slurp
     ];
+
+    pointerCursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+      size = 24;
+
+      gtk.enable = true;
+      x11.enable = true;
+    };
   };
 
   imports = [
+    ./programs/fish.nix
     ./programs/hyprland.nix
     ./programs/kitty.nix
     ./programs/neovim.nix
     ./programs/zen.nix
+    ./programs/spotify.nix
+    ./programs/quickshell.nix
     ./tools.nix
   ];
 
-  xdg.configFile = {
-    "gtk-3.0/settings.ini".text = ''
-      [Settings]
-      gtk-cursor-theme-name=phinger-cursors-light
-    '';
-  };
+  gtk.cursorTheme = "phinger-cursors-light";
 }

@@ -12,6 +12,7 @@
       window_padding_width = 10;
       background_opacity = "0.6";
       background_blur = 20;
+      shell = "/run/current-system/sw/bin/fish";
       symbol_map =
         let
           mappings = [

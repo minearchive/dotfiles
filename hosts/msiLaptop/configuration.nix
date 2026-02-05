@@ -23,4 +23,9 @@
     "i915.force_probe=a7aa"
     "snd-intel-psdcfg.dsp_driver=1"
   ];
+
+  programs.kdeconnect = {
+    enable = true;
+    package = pkgs.gnomeExtensions.gsconnect;
+  };
 }

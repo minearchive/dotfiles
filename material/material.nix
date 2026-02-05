@@ -34,6 +34,8 @@
     manix
 
     nwg-displays
+    qdirstat
+    opencode
   ];
 
   home.pointerCursor = {

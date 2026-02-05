@@ -32,6 +32,7 @@
       "make"
       "nix"
       "toml"
+      "Slint"
     ];
 
     userSettings = {

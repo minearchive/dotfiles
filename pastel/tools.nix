@@ -1,36 +1,32 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
+let
+  antigravity = inputs.antigravity-nix.packages.x86_64-linux.default;
+in
 {
   programs.gemini-cli = {
     enable = true;
   };
 
-  programs.zed-editor = {
-    enable = true;
-  };
-
-  programs.firefox = {
-    enable = true;
-  };
-
-  programs.wofi = {
-    enable = true;
-  };
-
-  home.packages = with pkgs; [
-    tree
-    nixd
-    nil
-    bat
-    jq
-    ripgrep
-    bottom
-    vesktop
-    slurp
-    swappy
-    devenv
-    direnv
-    yt-dlp
-    ffmpeg-full
-    figma-linux
+  home.packages = [
+    antigravity
+    pkgs.devenv
+    pkgs.direnv
+    pkgs.yt-dlp
+    pkgs.ffmpeg-full
+    pkgs.figma-linux
+    pkgs.nodejs_22
+    pkgs.nodePackages.pnpm
+    pkgs.deno
+    pkgs.bun
+    pkgs.jetbrains.idea-ultimate
+    pkgs.vscode
+    pkgs.pipes-rs
+    pkgs.clock-rs
+    pkgs.cmatrix
+    pkgs.cava
+    pkgs.opencode
+    pkgs.prismlauncher
+    pkgs.cloudflared
+    pkgs.obsidian
   ];
 }

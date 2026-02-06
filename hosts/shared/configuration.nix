@@ -17,8 +17,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos";
-
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -111,7 +109,7 @@
     };
   };
 
-  services.timesyncd.enable = true;
+  #services.timesyncd.enable = true;
   #services.ntp.enable = true;
   services.chrony.enable = true;
   services.seatd.enable = true;

@@ -22,6 +22,11 @@
       vesktop
       swappy
       slurp
+
+      python312
+      python312Packages.pip
+      python312Packages.virtualenv
+      p7zip
     ];
 
     pointerCursor = {
@@ -42,6 +47,8 @@
     ./programs/zen.nix
     ./programs/spotify.nix
     ./programs/quickshell.nix
+    ./programs/wlogout.nix
+    ./programs/matugen.nix
     ./tools.nix
   ];
 

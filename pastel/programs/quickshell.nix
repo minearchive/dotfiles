@@ -5,5 +5,7 @@ in
 {
   home.packages = [
     quickshell
+    pkgs.qt6.qttools
+    pkgs.qt6.qtdeclarative
   ];
 }

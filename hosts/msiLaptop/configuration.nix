@@ -16,6 +16,8 @@
 
   # MSI Laptop specific hardware configuration
 
+  networking.hostName = "msiLaptop";
+
   # Intel GPU drivers for MSI Laptop
   hardware.graphics.extraPackages = with pkgs; [
     vpl-gpu-rt

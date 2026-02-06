@@ -9,6 +9,10 @@
         ", preferred, auto, 1"
       ];
 
+      workspace = [
+        "1,monitor:DVI-D-1,default:true"
+      ];
+
       env = [
         "XCURSOR_THEME,breeze"
         "GTK_IM_MODULE,fcitx"
@@ -210,6 +214,11 @@
 
       layerrule = [
         "ignore_alpha 0.2, match:namespace mywaybar-topbar"
+      ];
+
+      layerrule = [
+        "no_anim on, match:namespace rofi"
+        "no_anim on, match:namespace logout_dialog"
       ];
 
       plugin = {

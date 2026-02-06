@@ -62,6 +62,7 @@
   outputs = inputs: {
     nixosConfigurations = {
       msiLaptop = inputs.nixpkgs.lib.nixosSystem {
+      
         system = "x86_64-linux";
         modules = [
           ./hosts/msiLaptop/configuration.nix

@@ -9,6 +9,11 @@
     ../shared/configuration.nix
   ];
 
+
+  nix.settings = {
+    download-buffer-size = 21474836480;
+  };
+
   # MSI Laptop specific hardware configuration
 
   # Intel GPU drivers for MSI Laptop

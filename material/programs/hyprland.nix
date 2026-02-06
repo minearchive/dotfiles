@@ -4,8 +4,8 @@
     enable = true;
     settings = {
       monitor = [
-       "eDP-1,1920x1200@60,0x0,1"
-       "HDMI-A-1,preferred,auto,1,mirror,eDP-1"
+        "eDP-1,1920x1200@60,0x0,1"
+        "HDMI-A-1,preferred,auto,1,mirror,eDP-1"
       ];
 
       env = [
@@ -88,6 +88,7 @@
           "md2, 0.4, 0, 0.2, 1"
           "vert_menu, 0.25, 0.9, 0.2, 1"
         ];
+
         animation = [
           "windows, 1, 3, md3_decel, popin 60%"
           "windowsIn, 1, 3, md3_decel, popin 60%"

@@ -13,6 +13,6 @@ in
       marketplace
       ncsVisualizer
     ];
-    theme = spicePkgs.themes.starryNight;
+    theme = spicePkgs.themes.catppuccin;
   };
 }

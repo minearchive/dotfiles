@@ -17,7 +17,7 @@
     gemini-cli
     #IDE
     # jetbrains.rust-rover
-    jetbrains.idea-ultimate
+    jetbrains.idea
     # jetbrains.clion
     #Jetbrain plugins
 

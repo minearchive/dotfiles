@@ -119,7 +119,7 @@
         "SUPER, T, exec, kitty --session ~/.bashrc"
         "SUPER, F, exec, zen"
         "SUPER, Q, killactive"
-        "SUPER, M, exec, hyprctl dispatch exit"
+        "CTRL+ALT, DEL, exec, hyprctl dispatch exit"
         "SUPER, E, exec, nautilus"
         "SUPER, L, exec, hyprlock"
         "SUPER, R, exec, rofi -show run"
@@ -214,9 +214,6 @@
 
       layerrule = [
         "ignore_alpha 0.2, match:namespace mywaybar-topbar"
-      ];
-
-      layerrule = [
         "no_anim on, match:namespace rofi"
         "no_anim on, match:namespace logout_dialog"
       ];

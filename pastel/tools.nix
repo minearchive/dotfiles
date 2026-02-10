@@ -18,7 +18,7 @@ in
     pkgs.nodePackages.pnpm
     pkgs.deno
     pkgs.bun
-    pkgs.jetbrains.idea-ultimate
+    pkgs.jetbrains.idea
     pkgs.vscode
     pkgs.pipes-rs
     pkgs.clock-rs

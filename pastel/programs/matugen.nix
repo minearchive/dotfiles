@@ -137,6 +137,8 @@
           readonly property color background: "{{colors.background.default.hex}}"
           readonly property color on_background: "{{colors.on_background.default.hex}}"
           readonly property color surface_variant: "{{colors.surface_variant.default.hex}}"
+
+          readonly property string mode : "{{ mode }}"
       }
     '';
 

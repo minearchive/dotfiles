@@ -11,12 +11,13 @@ in
     enable = true;
     enabledExtensions = with spicePkgs.extensions; [
       adblock
-      beautifulLyrics
+      # beautifulLyrics
     ];
     enabledCustomApps = with spicePkgs.apps; [
       marketplace
       ncsVisualizer
     ];
-    theme = spicePkgs.themes.starryNight;
+    theme = spicePkgs.themes.catppuccin;
+    colorScheme = "mocha";
   };
 }

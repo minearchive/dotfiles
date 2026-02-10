@@ -1,7 +1,5 @@
 {
   inputs = {
-    #Nixpkgs
-
     antigravity-nix = {
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,7 +60,7 @@
   outputs = inputs: {
     nixosConfigurations = {
       msiLaptop = inputs.nixpkgs.lib.nixosSystem {
-      
+
         system = "x86_64-linux";
         modules = [
           ./hosts/msiLaptop/configuration.nix

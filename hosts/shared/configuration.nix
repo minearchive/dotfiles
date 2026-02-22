@@ -191,8 +191,8 @@
     rustup
     cargo
     fcitx5-gtk
-    inputs.swww.packages.${system}.swww
-    inputs.matugen.packages.${system}.default
+    inputs.swww.packages.${pkgs.system}.swww
+    inputs.matugen.packages.${pkgs.system}.default
 
     libnotify
     mako
@@ -330,4 +330,6 @@
   environment.variables.NIXOS_OZONE_WL = "1";
   systemd.packages = [ pkgs.cloudflare-warp ];
   systemd.targets.multi-user.wants = [ "warp-svc.service" ];
+
+  services.openssh.enable = true;
 }

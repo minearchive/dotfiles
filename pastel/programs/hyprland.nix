@@ -117,7 +117,7 @@
 
       bind = [
         "SUPER, T, exec, kitty --session ~/.bashrc"
-        "SUPER, F, exec, zen"
+        "SUPER, F, exec, zen-beta"
         "SUPER, Q, killactive"
         "CTRL+ALT, DEL, exec, hyprctl dispatch exit"
         "SUPER, E, exec, nautilus"
@@ -237,7 +237,7 @@
       exec-once = fcitx5 -d --replace &
       exec-once = hyprsunset
       exec-once = swww img $(cat ~/.config/wallpaper.info) --transition-type none --transition-duration 0
-      exec-once = quickshell -p ~/.local/share/qs-bar/
+      exec-once = cd ~/shell && sh /home/minearchive/shell/start.sh
     '';
   };
 

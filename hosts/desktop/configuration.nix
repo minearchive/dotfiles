@@ -39,10 +39,10 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   environment.systemPackages = with pkgs; [
-    wineWowPackages.stable
-    winetricks
-    wineWowPackages.waylandFull
-    wineWowPackages.stagingFull
+    # wineWowPackages.stable
+    # winetricks
+    # wineWowPackages.waylandFull
+    # wineWowPackages.stagingFull
 
     libvpx
     gst_all_1.gstreamer

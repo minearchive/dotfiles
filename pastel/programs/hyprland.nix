@@ -158,7 +158,7 @@
         "SUPER, DOWN, swapwindow, d"
         "SUPER, UP, swapwindow, u"
         "SUPER, D, togglefloating"
-        "SUPER, TAB, hyprexpo:expo, toggle"
+        # "SUPER, TAB, hyprexpo:expo, toggle"
         "SUPER+SHIFT+CTRL, T, exec, sh ~/.config/hypr/script/wallpaper_change.sh"
         "SUPER+SHIFT, s, exec, grim -g \"$(slurp)\" - | swappy -f -"
         "SHIFT, Print, exec, grim - | wl-copy && wl-paste > ~/Pictures/screenshots/Screenshot-$(date +%F_%T).png && dunstify \"Screenshot of the whole screen taken\" -t 1000"

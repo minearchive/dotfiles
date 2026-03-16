@@ -21,6 +21,7 @@
         "GLFW_IM_MODULE,fcitx"
         "XCURSOR_THEME,Bibata-Modern-Ice"
         "XCURSOR_SIZE,24"
+        "MATUGEN_SCHEME,dark"
       ];
 
       input = {
@@ -219,18 +220,18 @@
       ];
 
       plugin = {
-        hyprexpo = {
-          columns = 3;
-          gap_size = 5;
-          bg_col = "rgb(111111)";
-          workspace_method = "center current";
-          gesture_distance = 300;
-        };
+        # hyprexpo = {
+        #   columns = 3;
+        #   gap_size = 5;
+        #   bg_col = "rgb(111111)";
+        #   workspace_method = "center current";
+        #   gesture_distance = 300;
+        # };
       };
     };
 
     extraConfig = ''
-      exec-once = hyprctl plugin load "$HYPR_PLUGIN_DIR/lib/libhyprexpo.so"
+      # exec-once = hyprctl plugin load "$HYPR_PLUGIN_DIR/lib/libhyprexpo.so"
       exec-once = swww-daemon
       exec-once = fcitx5
       exec-once = fcitx5-remote -r
@@ -263,12 +264,6 @@
         if [ -z "$FILE" ]; then
           echo "No file selected, exiting."
           exit 1
-        fi
-
-        # Check if MATUGEN_SCHEME is set, otherwise default to dark
-
-        if [ -z "$MATUGEN_SCHEME" ]; then
-          MATUGEN_SCHEME="dark"
         fi
 
         echo "Using color scheme: $MATUGEN_SCHEME"

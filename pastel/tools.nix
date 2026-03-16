@@ -1,6 +1,7 @@
 { pkgs, inputs, ... }:
 let
   antigravity = inputs.antigravity-nix.packages.x86_64-linux.default;
+  claude = inputs.claude-code.packages.x86_64-linux.default;
 in
 {
   programs.gemini-cli = {
@@ -28,5 +29,6 @@ in
     pkgs.prismlauncher
     pkgs.cloudflared
     pkgs.obsidian
+    claude
   ];
 }

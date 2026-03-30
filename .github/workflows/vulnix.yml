@@ -19,14 +19,23 @@ jobs:
             extra-substituters = https://hyprland.cachix.org https://devenv.cachix.org
             extra-trusted-public-keys = hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc= devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
 
-      - name: Check msiLaptop
-        run: nix run nixpkgs#vulnix -- --flake .#msiLaptop > /tmp/vulnix-msiLaptop.txt 2>&1; echo $? > /tmp/vulnix-msiLaptop.exit
+      - name: Check material
+        run: |
+          path=$(nix build --print-out-paths --no-link .#homeConfigurations.material.activationPackage 2>&1) \
+            && nix run nixpkgs#vulnix -- "$path" > /tmp/vulnix-material.txt 2>&1
+          echo $? > /tmp/vulnix-material.exit
 
-      - name: Check desktop
-        run: nix run nixpkgs#vulnix -- --flake .#desktop > /tmp/vulnix-desktop.txt 2>&1; echo $? > /tmp/vulnix-desktop.exit
+      - name: Check pastel
+        run: |
+          path=$(nix build --print-out-paths --no-link .#homeConfigurations.pastel.activationPackage 2>&1) \
+            && nix run nixpkgs#vulnix -- "$path" > /tmp/vulnix-pastel.txt 2>&1
+          echo $? > /tmp/vulnix-pastel.exit
 
       - name: Check wsl
-        run: nix run nixpkgs#vulnix -- --flake .#wsl > /tmp/vulnix-wsl.txt 2>&1; echo $? > /tmp/vulnix-wsl.exit
+        run: |
+          path=$(nix build --print-out-paths --no-link .#homeConfigurations.wsl.activationPackage 2>&1) \
+            && nix run nixpkgs#vulnix -- "$path" > /tmp/vulnix-wsl.txt 2>&1
+          echo $? > /tmp/vulnix-wsl.exit
 
       - name: Create issue if vulnerabilities found
         env:
@@ -36,22 +45,21 @@ jobs:
           FOUND=false
           BODY="## Vulnix 脆弱性レポート\n\n**検出日時**: $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M JST')\n\n"
 
-          for HOST in msiLaptop desktop wsl; do
-            EXIT=$(cat /tmp/vulnix-${HOST}.exit)
-            OUTPUT=$(cat /tmp/vulnix-${HOST}.txt)
+          for PROFILE in material pastel wsl; do
+            EXIT=$(cat /tmp/vulnix-${PROFILE}.exit 2>/dev/null || echo 1)
+            OUTPUT=$(cat /tmp/vulnix-${PROFILE}.txt 2>/dev/null)
             if [ "$EXIT" != "0" ]; then
               FOUND=true
-              BODY+="### ${HOST}\n\`\`\`\n${OUTPUT}\n\`\`\`\n\n"
+              BODY+="### ${PROFILE}\n\`\`\`\n${OUTPUT}\n\`\`\`\n\n"
             fi
           done
 
           if [ "$FOUND" = "true" ]; then
-            # 既存の未クローズissueがあれば作成しない
             EXISTING=$(gh issue list --repo "$REPO" --label vulnerability --state open --json number --jq length)
             if [ "$EXISTING" = "0" ]; then
               printf "$BODY" | gh issue create \
                 --repo "$REPO" \
-                --title "🔒 脆弱性が検出されました ($(TZ=Asia/Tokyo date '+%Y-%m-%d'))" \
+                --title "🔒 Vulnerabilities detected ($(TZ=Asia/Tokyo date '+%Y-%m-%d'))" \
                 --label vulnerability \
                 --body-file -
             else

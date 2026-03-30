@@ -53,16 +53,27 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           FOUND=false
-          BODY="## Vulnix 脆弱性レポート\n\n**検出日時**: $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M JST')\n\n"
+          # GitHub issue body limit is 65536 chars; reserve space for header/footer
+          MAX_BODY=60000
+          BODY="## Vulnix 脆弱性レポート\n\n**検出日時**: $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M JST')\n**詳細ログ**: ${RUN_URL}\n\n"
 
           for PROFILE in material pastel wsl; do
             EXIT=$(cat /tmp/vulnix-${PROFILE}.exit 2>/dev/null || echo 1)
             OUTPUT=$(cat /tmp/vulnix-${PROFILE}.txt 2>/dev/null)
             if [ "$EXIT" != "0" ]; then
               FOUND=true
-              BODY+="### ${PROFILE}\n\`\`\`\n${OUTPUT}\n\`\`\`\n\n"
+              SECTION="### ${PROFILE}\n\`\`\`\n${OUTPUT}\n\`\`\`\n\n"
+              # Truncate if adding this section would exceed the limit
+              CURRENT_LEN=${#BODY}
+              SECTION_LEN=${#SECTION}
+              if [ $((CURRENT_LEN + SECTION_LEN)) -gt $MAX_BODY ]; then
+                TRUNCATED=$(echo "$OUTPUT" | head -c $((MAX_BODY - CURRENT_LEN - 60)))
+                SECTION="### ${PROFILE}\n\`\`\`\n${TRUNCATED}\n...(truncated, see logs)\n\`\`\`\n\n"
+              fi
+              BODY+="$SECTION"
             fi
           done
 

@@ -59,71 +59,40 @@
     };
   };
 
-  outputs = inputs: {
-    nixosConfigurations = {
-      msiLaptop = inputs.nixpkgs.lib.nixosSystem {
+  outputs = inputs:
+    let
+      system = "x86_64-linux";
 
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/msiLaptop/configuration.nix
-          ./hosts/msiLaptop/hyprland.nix
-        ];
-        specialArgs = {
-          inherit inputs;
-        };
+      pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
       };
 
-      desktop = inputs.nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
+      mkSystem = modules: inputs.nixpkgs.lib.nixosSystem {
+        inherit system modules;
+        specialArgs = { inherit inputs; };
+      };
+
+      mkHome = modules: inputs.home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
+        inherit modules;
+      };
+    in
+    {
+      nixosConfigurations = {
+        msiLaptop = mkSystem [ ./hosts/msiLaptop/configuration.nix ];
+        desktop = mkSystem [
           ./hosts/desktop/configuration.nix
           inputs.lanzaboote.nixosModules.lanzaboote
-
-          (
-            { lib, ... }:
-            {
-              boot.loader.systemd-boot.enable = lib.mkForce false;
-
-              boot.lanzaboote = {
-                enable = true;
-                pkiBundle = "/var/lib/sbctl";
-              };
-            }
-          )
         ];
-        specialArgs = {
-          inherit inputs;
-        };
+        wsl = mkSystem [ ./hosts/wsl/configuration.nix ];
+      };
 
+      homeConfigurations = {
+        material = mkHome [ ./material/material.nix ];
+        pastel = mkHome [ ./pastel/pastel.nix ];
+        wsl = mkHome [ ./wsl/wsl.nix ];
       };
     };
-
-    homeConfigurations = {
-      material = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = import inputs.nixpkgs {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-        extraSpecialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          ./home.nix
-        ];
-      };
-
-      pastel = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = import inputs.nixpkgs {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-        extraSpecialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          ./pastel/pastel.nix
-        ];
-      };
-    };
-  };
 }

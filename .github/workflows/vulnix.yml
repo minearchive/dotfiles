@@ -1,0 +1,60 @@
+name: Vulnerability Check
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # 毎朝9:00 JST (= 0:00 UTC)
+  workflow_dispatch:
+
+jobs:
+  vulnix:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            extra-substituters = https://hyprland.cachix.org https://devenv.cachix.org
+            extra-trusted-public-keys = hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc= devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+
+      - name: Check msiLaptop
+        run: nix run nixpkgs#vulnix -- --flake .#msiLaptop > /tmp/vulnix-msiLaptop.txt 2>&1; echo $? > /tmp/vulnix-msiLaptop.exit
+
+      - name: Check desktop
+        run: nix run nixpkgs#vulnix -- --flake .#desktop > /tmp/vulnix-desktop.txt 2>&1; echo $? > /tmp/vulnix-desktop.exit
+
+      - name: Check wsl
+        run: nix run nixpkgs#vulnix -- --flake .#wsl > /tmp/vulnix-wsl.txt 2>&1; echo $? > /tmp/vulnix-wsl.exit
+
+      - name: Create issue if vulnerabilities found
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          FOUND=false
+          BODY="## Vulnix 脆弱性レポート\n\n**検出日時**: $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M JST')\n\n"
+
+          for HOST in msiLaptop desktop wsl; do
+            EXIT=$(cat /tmp/vulnix-${HOST}.exit)
+            OUTPUT=$(cat /tmp/vulnix-${HOST}.txt)
+            if [ "$EXIT" != "0" ]; then
+              FOUND=true
+              BODY+="### ${HOST}\n\`\`\`\n${OUTPUT}\n\`\`\`\n\n"
+            fi
+          done
+
+          if [ "$FOUND" = "true" ]; then
+            # 既存の未クローズissueがあれば作成しない
+            EXISTING=$(gh issue list --repo "$REPO" --label vulnerability --state open --json number --jq length)
+            if [ "$EXISTING" = "0" ]; then
+              printf "$BODY" | gh issue create \
+                --repo "$REPO" \
+                --title "🔒 脆弱性が検出されました ($(TZ=Asia/Tokyo date '+%Y-%m-%d'))" \
+                --label vulnerability \
+                --body-file -
+            else
+              echo "既存のissueが存在するためスキップ"
+            fi
+          fi

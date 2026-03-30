@@ -1,42 +1,72 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 # let
 #   logseq-patched = pkgs.logseq.override {
 #     electron_27 = pkgs.electron_35;
 #   };
 # in
 {
+  programs.home-manager.enable = true;
 
-  imports = [
-    ./development.nix
-    ./quickshell.nix
-    ./templates.nix
-  ];
+  home = rec {
+    username = "minearchive";
+    homeDirectory = "/home/${username}";
+    stateVersion = "25.05";
 
-  home.packages = with pkgs; [
+    packages = with pkgs; [
+      bat
+      bottom
+      httpie
+      ripgrep
+      tree
+      jq
 
-    swappy
-    slurp
+      swappy
+      slurp
 
-    discord
-    vscode
-    vesktop
-    obs-studio
-    protonvpn-gui
-    wireguard-tools
+      discord
+      vscode
+      vesktop
+      obs-studio
+      protonvpn-gui
+      wireguard-tools
 
-    # logseq-patched
-    logseq
-    fastfetch
+      # logseq-patched
+      logseq
+      fastfetch
 
-    cmatrix
-    cava
+      cmatrix
+      cava
 
-    manix
+      manix
 
-    nwg-displays
-    qdirstat
-    opencode
-  ];
+      nwg-displays
+      qdirstat
+      opencode
+    ];
+  };
+
+  wayland.windowManager.hyprland.settings = {
+    device = [
+      {
+        name = "-------vspo!-keyboard";
+        kb_layout = "jp";
+        repeat_delay = 400;
+        repeat_rate = 60;
+      },
+      {
+        name = "-------vspo!-keyboard-consumer-control";
+        kb_layout = "jp";
+      },
+      {
+        name = "-------vspo!-keyboard-system-control";
+        kb_layout = "jp";
+      },
+      {
+        name = "-------vspo!-keyboard-1";
+        kb_layout = "jp";
+      }
+    ];
+  };
 
   home.pointerCursor = {
     name = "phinger-cursors-light";
@@ -51,4 +81,11 @@
       gtk-cursor-theme-name=phinger-cursors-light
     '';
   };
+
+  imports = [
+    ./development.nix
+    ./quickshell.nix
+    ./templates.nix
+    inputs.spicetify-nix.homeManagerModules.default
+  ];
 }

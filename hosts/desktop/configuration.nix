@@ -8,6 +8,7 @@
   imports = [
     ./hardware-configuration.nix
     ./hyprland.nix
+    ./lanzaboote.nix
     ../shared/configuration.nix
   ];
 

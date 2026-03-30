@@ -21,21 +21,21 @@ jobs:
 
       - name: Check material
         run: |
-          path=$(nix build --print-out-paths --no-link .#homeConfigurations.material.activationPackage 2>&1) \
-            && nix run nixpkgs#vulnix -- "$path" > /tmp/vulnix-material.txt 2>&1
-          echo $? > /tmp/vulnix-material.exit
+          path=$(nix build --print-out-paths --no-link .#homeConfigurations.material.activationPackage 2>&1)
+          nix run nixpkgs#vulnix -- "$path" 2>&1 | tee /tmp/vulnix-material.txt
+          echo ${PIPESTATUS[0]} > /tmp/vulnix-material.exit
 
       - name: Check pastel
         run: |
-          path=$(nix build --print-out-paths --no-link .#homeConfigurations.pastel.activationPackage 2>&1) \
-            && nix run nixpkgs#vulnix -- "$path" > /tmp/vulnix-pastel.txt 2>&1
-          echo $? > /tmp/vulnix-pastel.exit
+          path=$(nix build --print-out-paths --no-link .#homeConfigurations.pastel.activationPackage 2>&1)
+          nix run nixpkgs#vulnix -- "$path" 2>&1 | tee /tmp/vulnix-pastel.txt
+          echo ${PIPESTATUS[0]} > /tmp/vulnix-pastel.exit
 
       - name: Check wsl
         run: |
-          path=$(nix build --print-out-paths --no-link .#homeConfigurations.wsl.activationPackage 2>&1) \
-            && nix run nixpkgs#vulnix -- "$path" > /tmp/vulnix-wsl.txt 2>&1
-          echo $? > /tmp/vulnix-wsl.exit
+          path=$(nix build --print-out-paths --no-link .#homeConfigurations.wsl.activationPackage 2>&1)
+          nix run nixpkgs#vulnix -- "$path" 2>&1 | tee /tmp/vulnix-wsl.txt
+          echo ${PIPESTATUS[0]} > /tmp/vulnix-wsl.exit
 
       - name: Create issue if vulnerabilities found
         env:

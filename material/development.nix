@@ -25,7 +25,7 @@
     clock-rs
     nixd
     nil
-    nixfmt-rfc-style
+    nixfmt
     qt6.qtdeclarative
 
     cloudflared

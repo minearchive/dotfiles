@@ -14,6 +14,9 @@ in
     packages = with pkgs; [
       git
       github-cli
+      direnv
+      nil
+      nixd
     ] ++ [
       claude
     ];
@@ -22,5 +25,6 @@ in
 
   imports = [
     ./programs/fish.nix
+    ./programs/git.nix
   ];
 }

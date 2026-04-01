@@ -31,6 +31,8 @@ in
       prismlauncher
       cloudflared
       obsidian
+      gimp
+      inkscape
     ]
     ++ [
       antigravity

@@ -41,6 +41,7 @@
 
   imports = [
     ./programs/fish.nix
+    ./programs/git.nix
     ./programs/hyprland.nix
     ./programs/kitty.nix
     ./programs/neovim.nix

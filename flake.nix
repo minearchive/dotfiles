@@ -19,6 +19,8 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    kyoshin-flake.url = "github:minearchive/kyoshin-flake";
+
     matugen.url = "github:InioX/Matugen";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -59,7 +61,8 @@
     };
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
     let
       system = "x86_64-linux";
 
@@ -68,16 +71,20 @@
         config.allowUnfree = true;
       };
 
-      mkSystem = modules: inputs.nixpkgs.lib.nixosSystem {
-        inherit system modules;
-        specialArgs = { inherit inputs; };
-      };
+      mkSystem =
+        modules:
+        inputs.nixpkgs.lib.nixosSystem {
+          inherit system modules;
+          specialArgs = { inherit inputs; };
+        };
 
-      mkHome = modules: inputs.home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = { inherit inputs; };
-        inherit modules;
-      };
+      mkHome =
+        modules:
+        inputs.home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs; };
+          inherit modules;
+        };
     in
     {
       nixosConfigurations = {

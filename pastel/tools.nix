@@ -2,33 +2,39 @@
 let
   antigravity = inputs.antigravity-nix.packages.x86_64-linux.default;
   claude = inputs.claude-code.packages.x86_64-linux.default;
+  kyoshin = inputs.kyoshin-flake.packages.x86_64-linux.default;
 in
 {
   programs.gemini-cli = {
     enable = true;
   };
 
-  home.packages = [
-    antigravity
-    pkgs.devenv
-    pkgs.direnv
-    pkgs.yt-dlp
-    pkgs.ffmpeg-full
-    pkgs.figma-linux
-    pkgs.nodejs_22
-    pkgs.nodePackages.pnpm
-    pkgs.deno
-    pkgs.bun
-    pkgs.jetbrains.idea
-    pkgs.vscode
-    pkgs.pipes-rs
-    pkgs.clock-rs
-    pkgs.cmatrix
-    pkgs.cava
-    pkgs.opencode
-    pkgs.prismlauncher
-    pkgs.cloudflared
-    pkgs.obsidian
-    claude
-  ];
+  home.packages =
+    with pkgs;
+    [
+      devenv
+      direnv
+      yt-dlp
+      ffmpeg-full
+      figma-linux
+      nodejs_22
+      nodePackages.pnpm
+      deno
+      bun
+      jetbrains.idea
+      vscode
+      pipes-rs
+      clock-rs
+      cmatrix
+      cava
+      opencode
+      prismlauncher
+      cloudflared
+      obsidian
+    ]
+    ++ [
+      antigravity
+      claude
+      kyoshin
+    ];
 }

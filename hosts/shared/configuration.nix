@@ -51,6 +51,7 @@
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
       nerd-fonts.jetbrains-mono
+      nerd-fonts.blex-mono
     ];
 
     fontDir.enable = true;

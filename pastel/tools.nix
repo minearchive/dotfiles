@@ -33,6 +33,7 @@ in
       obsidian
       gimp
       inkscape
+      slack
     ]
     ++ [
       antigravity

@@ -238,7 +238,7 @@
       exec-once = fcitx5 -d --replace &
       exec-once = hyprsunset
       exec-once = swww img $(cat ~/.config/wallpaper.info) --transition-type none --transition-duration 0
-      exec-once = cd ~/shell && sh /home/minearchive/shell/start.sh
+      exec-once = cd ~/shell && quickshell -p shell.qml
     '';
   };
 

@@ -9,13 +9,6 @@ with lib;
 let
   hyprlandPkg = inputs.hyprland.packages.${pkgs.system}.hyprland;
   # hyprPluginPkgs = inputs.hyprland-plugins.packages.${pkgs.system};
-  hypr-plugin-dir = pkgs.symlinkJoin {
-    name = "hyrpland-plugins";
-    # paths = with hyprPluginPkgs; [
-    #   # hyprexpo
-    #   #...plugins
-    # ];
-  };
 in
 
 {
@@ -47,7 +40,6 @@ in
     NIXOS_OZONE_WL = "1";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     XCURSOR_SIZE = "24";
-    HYPR_PLUGIN_DIR = hypr-plugin-dir;
   };
 
   # Enable Hyprland

@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     gcc
     go
-    nodePackages.pnpm
+    pnpm
     deno
     python312
     jdk

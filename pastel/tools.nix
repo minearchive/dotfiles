@@ -18,7 +18,7 @@ in
       ffmpeg-full
       figma-linux
       nodejs_22
-      nodePackages.pnpm
+      pnpm
       deno
       bun
       jetbrains.idea

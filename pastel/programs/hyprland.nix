@@ -2,10 +2,11 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = false;
     settings = {
       monitor = [
-        "HDMI-A-1,1920x1080@60,0x0,1"
-        "DVI-D-1,1280x1024@60,1920x0,1"
+        "HDMI-A-1,1920x1080@60,0x0,1, mirror,"
+        # "DVI-D-1,1280x1024@60,1920x0,1"
         ", preferred, auto, 1"
       ];
 
@@ -22,6 +23,9 @@
         "XCURSOR_THEME,Bibata-Modern-Ice"
         "XCURSOR_SIZE,24"
         "MATUGEN_SCHEME,dark"
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,Hyprland"
       ];
 
       input = {
@@ -161,7 +165,7 @@
         "SUPER, D, togglefloating"
         # "SUPER, TAB, hyprexpo:expo, toggle"
         "SUPER+SHIFT+CTRL, T, exec, sh ~/.config/hypr/script/wallpaper_change.sh"
-        "SUPER+SHIFT, s, exec, grim -g \"$(slurp)\" - | swappy -f -"
+        "SUPER+SHIFT, s, exec, hyprshot -m region --clipboard-only"
         "SHIFT, Print, exec, grim - | wl-copy && wl-paste > ~/Pictures/screenshots/Screenshot-$(date +%F_%T).png && dunstify \"Screenshot of the whole screen taken\" -t 1000"
         "Super, I, exec, XDG_CURRENT_DESKTOP=gnome gnome-control-center"
         "SUPER, N, exec, hyprpicker -a"

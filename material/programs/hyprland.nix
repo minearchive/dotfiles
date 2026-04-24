@@ -10,8 +10,8 @@
 
       env = [
         "XCURSOR_THEME,breeze"
-        "GTK_IM_MODULE,fcitx"
-        "QT_IM_MODULE,fcitx"
+        # "GTK_IM_MODULE,fcitx"
+        # "QT_IM_MODULE,fcitx"
         "XMODIFIERS,@im=fcitx"
         "GLFW_IM_MODULE,fcitx"
       ];

@@ -47,7 +47,18 @@ in
     package = hyprlandPkg; # fuck nix pkgs
     enable = true;
     xwayland.enable = true;
-    withUWSM = true; # recommended for most users
+    # withUWSM = true; # recommended for most users
+  };
+
+  programs.uwsm = {
+    enable = true;
+    waylandCompositors = {
+      hyprland = mkForce {
+        prettyName = "Hyprland-fix";
+        comment = "Modern compositor with the looks";
+        binPath = "/run/current-system/sw/bin/start-hyprland";
+      };
+    };
   };
 
   environment.systemPackages = with pkgs; [

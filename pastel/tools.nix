@@ -34,6 +34,10 @@ in
       gimp
       inkscape
       slack
+      fastfetch
+      evince
+      wl-clipboard
+      hyprshot
     ]
     ++ [
       antigravity

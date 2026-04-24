@@ -42,7 +42,11 @@
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
-    fcitx5.addons = [ pkgs.fcitx5-mozc ];
+    fcitx5.addons = with pkgs; [
+      fcitx5-mozc
+      fcitx5-gtk
+    ];
+    fcitx5.waylandFrontend = true;
   };
 
   fonts = {
@@ -52,6 +56,7 @@
       noto-fonts-color-emoji
       nerd-fonts.jetbrains-mono
       nerd-fonts.blex-mono
+      udev-gothic
     ];
 
     fontDir.enable = true;

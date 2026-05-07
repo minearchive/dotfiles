@@ -29,10 +29,12 @@ in
 
   # Enable security services
   services.gnome.gnome-keyring.enable = true;
-  security.polkit.enable = true;
-  security.pam.services = {
-    hyprlock = { };
-    gdm.enableGnomeKeyring = true;
+  security = {
+    polkit.enable = true;
+    pam.services = {
+      hyprlock = { };
+      gdm.enableGnomeKeyring = true;
+    };
   };
 
   # Enable Ozone Wayland support in Chromium and Electron based applications

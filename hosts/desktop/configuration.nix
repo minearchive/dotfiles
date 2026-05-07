@@ -30,8 +30,10 @@
     enable32Bit = true;
   };
 
-  boot.kernelModules = [ "nvidia-uvm" ];
-  boot.kernelParams = [ "nvidia-drm.modeset=1" ];
+  boot = {
+    kernelModules = [ "nvidia-uvm" ];
+    kernelParams = [ "nvidia-drm.modeset=1" ];
+  };
   hardware.nvidia-container-toolkit.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
 

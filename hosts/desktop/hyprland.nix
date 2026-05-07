@@ -8,10 +8,9 @@
 with lib;
 let
   hyprlandPkg = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  hyprPluginPkgs = inputs.hyprland-plugins.packages.${pkgs.system};
   hypr-plugin-dir = pkgs.symlinkJoin {
     name = "hyrpland-plugins";
-    paths = with hyprPluginPkgs; [
+    paths = [
       # hyprexpo
       #...plugins
     ];
@@ -24,10 +23,12 @@ in
 
   # Enable security services
   services.gnome.gnome-keyring.enable = true;
-  security.polkit.enable = true;
-  security.pam.services = {
-    hyprlock = { };
-    gdm.enableGnomeKeyring = true;
+  security = {
+    polkit.enable = true;
+    pam.services = {
+      hyprlock = { };
+      gdm.enableGnomeKeyring = true;
+    };
   };
 
   environment.sessionVariables = {

@@ -35,4 +35,8 @@
     enable = true;
     package = pkgs.gnomeExtensions.gsconnect;
   };
+
+  environment.systemPackages = with pkgs; [
+    protonvpn-gui
+  ];
 }

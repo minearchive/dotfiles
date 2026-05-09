@@ -9,6 +9,11 @@ in
     enable = true;
   };
 
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
+  };
+
   home.packages =
     with pkgs;
     [
@@ -27,6 +32,8 @@ in
       clock-rs
       cmatrix
       cava
+      cbonsai
+      tenki
       opencode
       prismlauncher
       cloudflared
@@ -38,6 +45,11 @@ in
       evince
       wl-clipboard
       hyprshot
+      lollypop
+      puddletag
+      recoll
+      unzip
+      playerctl
     ]
     ++ [
       antigravity

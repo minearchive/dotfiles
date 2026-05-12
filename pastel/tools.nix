@@ -50,6 +50,7 @@ in
       recoll
       unzip
       playerctl
+      chromium
     ]
     ++ [
       antigravity

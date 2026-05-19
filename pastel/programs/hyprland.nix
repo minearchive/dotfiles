@@ -58,7 +58,7 @@
         rounding = 2;
         shadow = {
           enabled = true;
-          ignore_window = true;
+          # ignore_window = true;
           range = 20;
           offset = "0 2";
           render_power = 4;
@@ -98,13 +98,17 @@
           "softAcDecel, 0.26, 0.26, 0.15, 1"
           "md2, 0.4, 0, 0.2, 1"
           "vert_menu, 0.25, 0.9, 0.2, 1"
+          "buttery, 0.13, 0.99, 0.29, 1.1"
+          "appleSmooth, 0.16, 1, 0.3, 1"
+          "workspaceGlideQuiet, 0.2, 1, 0.2, 1"
         ];
         animation = [
           "windows, 1, 3, md3_decel, popin 60%"
           "windowsIn, 1, 3, md3_decel, popin 60%"
           "windowsOut, 1, 3, md3_accel, popin 60%"
+          "windowsMove, 1, 3, buttery"
           "border, 1, 10, default"
-          "fade, 1, 3, md3_decel"
+          "fade, 1, 3, appleSmooth"
           "layersIn, 1, 3, menu_decel, slide"
           "layersOut, 1, 1.6, menu_accel"
           "fadeLayersIn, 1, 2, menu_decel"

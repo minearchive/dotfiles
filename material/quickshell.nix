@@ -6,8 +6,8 @@
 }:
 
 let
-  quickshell = inputs.quickshell.packages.${pkgs.system}.default;
-  caelestia = inputs.caelestia-shell.packages.${pkgs.system}.default;
+  quickshell = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  caelestia = inputs.caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
   # Idk i have no idea.

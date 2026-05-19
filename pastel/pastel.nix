@@ -5,7 +5,7 @@
   home = rec {
     username = "minearchive";
     homeDirectory = "/home/${username}";
-    stateVersion = "25.05";
+    stateVersion = "26.05";
 
     packages = with pkgs; [
       bat
@@ -46,6 +46,7 @@
     ./programs/hyprland.nix
     ./programs/kitty.nix
     ./programs/neovim.nix
+    ./programs/niri.nix
     ./programs/zen.nix
     ./programs/spotify.nix
     ./programs/quickshell.nix

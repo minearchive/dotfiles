@@ -208,8 +208,8 @@
       rustup
       cargo
       fcitx5-gtk
-      inputs.swww.packages.${pkgs.system}.swww
-      inputs.matugen.packages.${pkgs.system}.default
+      inputs.swww.packages.${pkgs.stdenv.hostPlatform.system}.swww
+      inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
 
       libnotify
       mako
@@ -219,7 +219,7 @@
     variables.NIXOS_OZONE_WL = "1";
   };
 
-  system.stateVersion = "24.11";
+  std.hostPlatform.system.stateVersion = "24.11";
 
   nix = {
     settings = {

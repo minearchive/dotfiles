@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ./hyprland.nix
     ./lanzaboote.nix
+    ./niri.nix
     ../shared/configuration.nix
   ];
 

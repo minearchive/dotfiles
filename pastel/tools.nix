@@ -51,6 +51,8 @@ in
       unzip
       playerctl
       chromium
+      obs-studio
+      alacritty
     ]
     ++ [
       antigravity

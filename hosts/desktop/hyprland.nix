@@ -1,13 +1,9 @@
 {
-  lib,
   pkgs,
-  inputs,
   ...
 }:
 
-with lib;
 let
-  hyprlandPkg = inputs.hyprland.packages.${pkgs.system}.hyprland;
   hypr-plugin-dir = pkgs.symlinkJoin {
     name = "hyrpland-plugins";
     paths = [
@@ -18,37 +14,11 @@ let
 in
 
 {
-  # Call dbus-update-activation-environment on login
-  services.xserver.updateDbusEnvironment = true;
-
-  # Enable security services
-  services.gnome.gnome-keyring.enable = true;
-  security = {
-    polkit.enable = true;
-    pam.services = {
-      hyprlock = { };
-      gdm.enableGnomeKeyring = true;
-    };
-  };
+  imports = [ ../shared/hyprland.nix ];
 
   environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    XCURSOR_SIZE = "24";
     HYPR_PLUGIN_DIR = hypr-plugin-dir;
   };
 
-  programs.hyprland = {
-    package = hyprlandPkg; # fuck nix pkgs
-    enable = true;
-    xwayland.enable = true;
-    withUWSM = true; # recommended for most users
-  };
-
-  environment.systemPackages = with pkgs; [
-    hypridle
-    hyprlock
-    hyprpicker
-    hyprsunset
-  ];
+  programs.hyprland.withUWSM = true;
 }

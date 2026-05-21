@@ -219,7 +219,7 @@
     variables.NIXOS_OZONE_WL = "1";
   };
 
-  std.hostPlatform.system.stateVersion = "24.11";
+  system.stateVersion = "24.11";
 
   nix = {
     settings = {

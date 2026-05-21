@@ -7,6 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     ./hyprland.nix
+    ./niri.nix
     ../shared/configuration.nix
   ];
 

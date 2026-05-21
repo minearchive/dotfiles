@@ -38,11 +38,21 @@
         scale 1.0
     }
 
+    output "eDP-1" {
+        mode "1920x1200@60"
+        position x=0 y=0
+        scale 1.0
+    }
+
     layout {
         gaps 10
 
+        focus-ring {
+            width 1
+        }
+
         border {
-            width 2
+            width 0
             active-color "#3b4a8cff"
             inactive-color "#33333355"
         }
@@ -67,9 +77,9 @@
     }
 
     spawn-at-startup "swww-daemon"
-    spawn-at-startup "fcitx5" "-d" "--replace"
-    spawn-at-startup "sh" "-c" "swww img $(cat ~/.config/wallpaper.info) --transition-type none --transition-duration 0"
-    spawn-at-startup "sh" "-c" "cd ~/shell && quickshell -p shell.qml"
+    spawn-sh-at-startup "fcitx5 -d --replace"
+    spawn-sh-at-startup "sh -c swww img $(cat ~/.config/wallpaper.info) --transition-type none --transition-duration 0"
+    spawn-sh-at-startup "sh -c cd ~/shell && quickshell -p shell.qml"
 
     animations {
         window-movement {

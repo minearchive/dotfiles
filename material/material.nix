@@ -1,4 +1,7 @@
 { pkgs, inputs, ... }:
+let
+  agents = inputs.llm-agents-nix.packages.x86_64-linux;
+in
 # let
 #   logseq-patched = pkgs.logseq.override {
 #     electron_27 = pkgs.electron_35;
@@ -41,7 +44,11 @@
 
       nwg-displays
       qdirstat
-      opencode
+    ] ++ [
+      agents.opencode
+      agents.claude-code
+      agents.codex
+      agents.antigravity
     ];
   };
 

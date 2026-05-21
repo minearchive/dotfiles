@@ -3,7 +3,7 @@
   ...
 }:
 let
-  claude = inputs.claude-code.packages.x86_64-linux.default;
+  agents = inputs.llm-agents-nix.packages.x86_64-linux;
 in
 {
   home = rec {
@@ -18,7 +18,7 @@ in
       nil
       nixd
     ] ++ [
-      claude
+      agents.claude-code
     ];
 
   };

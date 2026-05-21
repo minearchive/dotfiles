@@ -16,5 +16,6 @@
     settings = {
       editor = "nvim";
     };
+    gitCredentialHelper.enable = true;
   };
 }

@@ -1,7 +1,6 @@
 { pkgs, inputs, ... }:
 let
-  antigravity = inputs.antigravity-nix.packages.x86_64-linux.default;
-  claude = inputs.claude-code.packages.x86_64-linux.default;
+  agents = inputs.llm-agents-nix.packages.x86_64-linux;
   kyoshin = inputs.kyoshin-flake.packages.x86_64-linux.default;
 in
 {
@@ -34,7 +33,6 @@ in
       cava
       cbonsai
       tenki
-      opencode
       prismlauncher
       cloudflared
       obsidian
@@ -56,8 +54,10 @@ in
       typst
     ]
     ++ [
-      antigravity
-      claude
+      agents.antigravity
+      agents.claude-code
+      agents.opencode
+      agents.codex
       kyoshin
     ];
 }

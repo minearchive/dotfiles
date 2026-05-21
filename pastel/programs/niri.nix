@@ -19,10 +19,14 @@
             natural-scroll
             tap
             dwt
-            accel-speed 0.5
+            accel-speed 0.3
         }
 
         focus-follows-mouse max-scroll-amount="0%"
+    }
+
+    hotkey-overlay {
+    	skip-at-startup
     }
 
     output "HDMI-A-1" {
@@ -56,6 +60,8 @@
             active-color "#3b4a8cff"
             inactive-color "#33333355"
         }
+
+        background-color "transparent"
     }
 
     cursor {
@@ -77,9 +83,9 @@
     }
 
     spawn-at-startup "swww-daemon"
-    spawn-sh-at-startup "fcitx5 -d --replace"
-    spawn-sh-at-startup "sh -c swww img $(cat ~/.config/wallpaper.info) --transition-type none --transition-duration 0"
-    spawn-sh-at-startup "sh -c cd ~/shell && quickshell -p shell.qml"
+    spawn-at-startup "sh" "-c" "fcitx5 -d --replace"
+    spawn-at-startup "sh" "-c" "swww img $(cat ~/.config/wallpaper.info) --transition-type none --transition-duration 0"
+    spawn-at-startup "sh" "-c" "cd ~/shell && quickshell -p shell.qml"
 
     animations {
         window-movement {

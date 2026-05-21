@@ -81,7 +81,7 @@
     prefer-no-csd
 
     binds {
-        Mod+T { spawn "kitty" "--session" "~/.bashrc"; }
+        Mod+T { spawn "kitty"; }
         Mod+F { spawn "zen-beta"; }
         Mod+Q { close-window; }
         Ctrl+Alt+Delete { quit skip-confirmation=true; }

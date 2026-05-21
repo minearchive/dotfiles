@@ -2,237 +2,184 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    settings = {
-      monitor = [
-        "eDP-1,1920x1200@60,0x0,1"
-        "HDMI-A-1,preferred,auto,1,mirror,eDP-1"
-      ];
-
-      env = [
-        "XCURSOR_THEME,breeze"
-        # "GTK_IM_MODULE,fcitx"
-        # "QT_IM_MODULE,fcitx"
-        "XMODIFIERS,@im=fcitx"
-        "GLFW_IM_MODULE,fcitx"
-      ];
-
-      input = {
-        kb_layout = "jp";
-        repeat_delay = 400;
-        repeat_rate = 60;
-        force_no_accel = true;
-        touchpad = {
-          natural_scroll = true;
-          disable_while_typing = true;
-          clickfinger_behavior = true;
-          scroll_factor = 0.6;
-        };
-        sensitivity = 0.5;
-      };
-
-      cursor = {
-        no_hardware_cursors = true;
-      };
-
-      gestures = {
-        workspace_swipe_distance = 700;
-        workspace_swipe_cancel_ratio = 0.2;
-        workspace_swipe_min_speed_to_force = 5;
-        workspace_swipe_direction_lock = true;
-        workspace_swipe_direction_lock_threshold = 10;
-        workspace_swipe_create_new = true;
-      };
-
-      decoration = {
-        rounding = 15;
-        shadow = {
-          enabled = true;
-          ignore_window = true;
-          range = 20;
-          offset = "0 2";
-          render_power = 4;
-          color = "rgba(0000002A)";
-        };
-      };
-
-      misc = {
-        disable_splash_rendering = true;
-        disable_hyprland_logo = true;
-      };
-
-      general = {
-        gaps_out = "10, 10, 10, 10";
-        "col.active_border" = "rgba(3b4a8cff) rgba(3b4a8cff) 45deg";
-      };
-
-      ecosystem = {
-        no_update_news = true;
-      };
-
-      animations = {
-        enabled = true;
-        bezier = [
-          "linear, 0, 0, 1, 1"
-          "md3_standard, 0.2, 0, 0, 1"
-          "md3_decel, 0.05, 0.7, 0.1, 1"
-          "md3_accel, 0.3, 0, 0.8, 0.15"
-          "overshot, 0.05, 0.9, 0.1, 1.1"
-          "crazyshot, 0.1, 1.5, 0.76, 0.92"
-          "hyprnostretch, 0.05, 0.9, 0.1, 1.0"
-          "menu_decel, 0.1, 1, 0, 1"
-          "menu_accel, 0.38, 0.04, 1, 0.07"
-          "easeInOutCirc, 0.85, 0, 0.15, 1"
-          "easeOutCirc, 0, 0.55, 0.45, 1"
-          "easeOutExpo, 0.16, 1, 0.3, 1"
-          "softAcDecel, 0.26, 0.26, 0.15, 1"
-          "md2, 0.4, 0, 0.2, 1"
-          "vert_menu, 0.25, 0.9, 0.2, 1"
-          "buttery, 0.13, 0.99, 0.29, 1.1"
-          "appleSmooth, 0.16, 1, 0.3, 1"
-          "workspaceGlideQuiet, 0.2, 1, 0.2, 1"
-        ];
-
-        animation = [
-          "windows, 1, 3, md3_decel, popin 60%"
-          "windowsIn, 1, 3, md3_decel, popin 60%"
-          "windowsOut, 1, 3, md3_accel, popin 60%"
-          "windowsMove, 1, 3, buttery"
-          "border, 1, 10, default"
-          "fade, 1, 3, appleSmooth"
-          "layersIn, 1, 3, menu_decel, slide"
-          "layersOut, 1, 1.6, menu_accel"
-          "fadeLayersIn, 1, 2, menu_decel"
-          "fadeLayersOut, 1, 0.5, menu_accel"
-          "workspaces, 1, 7, menu_decel, slide"
-        ];
-      };
-
-      gesture = [
-        "3, horizontal, workspace"
-        "3, swipe, mod: SUPER, resize"
-        "4, pinch, fullscreen"
-      ];
-
-      bind = [
-        "SUPER, T, exec, kitty --session ~/.bashrc"
-        "SUPER, F, exec, zen"
-        "SUPER, Q, killactive"
-        "SUPER, M, exec, hyprctl dispatch exit"
-        "SUPER, E, exec, nautilus"
-        "SUPER, L, exec, hyprlock"
-        "SUPER, R, exec, rofi -show run"
-        "SUPER, 1, workspace, 1"
-        "SUPER, 2, workspace, 2"
-        "SUPER, 3, workspace, 3"
-        "SUPER, 4, workspace, 4"
-        "SUPER, 5, workspace, 5"
-        "SUPER, 6, workspace, 6"
-        "SUPER, 7, workspace, 7"
-        "SUPER, 8, workspace, 8"
-        "SUPER, 9, workspace, 9"
-        "SUPER+ALT, 1, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 1 0"
-        "SUPER+ALT, 2, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 2 0"
-        "SUPER+ALT, 3, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 3 0"
-        "SUPER+ALT, 4, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 4 0"
-        "SUPER+ALT, 5, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 5 0"
-        "SUPER+ALT, 6, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 6 0"
-        "SUPER+ALT, 7, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 7 0"
-        "SUPER+ALT, 8, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 8 0"
-        "SUPER+ALT, 9, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 9 0"
-        "SUPER+ALT+SHIFT, 1, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 1 1"
-        "SUPER+ALT+SHIFT, 2, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 2 1"
-        "SUPER+ALT+SHIFT, 3, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 3 1"
-        "SUPER+ALT+SHIFT, 4, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 4 1"
-        "SUPER+ALT+SHIFT, 5, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 5 1"
-        "SUPER+ALT+SHIFT, 6, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 6 1"
-        "SUPER+ALT+SHIFT, 7, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 7 1"
-        "SUPER+ALT+SHIFT, 8, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 8 1"
-        "SUPER+ALT+SHIFT, 9, exec, sh ~/.config/hypr/script/move_window_to_ws.sh 9 1"
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        "SUPER+CTRL, Right, workspace, +1"
-        "SUPER+CTRL, Left, workspace, -1"
-        "SUPER, RIGHT, swapwindow, r"
-        "SUPER, LEFT, swapwindow, l"
-        "SUPER, DOWN, swapwindow, d"
-        "SUPER, UP, swapwindow, u"
-        "SUPER, D, togglefloating"
-        "SUPER, TAB, hyprexpo:expo, toggle"
-        "SUPER+SHIFT+CTRL, T, exec, sh ~/.config/hypr/script/wallpaper_change.sh"
-        "SUPER+SHIFT, s, exec, grim -g \"$(slurp)\" - | swappy -f -"
-        "SHIFT, Print, exec, grim - | wl-copy && wl-paste > ~/Pictures/screenshots/Screenshot-$(date +%F_%T).png && dunstify \"Screenshot of the whole screen taken\" -t 1000"
-        "Super, I, exec, XDG_CURRENT_DESKTOP=gnome gnome-control-center"
-        "SUPER, N, exec, hyprpicker -a"
-        "SUPER, P, exec, wlogout"
-      ];
-
-      binde = [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-"
-      ];
-
-      bindle = [
-        ", XF86MonBrightnessUp, exec, hyprctl hyprsunset gamma +10"
-        ", XF86MonBrightnessDown, exec, hyprctl hyprsunset gamma -10"
-      ];
-
-      bindm = [
-        "SUPER, mouse:272, movewindow"
-        "SUPER, mouse:273, resizewindow"
-        "ALT, mouse:272, resizewindow"
-        "Super, mouse:273, resizewindow"
-      ];
-
-      windowrule = [
-        "float on, match:title ^(Open File).*$"
-        "center on, match:title ^(Open File).*$"
-        "float on, match:title ^(Select a File).*$"
-        "center on, match:title ^(Select a File).*$"
-        "float on, match:title ^(Choose wallpaper).*$"
-        "center on, match:title ^(Choose wallpaper).*$"
-        "size 60% 65%, match:title ^(Choose wallpaper).*$"
-        "float on, match:title ^(Open Folder).*$"
-        "center on, match:title ^(Open Folder).*$"
-        "float on, match:title ^(Save As).*$"
-        "center on, match:title ^(Save As).*$"
-        "float on, match:title ^(Library).*$"
-        "center on, match:title ^(Library).*$"
-        "float on, match:title ^(File Upload).*$"
-        "center on, match:title ^(File Upload).*$"
-        "float on, match:title ^(.*)(wants to save)$"
-        "center on, match:title ^(.*)(wants to save)$"
-        "float on, match:title ^(.*)(wants to open)$"
-        "center on, match:title ^(.*)(wants to open)$"
-        "float on, match:class ^(org.gnome.clocks)$"
-        "center on, match:class ^(org.gnome.clocks)$"
-        "size 800 500, match:class ^(org.gnome.clocks)$"
-        "no_anim on, match:class ^(wlogout)$"
-        "suppress_event maximize, match:class .*"
-        "stay_focused on, match:class ^(pinentry-)(.*)$"
-      ];
-
-      layerrule = [
-        "ignore_alpha 0.2, match:namespace mywaybar-topbar"
-      ];
-
-      plugin = {
-        hyprexpo = {
-          columns = 3;
-          gap_size = 5;
-          bg_col = "rgb(111111)";
-          workspace_method = "center current";
-          gesture_distance = 300;
-        };
-      };
-    };
-
     extraConfig = ''
-      exec-once = hyprctl plugin load "$HYPR_PLUGIN_DIR/lib/libhyprexpo.so"
-      exec-once = swww-daemon
-      exec-once = fcitx5
-      exec-once = fcitx5-remote -r
-      exec-once = fcitx5 -d --replace &
-      exec-once = hyprsunset
-      exec-once = quickshell -p ~/.local/share/qs-bar/
+      -- Monitors
+      hl.monitor({ output = "eDP-1",    mode = "1920x1200@60", position = "0x0",  scale = 1 })
+      hl.monitor({ output = "HDMI-A-1", mode = "preferred",    position = "auto", scale = 1, mirror = "eDP-1" })
+
+      -- Environment
+      hl.env("XCURSOR_THEME", "breeze")
+      hl.env("XMODIFIERS",    "@im=fcitx")
+      hl.env("GLFW_IM_MODULE","fcitx")
+
+      -- Config
+      hl.config({
+        general = {
+          gaps_out = "10, 10, 10, 10",
+          col = {
+            active_border = { colors = { "rgba(3b4a8cff)", "rgba(3b4a8cff)" }, angle = 45 },
+          },
+        },
+        decoration = {
+          rounding = 15,
+          shadow = {
+            enabled       = true,
+            ignore_window = true,
+            range         = 20,
+            offset        = "0 2",
+            render_power  = 4,
+            color         = "rgba(0000002A)",
+          },
+        },
+        misc = {
+          disable_splash_rendering = true,
+          disable_hyprland_logo    = true,
+        },
+        input = {
+          kb_layout      = "jp",
+          repeat_delay   = 400,
+          repeat_rate    = 60,
+          force_no_accel = true,
+          sensitivity    = 0.5,
+          touchpad = {
+            natural_scroll       = true,
+            disable_while_typing = true,
+            clickfinger_behavior = true,
+            scroll_factor        = 0.6,
+          },
+        },
+        cursor = {
+          no_hardware_cursors = true,
+        },
+        gestures = {
+          workspace_swipe_distance              = 700,
+          workspace_swipe_cancel_ratio          = 0.2,
+          workspace_swipe_min_speed_to_force    = 5,
+          workspace_swipe_direction_lock        = true,
+          workspace_swipe_direction_lock_threshold = 10,
+          workspace_swipe_create_new            = true,
+        },
+        ecosystem = {
+          no_update_news = true,
+        },
+        animations = {
+          enabled = true,
+        },
+        plugin = {
+          hyprexpo = {
+            columns          = 3,
+            gap_size         = 5,
+            bg_col           = "rgb(111111)",
+            workspace_method = "center current",
+            gesture_distance = 300,
+          },
+        },
+      })
+
+      -- Curves
+      hl.curve("linear",              { type = "bezier", points = { {0, 0},       {1, 1}       } })
+      hl.curve("md3_standard",        { type = "bezier", points = { {0.2, 0},     {0, 1}       } })
+      hl.curve("md3_decel",           { type = "bezier", points = { {0.05, 0.7},  {0.1, 1}     } })
+      hl.curve("md3_accel",           { type = "bezier", points = { {0.3, 0},     {0.8, 0.15}  } })
+      hl.curve("overshot",            { type = "bezier", points = { {0.05, 0.9},  {0.1, 1.1}   } })
+      hl.curve("crazyshot",           { type = "bezier", points = { {0.1, 1.5},   {0.76, 0.92} } })
+      hl.curve("hyprnostretch",       { type = "bezier", points = { {0.05, 0.9},  {0.1, 1.0}   } })
+      hl.curve("menu_decel",          { type = "bezier", points = { {0.1, 1},     {0, 1}       } })
+      hl.curve("menu_accel",          { type = "bezier", points = { {0.38, 0.04}, {1, 0.07}    } })
+      hl.curve("easeInOutCirc",       { type = "bezier", points = { {0.85, 0},    {0.15, 1}    } })
+      hl.curve("easeOutCirc",         { type = "bezier", points = { {0, 0.55},    {0.45, 1}    } })
+      hl.curve("easeOutExpo",         { type = "bezier", points = { {0.16, 1},    {0.3, 1}     } })
+      hl.curve("softAcDecel",         { type = "bezier", points = { {0.26, 0.26}, {0.15, 1}    } })
+      hl.curve("md2",                 { type = "bezier", points = { {0.4, 0},     {0.2, 1}     } })
+      hl.curve("vert_menu",           { type = "bezier", points = { {0.25, 0.9},  {0.2, 1}     } })
+      hl.curve("buttery",             { type = "bezier", points = { {0.13, 0.99}, {0.29, 1.1}  } })
+      hl.curve("appleSmooth",         { type = "bezier", points = { {0.16, 1},    {0.3, 1}     } })
+      hl.curve("workspaceGlideQuiet", { type = "bezier", points = { {0.2, 1},     {0.2, 1}     } })
+
+      -- Animations
+      hl.animation({ leaf = "windows",       enabled = true, speed = 3,   bezier = "md3_decel",  style = "popin 60%" })
+      hl.animation({ leaf = "windowsIn",     enabled = true, speed = 3,   bezier = "md3_decel",  style = "popin 60%" })
+      hl.animation({ leaf = "windowsOut",    enabled = true, speed = 3,   bezier = "md3_accel",  style = "popin 60%" })
+      hl.animation({ leaf = "windowsMove",   enabled = true, speed = 3,   bezier = "buttery"                         })
+      hl.animation({ leaf = "border",        enabled = true, speed = 10,  bezier = "default"                         })
+      hl.animation({ leaf = "fade",          enabled = true, speed = 3,   bezier = "appleSmooth"                     })
+      hl.animation({ leaf = "layersIn",      enabled = true, speed = 3,   bezier = "menu_decel", style = "slide"     })
+      hl.animation({ leaf = "layersOut",     enabled = true, speed = 1.6, bezier = "menu_accel"                      })
+      hl.animation({ leaf = "fadeLayersIn",  enabled = true, speed = 2,   bezier = "menu_decel"                      })
+      hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 0.5, bezier = "menu_accel"                      })
+      hl.animation({ leaf = "workspaces",    enabled = true, speed = 7,   bezier = "menu_decel", style = "slide"     })
+
+      -- Touch gestures
+      hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
+
+      -- Keybinds
+      hl.bind("SUPER + T", hl.dsp.exec_cmd("kitty"))
+      hl.bind("SUPER + F", hl.dsp.exec_cmd("zen"))
+      hl.bind("SUPER + Q", hl.dsp.window.close())
+      hl.bind("SUPER + M", hl.dsp.exec_cmd("hyprctl dispatch exit"))
+      hl.bind("SUPER + E", hl.dsp.exec_cmd("nautilus"))
+      hl.bind("SUPER + L", hl.dsp.exec_cmd("hyprlock"))
+      hl.bind("SUPER + R", hl.dsp.exec_cmd("rofi -show run"))
+      hl.bind("SUPER + D", hl.dsp.window.float({ action = "toggle" }))
+      hl.bind("SUPER + TAB", hl.dsp.exec_cmd("hyprctl dispatch hyprexpo:expo toggle"))
+      hl.bind("SUPER + N", hl.dsp.exec_cmd("hyprpicker -a"))
+      hl.bind("SUPER + P", hl.dsp.exec_cmd("wlogout"))
+      hl.bind("SUPER + I", hl.dsp.exec_cmd("XDG_CURRENT_DESKTOP=gnome gnome-control-center"))
+      hl.bind("SUPER + SHIFT + CTRL + T", hl.dsp.exec_cmd("sh ~/.config/hypr/script/wallpaper_change.sh"))
+      hl.bind("SUPER + SHIFT + s", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
+      hl.bind("SHIFT + Print",     hl.dsp.exec_cmd('grim - | wl-copy && wl-paste > ~/Pictures/screenshots/Screenshot-$(date +%F_%T).png && dunstify "Screenshot of the whole screen taken" -t 1000'))
+
+      for i = 1, 9 do
+        hl.bind("SUPER + " .. i,               hl.dsp.focus({ workspace = i }))
+        hl.bind("SUPER + ALT + " .. i,         hl.dsp.exec_cmd("sh ~/.config/hypr/script/move_window_to_ws.sh " .. i .. " 0"))
+        hl.bind("SUPER + ALT + SHIFT + " .. i, hl.dsp.exec_cmd("sh ~/.config/hypr/script/move_window_to_ws.sh " .. i .. " 1"))
+      end
+
+      hl.bind("SUPER + CTRL + right", hl.dsp.focus({ workspace = "e+1" }))
+      hl.bind("SUPER + CTRL + left",  hl.dsp.focus({ workspace = "e-1" }))
+      hl.bind("SUPER + right",        hl.dsp.exec_cmd("hyprctl dispatch swapwindow r"))
+      hl.bind("SUPER + left",         hl.dsp.exec_cmd("hyprctl dispatch swapwindow l"))
+      hl.bind("SUPER + down",         hl.dsp.exec_cmd("hyprctl dispatch swapwindow d"))
+      hl.bind("SUPER + up",           hl.dsp.exec_cmd("hyprctl dispatch swapwindow u"))
+
+      hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
+      hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+"), { repeating = true })
+      hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-"), { repeating = true })
+      hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("hyprctl hyprsunset gamma +10"), { locked = true, repeating = true })
+      hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("hyprctl hyprsunset gamma -10"), { locked = true, repeating = true })
+
+      hl.bind("SUPER + mouse:272", hl.dsp.window.drag(),   { mouse = true })
+      hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
+      hl.bind("ALT + mouse:272",   hl.dsp.window.resize(), { mouse = true })
+
+      -- Window rules
+      hl.window_rule({ match = { title = "^(Open File).*$"        }, float = true, center = true })
+      hl.window_rule({ match = { title = "^(Select a File).*$"    }, float = true, center = true })
+      hl.window_rule({ match = { title = "^(Choose wallpaper).*$" }, float = true, center = true, size = "60% 65%" })
+      hl.window_rule({ match = { title = "^(Open Folder).*$"      }, float = true, center = true })
+      hl.window_rule({ match = { title = "^(Save As).*$"          }, float = true, center = true })
+      hl.window_rule({ match = { title = "^(Library).*$"          }, float = true, center = true })
+      hl.window_rule({ match = { title = "^(File Upload).*$"      }, float = true, center = true })
+      hl.window_rule({ match = { title = "^(.*)(wants to save)$"  }, float = true, center = true })
+      hl.window_rule({ match = { title = "^(.*)(wants to open)$"  }, float = true, center = true })
+      hl.window_rule({ match = { class = "^(org.gnome.clocks)$"   }, float = true, center = true, size = "800 500" })
+      hl.window_rule({ match = { class = "^(wlogout)$"            }, no_anim = true })
+      hl.window_rule({ match = { class = ".*"                     }, suppress_event = "maximize" })
+      hl.window_rule({ match = { class = "^(pinentry-)(.*)$"      }, stay_focused = true })
+
+      -- Layer rules
+      hl.layer_rule({ match = { namespace = "mywaybar-topbar" }, ignore_alpha = 0.2 })
+
+      -- Autostart
+      hl.on("hyprland.start", function()
+        hl.exec_cmd('hyprctl plugin load "$HYPR_PLUGIN_DIR/lib/libhyprexpo.so"')
+        hl.exec_cmd("swww-daemon")
+        hl.exec_cmd("fcitx5")
+        hl.exec_cmd("fcitx5-remote -r")
+        hl.exec_cmd("fcitx5 -d --replace &")
+        hl.exec_cmd("hyprsunset")
+        hl.exec_cmd("quickshell -p ~/.local/share/qs-bar/")
+      end)
     '';
   };
 

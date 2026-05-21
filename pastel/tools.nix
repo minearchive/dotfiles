@@ -53,6 +53,7 @@ in
       chromium
       obs-studio
       alacritty
+      typst
     ]
     ++ [
       antigravity

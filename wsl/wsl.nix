@@ -1,5 +1,6 @@
 {
-  pkgs,inputs,
+  pkgs,
+  inputs,
   ...
 }:
 let
@@ -11,15 +12,20 @@ in
     homeDirectory = "/home/${username}";
     stateVersion = "25.05";
 
-    packages = with pkgs; [
-      git
-      github-cli
-      direnv
-      nil
-      nixd
-    ] ++ [
-      agents.claude-code
-    ];
+    packages =
+      with pkgs;
+      [
+        git
+        github-cli
+        direnv
+        nil
+        nixd
+      ]
+      ++ [
+        agents.claude-code
+        agents.antigravity
+        agents.codex
+      ];
 
   };
 

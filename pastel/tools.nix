@@ -52,6 +52,8 @@ in
       obs-studio
       alacritty
       typst
+      wl-mirror
+      brightnessctl
     ]
     ++ [
       agents.antigravity

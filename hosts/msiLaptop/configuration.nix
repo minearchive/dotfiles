@@ -7,13 +7,9 @@
   imports = [
     ./hardware-configuration.nix
     ./hyprland.nix
-    ./niri.nix
+    ../shared/niri.nix
     ../shared/configuration.nix
   ];
-
-  nix.settings = {
-    download-buffer-size = 21474836480;
-  };
 
   # MSI Laptop specific hardware configuration
 
@@ -38,6 +34,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    protonvpn-gui
+    proton-vpn
   ];
 }

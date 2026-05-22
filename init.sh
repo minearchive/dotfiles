@@ -31,7 +31,7 @@ chmod +x rebuild.sh
 # Generate update-home.sh
 cat > update-home.sh <<EOF
 #!/usr/bin/env bash
-nix run nixpkgs#home-manager -- switch --flake .#${PROFILE} -b backup
+NIXPKGS_ALLOW_UNFREE=1 nix run nixpkgs#home-manager -- switch --flake .#${PROFILE} -b backup --impure
 EOF
 chmod +x update-home.sh
 

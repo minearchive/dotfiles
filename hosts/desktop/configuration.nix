@@ -9,13 +9,9 @@
     ./hardware-configuration.nix
     ./hyprland.nix
     ./lanzaboote.nix
-    ./niri.nix
+    ../shared/niri.nix
     ../shared/configuration.nix
   ];
-
-  nix.settings = {
-    download-buffer-size = 21474836480;
-  };
 
   networking.hostName = "desktop";
 
@@ -52,7 +48,7 @@
     gst_all_1.gst-plugins-ugly
     gst_all_1.gst-libav
     wireguard-tools
-    protonvpn-gui
+    proton-vpn
   ];
 
   networking.firewall.checkReversePath = false;

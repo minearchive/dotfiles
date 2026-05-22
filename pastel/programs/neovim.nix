@@ -3,8 +3,10 @@
   imports = [ inputs.nixvim.homeModules.nixvim ];
 
   programs.nixvim = {
-    tabstop = 4;
     enable = true;
+    opts = {
+      tabstop = 4;
+    };
     colorschemes.catppuccin.enable = true;
     plugins.lualine.enable = true;
     plugins.neo-tree.enable = true;

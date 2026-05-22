@@ -40,7 +40,6 @@
   };
 
   imports = [
-    # ./programs/fcitx5.nix
     ./programs/fish.nix
     ./programs/git.nix
     ./programs/hyprland.nix

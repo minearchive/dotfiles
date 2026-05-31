@@ -106,6 +106,7 @@
         Mod+R { spawn "rofi" "-show" "run"; }
         Mod+D { toggle-window-floating; }
         Mod+G { maximize-column; }
+        Mod+B { set-column-width "80%"; }
         Mod+P { spawn "wlogout"; }
         Mod+I { spawn "sh" "-c" "XDG_CURRENT_DESKTOP=gnome gnome-control-center"; }
         Mod+N { spawn "hyprpicker" "-a"; }
@@ -251,6 +252,18 @@
       swww img "$FILE" --transition-type outer --transition-pos 0.857,0.977 --transition-step 90 --transition-fps 60
 
       echo "$FILE" > ~/.config/wallpaper.info
+    '';
+  };
+
+  xdg.configFile."niri/maximize_or_eighty.sh" = {
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+      #
+      # Maximizes or resizes the active window to 80% of the screen width
+      #
+
+      IS_MAXIMIZED=$(niri window get-property )
     '';
   };
 }

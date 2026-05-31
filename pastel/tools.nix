@@ -54,6 +54,9 @@ in
       typst
       wl-mirror
       brightnessctl
+      pandoc
+      poppler-utils
+      claude-agent-acp
     ]
     ++ [
       agents.antigravity

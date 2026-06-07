@@ -2,6 +2,7 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "lua";
     systemd.enable = false;
     extraConfig = ''
       -- Monitors
@@ -51,7 +52,8 @@
           repeat_delay   = 400,
           repeat_rate    = 60,
           force_no_accel = true,
-          sensitivity    = 0.5,
+          accel_profile  = "flat",
+          sensitivity    = -0.3,
           touchpad = {
             natural_scroll       = true,
             disable_while_typing = true,
@@ -129,6 +131,8 @@
       hl.bind("SUPER + SHIFT + CTRL + T", hl.dsp.exec_cmd("sh ~/.config/hypr/script/wallpaper_change.sh"))
       hl.bind("SUPER + SHIFT + s",        hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
       hl.bind("SHIFT + Print",            hl.dsp.exec_cmd('grim - | wl-copy && wl-paste > ~/Pictures/screenshots/Screenshot-$(date +%F_%T).png && dunstify "Screenshot of the whole screen taken" -t 1000'))
+
+      hl.bind("SUPER + ALT + 1",         hl.dsp.exec_cmd("sh ~/.config/hypr/script/move_window_to_ws.sh 1 0"))
 
       for i = 1, 9 do
         hl.bind("SUPER + " .. i,               hl.dsp.focus({ workspace = i }))

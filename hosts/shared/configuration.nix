@@ -1,6 +1,7 @@
 {
   inputs,
   config,
+  lib,
   pkgs,
   options,
   ...
@@ -85,17 +86,17 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
-    config.niri = {
-      default = [ "gnome" "gtk" ];
-      "org.freedesktop.impl.portal.Access" = "gtk";
-      "org.freedesktop.impl.portal.Notification" = "gtk";
-      "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
-      "org.freedesktop.impl.portal.FileChooser" = "gtk";
-      "org.freedesktop.impl.portal.ScreenCast" = "gnome";
-    };
+    #extraPortals = with pkgs; [
+    #  xdg-desktop-portal-gtk
+    #];
+    #config.niri = {
+    #  default = [ "gnome" "gtk" ];
+    #  "org.freedesktop.impl.portal.Access" = "gtk";
+    #  "org.freedesktop.impl.portal.Notification" = "gtk";
+    #  "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+    #  "org.freedesktop.impl.portal.FileChooser" = "gtk";
+    #  "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+    #};
   };
 
   services.xremap = {
@@ -201,6 +202,10 @@
     services = {
       "getty@tty1".enable = false;
       "autovt@tty1".enable = false;
+      seatd.serviceConfig = {
+        Type = lib.mkForce "simple";
+        ExecStart = lib.mkForce "${pkgs.seatd}/bin/seatd -u root -g seat -l info";
+      };
     };
     packages = [ pkgs.cloudflare-warp ];
     targets.multi-user.wants = [ "warp-svc.service" ];

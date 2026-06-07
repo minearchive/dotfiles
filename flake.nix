@@ -26,14 +26,13 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nixpkgs = {
-    	url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+      url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     };
 
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     quickshell = {

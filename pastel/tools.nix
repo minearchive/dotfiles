@@ -4,10 +4,6 @@ let
   kyoshin = inputs.kyoshin-flake.packages.x86_64-linux.default;
 in
 {
-  programs.gemini-cli = {
-    enable = true;
-  };
-
   services.kdeconnect = {
     enable = true;
     indicator = true;

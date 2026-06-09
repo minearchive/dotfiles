@@ -55,7 +55,7 @@ in
       claude-agent-acp
     ]
     ++ [
-      agents.antigravity
+      agents.antigravity-cli
       agents.claude-code
       agents.opencode
       agents.codex

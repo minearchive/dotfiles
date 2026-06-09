@@ -102,7 +102,7 @@
         Mod+Q { close-window; }
         Ctrl+Alt+Delete { quit skip-confirmation=true; }
         Mod+E { spawn "nautilus"; }
-        Mod+L { spawn "swaylock"; }
+        Mod+L { spawn "hyprlock"; }
         Mod+R { spawn "rofi" "-show" "run"; }
         Mod+D { toggle-window-floating; }
         Mod+G { maximize-column; }
@@ -228,7 +228,6 @@
     zenity
     grim
     slurp
-    swaylock
     hyprpicker
     brightnessctl
   ];

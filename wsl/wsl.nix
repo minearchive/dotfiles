@@ -23,7 +23,7 @@ in
       ]
       ++ [
         agents.claude-code
-        agents.antigravity
+        agents.antigravity-cli
         agents.codex
       ];
 

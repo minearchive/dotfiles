@@ -15,41 +15,44 @@ in
     homeDirectory = "/home/${username}";
     stateVersion = "25.05";
 
-    packages = with pkgs; [
-      bat
-      bottom
-      httpie
-      ripgrep
-      tree
-      jq
+    packages =
+      with pkgs;
+      [
+        bat
+        bottom
+        httpie
+        ripgrep
+        tree
+        jq
 
-      swappy
-      slurp
+        swappy
+        slurp
 
-      discord
-      vscode
-      vesktop
-      obs-studio
-      protonvpn-gui
-      wireguard-tools
+        discord
+        vscode
+        vesktop
+        obs-studio
+        protonvpn-gui
+        wireguard-tools
 
-      # logseq-patched
-      logseq
-      fastfetch
+        # logseq-patched
+        logseq
+        fastfetch
 
-      cmatrix
-      cava
+        cmatrix
+        cava
 
-      manix
+        manix
 
-      nwg-displays
-      qdirstat
-    ] ++ [
-      agents.opencode
-      agents.claude-code
-      agents.codex
-      agents.antigravity
-    ];
+        nwg-displays
+        qdirstat
+      ]
+      ++ [
+        agents.opencode
+        agents.claude-code
+        agents.codex
+        agents.antigravity-cli
+      ];
   };
 
   wayland.windowManager.hyprland.settings = {

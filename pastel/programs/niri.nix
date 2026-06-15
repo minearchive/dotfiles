@@ -88,9 +88,13 @@
     spawn-at-startup "sh" "-c" "cd ~/shell && quickshell -p shell.qml"
 
     animations {
-        window-movement {
-            duration-ms 300
-            curve "cubic-bezier" 0.13 0.99 0.29 1.1
+    }
+
+    recent-windows {
+        debounce-ms 0
+        previews {
+            max-height 480
+            max-scale 0.4
         }
     }
 

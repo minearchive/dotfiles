@@ -27,6 +27,7 @@
       python312Packages.pip
       python312Packages.virtualenv
       p7zip
+      uv
     ];
 
     pointerCursor = {

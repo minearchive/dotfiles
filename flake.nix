@@ -60,6 +60,11 @@
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -86,6 +91,11 @@
           extraSpecialArgs = { inherit inputs; };
           inherit modules;
         };
+
+      pre-commit-check = inputs.git-hooks.lib.${system}.run {
+        src = ./.;
+        hooks.nixfmt-rfc-style.enable = true;
+      };
     in
     {
       nixosConfigurations = {
@@ -101,6 +111,12 @@
         material = mkHome [ ./material/material.nix ];
         pastel = mkHome [ ./pastel/pastel.nix ];
         wsl = mkHome [ ./wsl/wsl.nix ];
+      };
+
+      checks.${system}.pre-commit-check = pre-commit-check;
+
+      devShells.${system}.default = pkgs.mkShell {
+        inherit (pre-commit-check) shellHook;
       };
     };
 }

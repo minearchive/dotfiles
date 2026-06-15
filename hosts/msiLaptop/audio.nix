@@ -8,7 +8,12 @@
   services.pipewire.extraConfig.pipewire."92-yamaha-dm3" = {
     "context.properties" = {
       "default.clock.rate" = 96000;
-      "default.clock.allowed-rates" = [ 44100 48000 88200 96000 ];
+      "default.clock.allowed-rates" = [
+        44100
+        48000
+        88200
+        96000
+      ];
       "default.clock.quantum" = 256;
       "default.clock.min-quantum" = 128;
       "default.clock.max-quantum" = 8192;

@@ -12,7 +12,7 @@
     plugins.neo-tree.enable = true;
     plugins.web-devicons.enable = true;
     plugins.mini.enable = true;
-    plugins.smear-cursors = {
+    plugins.smear-cursor = {
       enable = true;
     };
     plugins.presence = {
@@ -92,7 +92,10 @@
 
     keymaps = [
       {
-        mode = [ "n" "v" ];
+        mode = [
+          "n"
+          "v"
+        ];
         key = "<A-CR>";
         action = "<cmd>lua vim.lsp.buf.code_action()<CR>";
         options.desc = "Code actions";

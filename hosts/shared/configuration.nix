@@ -86,17 +86,21 @@
 
   xdg.portal = {
     enable = true;
-    #extraPortals = with pkgs; [
-    #  xdg-desktop-portal-gtk
-    #];
-    #config.niri = {
-    #  default = [ "gnome" "gtk" ];
-    #  "org.freedesktop.impl.portal.Access" = "gtk";
-    #  "org.freedesktop.impl.portal.Notification" = "gtk";
-    #  "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
-    #  "org.freedesktop.impl.portal.FileChooser" = "gtk";
-    #  "org.freedesktop.impl.portal.ScreenCast" = "gnome";
-    #};
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal
+    ];
+    xdgOpenUsePortal = true;
+    config.niri = {
+      default = [
+        "gnome"
+        "gtk"
+      ];
+      "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+      "org.freedesktop.impl.portal.Screenshot" = "gnome";
+      "org.freedesktop.impl.portal.RemoteDesktop" = "gnome";
+    };
   };
 
   services.xremap = {
@@ -244,7 +248,10 @@
         "nix-command"
         "flakes"
       ];
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       substituters = [ "https://hyprland.cachix.org" ];
       trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     };

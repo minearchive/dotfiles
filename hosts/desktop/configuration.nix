@@ -10,6 +10,7 @@
     ./hyprland.nix
     ./lanzaboote.nix
     ../shared/niri.nix
+    ../shared/showjiwm.nix
     ../shared/configuration.nix
   ];
 

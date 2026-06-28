@@ -61,6 +61,7 @@
       noto-fonts-color-emoji
       nerd-fonts.jetbrains-mono
       nerd-fonts.blex-mono
+      roboto
       udev-gothic
     ];
 

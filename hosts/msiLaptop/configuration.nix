@@ -9,6 +9,7 @@
     ./hyprland.nix
     ./audio.nix
     ../shared/niri.nix
+    ../shared/showjiwm.nix
     ../shared/configuration.nix
   ];
 

@@ -69,6 +69,11 @@
     sidra = {
       url = "github:wimpysworld/sidra";
     };
+
+    shojiwm = {
+      url = "github:bea4dev/ShojiWM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

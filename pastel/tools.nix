@@ -54,6 +54,8 @@ in
       pandoc
       poppler-utils
       claude-agent-acp
+      bitwig-studio
+      xwayland-satellite
     ]
     ++ [
       agents.antigravity-cli

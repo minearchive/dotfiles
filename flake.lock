@@ -1081,11 +1081,11 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1781074563,
-        "narHash": "sha256-md8WlXOlfnIeHeOScMTTHFyf2d6iaTwPl2apR5EQ3P4=",
+        "lastModified": 1781577229,
+        "narHash": "sha256-lrp67w8AulE9Ks53n27I45ADSzbOCn4H+CNW1Ck8B+8=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9ae611a455b90cf061d8f332b977e387bda8e1ca",
+        "rev": "567a49d1913ce81ac6e9582e3553dd90a955875f",
         "type": "github"
       },
       "original": {
@@ -1231,6 +1231,7 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",
         "quickshell": "quickshell_2",
+        "shojiwm": "shojiwm",
         "sidra": "sidra",
         "spicetify-nix": "spicetify-nix",
         "swww": "swww",
@@ -1280,16 +1281,36 @@
         "type": "github"
       }
     },
+    "shojiwm": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782585318,
+        "narHash": "sha256-6sriEquGnMHnx5QBCcSCOvoYt6QHwfS4VvTJAQeVKDw=",
+        "owner": "bea4dev",
+        "repo": "ShojiWM",
+        "rev": "a6daa8b4dcc05812569ed4979274d427301b2a8c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bea4dev",
+        "repo": "ShojiWM",
+        "type": "github"
+      }
+    },
     "sidra": {
       "inputs": {
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1781412000,
-        "narHash": "sha256-XxKL+f+2+mQ6zbw1Aszx8WuH12rLdUQvEL1YppbKap4=",
+        "lastModified": 1781979797,
+        "narHash": "sha256-Xzxfh3rYe4fdBpYDWCdgFjpv3iT/NveUlvk+CLcfZ40=",
         "owner": "wimpysworld",
         "repo": "sidra",
-        "rev": "91665a8313d5ecf7c2e65e22bf7b029cc0d627bc",
+        "rev": "2e3c80ea31b48bf9d09363eff57c4327624b6b8e",
         "type": "github"
       },
       "original": {

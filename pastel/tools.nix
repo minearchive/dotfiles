@@ -55,6 +55,7 @@ in
       poppler-utils
       claude-agent-acp
       bitwig-studio
+      xwayland
       xwayland-satellite
     ]
     ++ [
@@ -62,6 +63,7 @@ in
       agents.claude-code
       agents.opencode
       agents.codex
+      agents.hermes-agent
       kyoshin
       apple-music
     ];

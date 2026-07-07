@@ -24,6 +24,10 @@
       [templates.zed]
       input_path = "~/.local/share/matugen/template/zed.json"
       output_path = "~/.config/zed/themes/matugen.json"
+
+      [templates.shell]
+      input_path = "/home/minearchive/project/gtk_shell/example/template.toml"
+      output_path = "/home/minearchive/project/gtk_shell/example/config.toml"
     '';
 
     ".local/share/matugen/template/kitty-colors.conf".text = ''

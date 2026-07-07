@@ -104,12 +104,13 @@
         Mod+T { spawn "kitty"; }
         Mod+F { spawn "zen-beta"; }
         Mod+Q { close-window; }
-        Ctrl+Alt+Delete { quit skip-confirmation=true; }
+        Ctrl+Alt+Delete { quit skip-confirmation=false; }
         Mod+E { spawn "nautilus"; }
         Mod+L { spawn "hyprlock"; }
         Mod+R { spawn "rofi" "-show" "run"; }
         Mod+D { toggle-window-floating; }
         Mod+G { maximize-column; }
+        Mod+K { fullscreen-window; }
         Mod+B { set-column-width "80%"; }
         Mod+P { spawn "wlogout"; }
         Mod+I { spawn "sh" "-c" "XDG_CURRENT_DESKTOP=gnome gnome-control-center"; }
@@ -250,7 +251,7 @@
 
       echo "Using color scheme: $MATUGEN_SCHEME"
 
-      matugen image "$FILE" -c ~/.config/matugen/config.toml --mode "$MATUGEN_SCHEME"
+      matugen image "$FILE" -c ~/.config/matugen/config.toml --mode "$MATUGEN_SCHEME" --source-color-index 0
 
       swww img "$FILE" --transition-type outer --transition-pos 0.857,0.977 --transition-step 90 --transition-fps 60
 

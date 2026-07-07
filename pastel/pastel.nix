@@ -12,6 +12,8 @@
       bottom
       httpie
       ripgrep
+      rust-analyzer
+      rustfmt
       tree
       jq
       zed-editor

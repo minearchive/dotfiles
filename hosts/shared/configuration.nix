@@ -232,7 +232,7 @@
       inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
 
       libnotify
-      mako
+      # mako
       cloudflare-warp
       sbctl
     ];

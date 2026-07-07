@@ -2,7 +2,13 @@
 {
   programs.kitty = lib.mkForce {
     enable = true;
+    keybindings = {
+      "ctrl+tab" = "send_text all \\x1b[27;5;9~";
+      "ctrl+shift+tab" = "send_text all \\x1b[27;6;9~";
+      "ctrl+shift+f" = "send_text all \\x1b[70;6u";
+    };
     settings = {
+      auto_reload_config = -1;
       include = "colors.conf";
       confirm_os_window_close = 0;
       dynamic_background_opacity = true;

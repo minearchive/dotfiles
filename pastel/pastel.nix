@@ -16,7 +16,6 @@
       rustfmt
       tree
       jq
-      zed-editor
       firefox
       nixd
       nil
@@ -50,6 +49,7 @@
     ./programs/neovim.nix
     ./programs/niri.nix
     ./programs/zen.nix
+    ./programs/zed.nix
     ./programs/spotify.nix
     ./programs/quickshell.nix
     ./programs/wlogout.nix

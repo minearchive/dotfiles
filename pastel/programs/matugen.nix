@@ -27,7 +27,7 @@
 
       [templates.shell]
       input_path = "/home/minearchive/project/gtk_shell/example/template.toml"
-      output_path = "/home/minearchive/project/gtk_shell/example/config.toml"
+      output_path = "/home/minearchive/project/gtk_shell/example/theme.toml"
     '';
 
     ".local/share/matugen/template/kitty-colors.conf".text = ''

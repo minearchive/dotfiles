@@ -67,6 +67,10 @@ QML-based desktop shell components. Changes here require re-running the activati
 
 Matugen generates Material Design 3 colors from the current wallpaper. Colors flow into QuickShell QML theme files and Qt5ct config. The wallpaper script (`~/.config/hypr/script/wallpaper_change.sh`) triggers Matugen on wallpaper change.
 
+## Notes (`notes/`)
+
+Records of issues encountered and how they were resolved. Each file covers one topic and is written to be useful for AI agents — including what was tried, why it failed, and what the final fix was. Check here before investigating a recurring problem.
+
 ## Key Flake Inputs
 
 | Input | Purpose |

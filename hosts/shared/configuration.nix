@@ -67,6 +67,7 @@
 
     fontDir.enable = true;
     fontconfig = {
+      enable = true;
       defaultFonts = {
         serif = [
           "Noto Serif CJK JP"
@@ -360,6 +361,21 @@
         curl
         glib
         libgcc
+        libGL
+        vulkan-loader
+
+        libX11
+        libXext
+        libXcursor
+        libXinerama
+        libXrandr
+        libXrender
+        libXfixes
+        libXi
+
+        fontconfig
+        freetype
+        alsa-lib
       ];
     };
   };

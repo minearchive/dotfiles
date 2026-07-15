@@ -118,7 +118,14 @@
 
       homeConfigurations = {
         material = mkHome [ ./material/material.nix ];
-        pastel = mkHome [ ./pastel/pastel.nix ];
+        "pastel@msiLaptop" = mkHome [
+          ./pastel/pastel.nix
+          ./pastel/hosts/msiLaptop.nix
+        ];
+        "pastel@desktop" = mkHome [
+          ./pastel/pastel.nix
+          ./pastel/hosts/desktop.nix
+        ];
         wsl = mkHome [ ./wsl/wsl.nix ];
       };
 

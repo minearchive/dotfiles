@@ -21,6 +21,13 @@ select PROFILE in "${PROFILES[@]}"; do
   [[ -n "$PROFILE" ]] && break
 done
 
+# Construct the full home-manager profile name
+if [[ "$PROFILE" == "pastel" && "$HOST" != "wsl" ]]; then
+  HM_PROFILE="pastel@${HOST}"
+else
+  HM_PROFILE="$PROFILE"
+fi
+
 # Generate rebuild.sh
 cat > rebuild.sh <<EOF
 #!/usr/bin/env bash
@@ -31,9 +38,9 @@ chmod +x rebuild.sh
 # Generate update-home.sh
 cat > update-home.sh <<EOF
 #!/usr/bin/env bash
-NIXPKGS_ALLOW_UNFREE=1 nix run nixpkgs#home-manager -- switch --flake .#${PROFILE} -b backup --impure
+NIXPKGS_ALLOW_UNFREE=1 nix run nixpkgs#home-manager -- switch --flake '.#${HM_PROFILE}' -b backup --impure
 EOF
 chmod +x update-home.sh
 
 echo ""
-echo "Generated rebuild.sh (host: ${HOST}) and update-home.sh (profile: ${PROFILE})"
+echo "Generated rebuild.sh (host: ${HOST}) and update-home.sh (profile: ${HM_PROFILE})"

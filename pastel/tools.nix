@@ -3,6 +3,7 @@ let
   agents = inputs.llm-agents-nix.packages.x86_64-linux;
   kyoshin = inputs.kyoshin-flake.packages.x86_64-linux.default;
   apple-music = inputs.sidra.packages.x86_64-linux.default;
+  herdr = inputs.herdr.packages.x86_64-linux.default;
 in
 {
   services.kdeconnect = {
@@ -64,6 +65,7 @@ in
       agents.opencode
       agents.codex
       agents.hermes-agent
+      herdr
       kyoshin
       apple-music
     ];

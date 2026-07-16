@@ -7,6 +7,10 @@
   inputs = {
     llm-agents-nix.url = "github:numtide/llm-agents.nix";
 
+    herdr = {
+      url = "github:ogulcancelik/herdr/v0.7.4";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

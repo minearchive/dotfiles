@@ -46,7 +46,9 @@ home-manager switch --flake .#wsl        # WSL minimal profile
 
 ### Home Manager (`home.nix`, `material/`, `pastel/`, `wsl/`)
 
-- **material** — primary desktop profile; imports `home.nix` → `material/material.nix`
+> **Do not modify `material/` unless explicitly asked.** It is not the actively-used profile; active desktop work happens in **`pastel/`**, so make changes there by default. Only touch `material/` when the user names it directly.
+
+- **material** — reference desktop profile (do not edit by default); imports `home.nix` → `material/material.nix`
   - `material/development.nix` — dev tools: gcc, go, python312, nodejs_22, bun, deno, jdk, nixd, devenv, direnv, IntelliJ IDEA
   - `material/quickshell.nix` — copies QML files to `~/.local/share/qs-bar/`, triggers Matugen, launches QuickShell via activation hook
   - `material/programs/hyprland.nix` — full Hyprland config (keybinds, animations, startup, gestures)

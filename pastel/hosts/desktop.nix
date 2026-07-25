@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   # nixpkgs の vital パッケージは curl を VST3/CLAP プラグインの RPATH に含めていないため、
   # Bitwig のプラグインホスト内で libcurl の dlopen() が失敗して NULL 参照でクラッシュする。
@@ -21,6 +21,7 @@ in
 {
   home.packages = [
     vital-fixed
+    inputs.hermes-agent.packages.x86_64-linux.desktop
   ];
 
   home.sessionVariables = {

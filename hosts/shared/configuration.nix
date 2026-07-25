@@ -193,6 +193,18 @@
 
   security.rtkit.enable = true;
 
+  security.sudo.extraRules = [
+    {
+      users = [ "minearchive" ];
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/podman";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
+
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.minearchive = {
     isNormalUser = true;

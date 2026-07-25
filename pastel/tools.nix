@@ -64,7 +64,6 @@ in
       agents.claude-code
       agents.opencode
       agents.codex
-      agents.hermes-agent
       herdr
       kyoshin
       apple-music

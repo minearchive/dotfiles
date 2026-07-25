@@ -10,6 +10,8 @@
 {
   imports = [
     inputs.xremap.nixosModules.default
+    inputs.sops-nix.nixosModules.sops
+    inputs.hermes-agent.nixosModules.default
   ];
 
   networking.timeServers = options.networking.timeServers.default ++ [ "ntp.nict.jp" ];
@@ -236,6 +238,10 @@
       # mako
       cloudflare-warp
       sbctl
+
+      sops
+      ssh-to-age
+      age
     ];
     variables.NIXOS_OZONE_WL = "1";
   };
@@ -378,5 +384,38 @@
         alsa-lib
       ];
     };
+  };
+
+  # ── Secrets (sops-nix) ───────────────────────────────────────────────────
+  # Decrypts using this host's own SSH host key (sops.age.sshKeyPaths
+  # defaults to /etc/ssh/ssh_host_ed25519_key when present).
+  # Edit with: sudo env SOPS_AGE_SSH_PRIVATE_KEY_FILE=/etc/ssh/ssh_host_ed25519_key sops secrets/secrets.yaml
+  sops.defaultSopsFile = ../../secrets/secrets.yaml;
+  sops.secrets."hermes/openrouter_api_key" = { };
+  sops.templates."hermes-env".content = ''
+    OPENROUTER_API_KEY=${config.sops.placeholder."hermes/openrouter_api_key"}
+  '';
+
+  # ── hermes-agent ─────────────────────────────────────────────────────────
+  virtualisation.podman.enable = true;
+
+  services.hermes-agent = {
+    enable = true;
+    addToSystemPackages = true;
+    environmentFiles = [ config.sops.templates."hermes-env".path ];
+    settings.model = {
+      default = "deepseek/deepseek-v4-flash";
+      provider = "openrouter";
+    };
+    container = {
+      enable = true;
+      backend = "podman";
+      hostUsers = [ "minearchive" ];
+    };
+  };
+
+  systemd.services.hermes-agent = {
+    after = [ "sops-nix.service" ];
+    wants = [ "sops-nix.service" ];
   };
 }

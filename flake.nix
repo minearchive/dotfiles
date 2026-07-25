@@ -7,6 +7,13 @@
   inputs = {
     llm-agents-nix.url = "github:numtide/llm-agents.nix";
 
+    hermes-agent.url = "github:NousResearch/hermes-agent";
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     herdr = {
       url = "github:ogulcancelik/herdr/v0.7.4";
     };

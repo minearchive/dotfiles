@@ -23,10 +23,8 @@
     modesetting.enable = true;
   };
 
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
+  # hardware.graphics.enable is already set in ../shared/configuration.nix
+  hardware.graphics.enable32Bit = true;
 
   boot = {
     kernelModules = [ "nvidia-uvm" ];

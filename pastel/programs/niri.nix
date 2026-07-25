@@ -82,6 +82,11 @@
         XDG_SESSION_DESKTOP "niri"
     }
 
+    layer-rule {
+        match namespace="^wallpaper$"
+        place-within-backdrop true
+    }
+
     spawn-at-startup "swww-daemon"
     spawn-at-startup "sh" "-c" "fcitx5 -d --replace"
     spawn-at-startup "sh" "-c" "swww img $(cat ~/.config/wallpaper.info) --transition-type none --transition-duration 0"

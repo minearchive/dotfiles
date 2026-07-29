@@ -58,6 +58,7 @@ in
       bitwig-studio
       xwayland
       xwayland-satellite
+      krita
     ]
     ++ [
       agents.antigravity-cli

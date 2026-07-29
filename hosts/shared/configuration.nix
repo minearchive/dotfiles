@@ -430,4 +430,6 @@
     after = [ "sops-nix.service" ];
     wants = [ "sops-nix.service" ];
   };
+
+  hardware.opentabletdriver.enable = true;
 }

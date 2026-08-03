@@ -423,6 +423,7 @@
       enable = true;
       backend = "podman";
       hostUsers = [ "minearchive" ];
+      extraVolumes = [ "/home/minearchive/project:/home/hermes/project:rw" ];
     };
   };
 

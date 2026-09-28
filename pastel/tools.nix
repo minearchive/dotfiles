@@ -65,6 +65,9 @@ in
       agents.claude-code
       agents.opencode
       agents.codex
+      agents.omp
+      agents.chatgpt
+      agents.claude-desktop
       herdr
       kyoshin
       apple-music

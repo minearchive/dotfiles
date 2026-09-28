@@ -179,6 +179,7 @@
 
       -- Autostart
       hl.on("hyprland.start", function()
+        hl.exec_cmd("gnome-keyring-daemon --start --components=pkcs11,secrets,ssh")
         hl.exec_cmd("swww-daemon")
         hl.exec_cmd("fcitx5")
         hl.exec_cmd("fcitx5-remote -r")

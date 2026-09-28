@@ -17,11 +17,13 @@ let
       done
     '';
   });
+  agents = inputs.llm-agents-nix.packages.x86_64-linux;
 in
 {
   home.packages = [
     vital-fixed
     inputs.hermes-agent.packages.x86_64-linux.desktop
+    agents.claude-desktop
   ];
 
   home.sessionVariables = {

@@ -4,6 +4,7 @@ let
   kyoshin = inputs.kyoshin-flake.packages.x86_64-linux.default;
   apple-music = inputs.sidra.packages.x86_64-linux.default;
   herdr = inputs.herdr.packages.x86_64-linux.default;
+  yt-dlp-package = inputs.nixpkgs-yt-dlp.legacyPackages.${pkgs.stdenv.hostPlatform.system}.yt-dlp;
 in
 {
   services.kdeconnect = {
@@ -16,7 +17,7 @@ in
     [
       devenv
       direnv
-      yt-dlp
+      yt-dlp-package
       ffmpeg-full
       figma-linux
       nodejs_22
@@ -32,6 +33,7 @@ in
       cbonsai
       tenki
       prismlauncher
+      steamcmd
       cloudflared
       obsidian
       gimp
@@ -63,7 +65,8 @@ in
     ++ [
       agents.antigravity-cli
       agents.claude-code
-      agents.opencode
+      agents.ccusage
+      agents.opencode2
       agents.codex
       agents.omp
       agents.chatgpt

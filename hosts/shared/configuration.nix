@@ -7,6 +7,29 @@
   ...
 }:
 
+let
+  hermesPackages = with pkgs; [
+    nix
+    jq
+    unzip
+    bzip2
+    xz
+    wget
+    git
+    gnumake
+    gcc
+    rustc
+    cargo
+  ];
+
+  hermesGitConfig = pkgs.writeText "hermes-gitconfig" ''
+    [user]
+      name = minearchive
+      email = 102400088+minearchive@users.noreply.github.com
+    [init]
+      defaultBranch = main
+  '';
+in
 {
   imports = [
     inputs.xremap.nixosModules.default
@@ -186,6 +209,11 @@
     };
     tailscale.enable = true;
     openssh.enable = true;
+
+    clamav = {
+      daemon.enable = true;
+      updater.enable = true;
+    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -254,6 +282,8 @@
       sops
       ssh-to-age
       age
+
+      clamav
     ];
     variables.NIXOS_OZONE_WL = "1";
   };
@@ -414,6 +444,7 @@
   services.hermes-agent = {
     enable = true;
     addToSystemPackages = true;
+    extraPackages = hermesPackages;
     environmentFiles = [ config.sops.templates."hermes-env".path ];
     settings.model = {
       default = "deepseek/deepseek-v4-flash";
@@ -423,7 +454,19 @@
       enable = true;
       backend = "podman";
       hostUsers = [ "minearchive" ];
-      extraVolumes = [ "/home/minearchive/project:/home/hermes/project:rw" ];
+      extraVolumes = [
+        "/home/minearchive/project:/home/hermes/project:rw"
+        "/nix/var/nix/daemon-socket:/nix/var/nix/daemon-socket:ro"
+        "${hermesGitConfig}:/home/hermes/.gitconfig:ro"
+      ];
+      extraOptions = [
+        "--env"
+        "NIX_REMOTE=daemon"
+        "--env"
+        "NIX_CONFIG=experimental-features = nix-command flakes"
+        "--env"
+        "PATH=/home/hermes/.venv/bin:/home/hermes/.local/bin:${lib.makeBinPath hermesPackages}:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      ];
     };
   };
 

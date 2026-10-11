@@ -31,3 +31,4 @@ This repository manages the system configuration for NixOS and Home Manager usin
 - Use `sh update-home.sh` to apply Home Manager changes.
 - Configuration for various programs is located in `pastel/programs/`.
 - General tools and services are managed in `pastel/tools.nix`.
+- Write work notes and investigation memos in `notes/`, not in `README.md`.

@@ -81,6 +81,12 @@ NIXPKGS_ALLOW_UNFREE=1 home-manager switch --flake .#pastel -b backup --impure
 
 ---
 
+## Notes
+
+Work notes and investigation memos are kept in [`notes/`](notes/), including [NixOS / Home Manager operational notes](notes/nixos-home-manager.md).
+
+---
+
 ## License
 
 MIT License

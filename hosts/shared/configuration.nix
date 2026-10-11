@@ -34,7 +34,30 @@ in
   imports = [
     inputs.xremap.nixosModules.default
     inputs.sops-nix.nixosModules.sops
-    inputs.hermes-agent.nixosModules.default
+    (
+      { pkgs, ... }@args:
+      (import "${inputs.hermes-agent}/nix/nixosModules.nix" {
+        inputs = inputs.hermes-agent.inputs // {
+          self = inputs.hermes-agent;
+        };
+      }).flake.nixosModules.default
+        (
+          args
+          // {
+            pkgs = pkgs // {
+              # Upstream provisioning must overwrite the NodeSource keyring without a TTY.
+              writeShellScript =
+                name: text:
+                pkgs.writeShellScript name (
+                  if name == "hermes-container-entrypoint" then
+                    lib.replaceStrings [ "gpg --dearmor" ] [ "gpg --batch --yes --dearmor" ] text
+                  else
+                    text
+                );
+            };
+          }
+        )
+    )
   ];
 
   networking.timeServers = options.networking.timeServers.default ++ [ "ntp.nict.jp" ];
@@ -254,6 +277,14 @@ in
         Type = lib.mkForce "simple";
         ExecStart = lib.mkForce "${pkgs.seatd}/bin/seatd -u root -g seat -l info";
       };
+      # WARP 2026.7 invokes /usr/sbin/nft directly, ignoring the wrapper's PATH.
+      warp-svc.serviceConfig = {
+        TemporaryFileSystem = [ "/usr" ];
+        BindReadOnlyPaths = [
+          "/usr/bin:/usr/bin"
+          "${pkgs.nftables}/bin/nft:/usr/sbin/nft"
+        ];
+      };
     };
     packages = [ pkgs.cloudflare-warp ];
     targets.multi-user.wants = [ "warp-svc.service" ];
@@ -404,6 +435,7 @@ in
       enable = true;
       libraries = with pkgs; [
         stdenv.cc.cc
+        linux-pam
         openssl
         zlib
         curl
@@ -463,7 +495,7 @@ in
         "--env"
         "NIX_REMOTE=daemon"
         "--env"
-        "NIX_CONFIG=experimental-features = nix-command flakes"
+        (lib.escapeShellArg "NIX_CONFIG=experimental-features = nix-command flakes")
         "--env"
         "PATH=/home/hermes/.venv/bin:/home/hermes/.local/bin:${lib.makeBinPath hermesPackages}:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
       ];

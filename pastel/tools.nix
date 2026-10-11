@@ -5,6 +5,19 @@ let
   apple-music = inputs.sidra.packages.x86_64-linux.default;
   herdr = inputs.herdr.packages.x86_64-linux.default;
   yt-dlp-package = inputs.nixpkgs-yt-dlp.legacyPackages.${pkgs.stdenv.hostPlatform.system}.yt-dlp;
+  # ponytail: dependencies need network on first run; package in Nix if offline reproducibility is needed.
+  colab-cli =
+    (pkgs.writeShellScriptBin "colab" ''
+      export LD_LIBRARY_PATH="${
+        pkgs.lib.makeLibraryPath [ pkgs.stdenv.cc.cc.lib ]
+      }''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+      exec ${pkgs.uv}/bin/uv tool run --python ${pkgs.python312}/bin/python3 --from google-colab-cli==0.7.4 colab "$@"
+    '').overrideAttrs
+      (old: {
+        buildCommand = old.buildCommand + ''
+          ln -s colab "$out/bin/colab-cli"
+        '';
+      });
 in
 {
   services.kdeconnect = {
@@ -72,6 +85,7 @@ in
       agents.chatgpt
       agents.claude-desktop
       herdr
+      colab-cli
       kyoshin
       apple-music
     ];

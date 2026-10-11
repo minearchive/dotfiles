@@ -1,5 +1,15 @@
 # NixOS / Home Manager operational notes
 
+## Recovering a rebuild after `systemd-run --output=cat` fails
+
+During an upgrade, the new `nixos-rebuild` may re-exec before activation and pass `--output=cat` to the *currently active* `systemd-run`, which does not support it. If the target system closure is already built, activate that exact closure with the currently installed rebuild tool instead:
+
+```sh
+sudo nixos-rebuild switch --no-reexec --store-path /nix/store/<built-nixos-system-path>
+```
+
+Use the path from the failed `switch-to-configuration` command (without `/bin/switch-to-configuration`). `--no-reexec` retains the installed rebuild tool, which uses `systemd-run --pipe`; `--store-path` avoids rebuilding a different closure. Once activation succeeds, the new system's `systemd-run` supports `--output=cat`, so subsequent rebuilds can use the normal command. Do not use `NIXOS_REBUILD_NO_SYSTEMD_RUN` just to work around a version mismatch; it skips the systemd-run activation wrapper entirely.
+
 ## Hermes
 
 Hermes container `extraOptions` are inserted into a shell command. Wrap arguments containing spaces, such as `NIX_CONFIG`, with `lib.escapeShellArg`.

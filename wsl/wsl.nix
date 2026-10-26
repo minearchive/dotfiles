@@ -20,6 +20,7 @@ in
         direnv
         nil
         nixd
+        kdePackages.kdenlive
       ]
       ++ [
         agents.claude-code

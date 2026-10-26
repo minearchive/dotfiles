@@ -2,6 +2,7 @@
 {
   programs.fish = {
     enable = true;
+    shellAliases.ssh = "env TERM=xterm-256color ssh";
     interactiveShellInit = "set -g fish_greeting";
     functions = {
       tex = {

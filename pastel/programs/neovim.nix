@@ -5,6 +5,9 @@
   programs.nixvim = {
     enable = true;
 
+    # See notes/nixvim-unfree-plugins.md
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [ "presence.nvim" ];
+
     # Space as leader so the <leader>w window-nav fallbacks (see below) are ergonomic.
     globals = {
       mapleader = " ";
@@ -60,6 +63,9 @@
         enable = true;
       };
       servers.jdtls = {
+        enable = true;
+      };
+      servers.tinymist = {
         enable = true;
       };
     };

@@ -5,6 +5,15 @@ let
   apple-music = inputs.sidra.packages.x86_64-linux.default;
   herdr = inputs.herdr.packages.x86_64-linux.default;
   yt-dlp-package = inputs.nixpkgs-yt-dlp.legacyPackages.${pkgs.stdenv.hostPlatform.system}.yt-dlp;
+  label-studio-cli = pkgs.writeShellScriptBin "label-studio" ''
+    export LD_LIBRARY_PATH="${
+      pkgs.lib.makeLibraryPath [
+        pkgs.stdenv.cc.cc.lib
+        pkgs.zlib
+      ]
+    }''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+    exec ${pkgs.uv}/bin/uv tool run --python ${pkgs.python312}/bin/python3 --from label-studio==1.23.2 label-studio "$@"
+  '';
   # ponytail: dependencies need network on first run; package in Nix if offline reproducibility is needed.
   colab-cli =
     (pkgs.writeShellScriptBin "colab" ''
@@ -63,8 +72,10 @@ in
       playerctl
       chromium
       obs-studio
+      kdePackages.kdenlive
       alacritty
       typst
+      tinymist
       wl-mirror
       brightnessctl
       pandoc
@@ -84,8 +95,11 @@ in
       agents.omp
       agents.chatgpt
       agents.claude-desktop
+      # See notes/dsh-require-builtin-patch.md
+      agents.dsh
       herdr
       colab-cli
+      label-studio-cli
       kyoshin
       apple-music
     ];

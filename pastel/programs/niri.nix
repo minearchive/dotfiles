@@ -259,7 +259,7 @@
 
       matugen image "$FILE" -c ~/.config/matugen/config.toml --mode "$MATUGEN_SCHEME" --source-color-index 0
 
-      swww img "$FILE" --transition-type outer --transition-pos 0.5,1.0 --transition-step 90 --transition-fps 60
+      swww img "$FILE" --transition-type outer --transition-duration 2 --transition-pos 0.5,1.0 --transition-step 90 --transition-fps 60
 
       echo "$FILE" > ~/.config/wallpaper.info
     '';

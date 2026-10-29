@@ -9,8 +9,6 @@
 
     portal.enable = true;
 
-    xwaylandSatellite.enable = true;
-
     initConfig = {
       enable = true;
       users = [ "minearchive" ];

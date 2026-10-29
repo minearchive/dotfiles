@@ -49,6 +49,7 @@
     ./programs/kitty.nix
     ./programs/neovim.nix
     ./programs/niri.nix
+    ./programs/shojiwm.nix
     ./programs/pi.nix
     ./programs/zen.nix
     ./programs/zed.nix

@@ -142,15 +142,6 @@ in
       xdg-desktop-portal
     ];
     xdgOpenUsePortal = true;
-    config.niri = {
-      default = [
-        "gnome"
-        "gtk"
-      ];
-      "org.freedesktop.impl.portal.ScreenCast" = "gnome";
-      "org.freedesktop.impl.portal.Screenshot" = "gnome";
-      "org.freedesktop.impl.portal.RemoteDesktop" = "gnome";
-    };
   };
 
   services.xremap = {

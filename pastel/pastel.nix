@@ -20,7 +20,6 @@
       nixd
       nil
       wofi
-      vesktop
       swappy
       slurp
 
@@ -52,6 +51,7 @@
     ./programs/shojiwm.nix
     ./programs/pi.nix
     ./programs/zen.nix
+    ./programs/discord.nix
     ./programs/zed.nix
     ./programs/spotify.nix
     ./programs/quickshell.nix

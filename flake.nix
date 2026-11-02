@@ -42,6 +42,11 @@
 
     matugen.url = "github:InioX/Matugen";
 
+    nixcord = {
+      url = "github:4evy/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nixpkgs = {

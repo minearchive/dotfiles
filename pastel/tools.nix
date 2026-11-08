@@ -95,6 +95,7 @@ in
       agents.omp
       agents.chatgpt
       agents.claude-desktop
+      agents.mistral-vibe
       # See notes/dsh-require-builtin-patch.md
       agents.dsh
       herdr

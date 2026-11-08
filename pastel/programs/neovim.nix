@@ -70,6 +70,20 @@
       };
     };
 
+    # Flutter-tools owns dartls; do not also enable plugins.lsp.servers.dartls.
+    # :FlutterRun starts the app; saving Dart files hot-reloads it after formatting.
+    # Use :FlutterRestart for changes that need a full hot restart, :FlutterQuit to stop.
+    dependencies.flutter.package = pkgs.flutter;
+    plugins.flutter-tools = {
+      enable = true;
+      # The main flake's newer plugin fixes a nil-output crash on FlutterQuit.
+      package = pkgs.vimPlugins.flutter-tools-nvim;
+      settings = {
+        flutter_path = "${pkgs.flutter}/bin/flutter";
+        lsp.capabilities.__raw = "require('cmp_nvim_lsp').default_capabilities()";
+      };
+    };
+
     # Rust: rustaceanvim drives rust-analyzer. The binary is provided by Nix
     # (home.packages → rust-analyzer), so pin server.cmd to the store path
     # instead of relying on mason.nvim / PATH.
@@ -194,11 +208,13 @@
     plugins.cmp-path.enable = true;
     plugins.luasnip.enable = true;
 
-    # Format on save with rustfmt (rustfmt provided by Nix in home.packages)
+    # Format on save: rustfmt for Rust, Flutter's bundled Dart SDK for Dart.
     plugins.conform-nvim = {
       enable = true;
       settings = {
         formatters_by_ft.rust = [ "rustfmt" ];
+        formatters_by_ft.dart = [ "dart_format" ];
+        formatters.dart_format.command = "${pkgs.flutter}/bin/dart";
         format_on_save = {
           timeout_ms = 500;
           lsp_fallback = true;

@@ -128,3 +128,20 @@ After the libcurl fix, VST3 works fully. CLAP loads but the GUI is a black unres
 
 - https://forum.vital.audio/t/linux-black-screen-not-rendering-clap-only/19170
 - https://forum.vital.audio/t/vital-1-5-3-in-bitwig-linux-clap-crashes-while-launching-the-ui-no-midi-signal-with-the-vst3-while-ui-in-the-foreground/10776
+
+## REAPER startup segfault on msiLaptop
+
+REAPER 7.82 can crash before loading any plugin. The core dump points to
+`dl_main` writing to `0x402d50`: patchelf placed `.dynamic` inside a new RW
+segment overlapping the original RX mapping, so that address is not writable.
+This is separate from Vital's libcurl issue.
+
+`pastel/hosts/msiLaptop.nix` sets REAPER's `patchelfFlags` to use
+`--page-size 65536`, keeping the relocated metadata outside the RX mapping.
+Verified with `reaper -help` and an isolated REAPER instance loading
+`VST3i: Vital (Vital Audio)` and displaying its GUI. Audio output was not checked.
+
+Apply the configuration with:
+```bash
+home-manager switch --flake .#"pastel@msiLaptop"
+```

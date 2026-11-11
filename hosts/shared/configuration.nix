@@ -8,6 +8,30 @@
 }:
 
 let
+  # Keep the global config readable by apps pinned to Fontconfig 2.17.
+  compatFontconfig =
+    inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fontconfig;
+  fontconfigConfig = pkgs.symlinkJoin {
+    name = "fontconfig-compat";
+    paths = config.fonts.fontconfig.confPackages;
+    postBuild = ''
+      for rule in "$out"/etc/fonts/conf.d/*.conf; do
+        case "$(readlink -f "$rule")" in
+          ${pkgs.fontconfig.out}/*)
+            rm "$rule"
+            compatRule="${compatFontconfig.out}/share/fontconfig/conf.avail/''${rule##*/}"
+            if [ -f "$compatRule" ]; then
+              ln -s "$compatRule" "$rule"
+            fi
+            ;;
+        esac
+      done
+      rm "$out/etc/fonts/fonts.conf"
+      substitute ${compatFontconfig.out}/etc/fonts/fonts.conf "$out/etc/fonts/fonts.conf" \
+        --replace-fail /etc/fonts/conf.d "$out/etc/fonts/conf.d"
+    '';
+  };
+
   hermesPackages = with pkgs; [
     nix
     jq
@@ -133,6 +157,7 @@ in
       };
     };
   };
+  environment.etc.fonts.source = lib.mkForce "${fontconfigConfig}/etc/fonts";
 
   xdg.portal = {
     enable = true;

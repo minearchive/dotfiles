@@ -10,6 +10,22 @@ sudo nixos-rebuild switch --no-reexec --store-path /nix/store/<built-nixos-syste
 
 Use the path from the failed `switch-to-configuration` command (without `/bin/switch-to-configuration`). `--no-reexec` retains the installed rebuild tool, which uses `systemd-run --pipe`; `--store-path` avoids rebuilding a different closure. Once activation succeeds, the new system's `systemd-run` supports `--output=cat`, so subsequent rebuilds can use the normal command. Do not use `NIXOS_REBUILD_NO_SYSTEMD_RUN` just to work around a version mismatch; it skips the systemd-run activation wrapper entirely.
 
+## Fontconfig compatibility
+
+The shared host configuration exposes Fontconfig 2.17 rules from `nixpkgs-stable`
+at `/etc/fonts`, so applications pinned to older libraries can also read them.
+It keeps the NixOS-generated font directories, caches, aliases, and rendering
+settings, replacing upstream rules with their compatible counterparts. Rules
+introduced after 2.17 are omitted; newer Fontconfig libraries can read the older
+configuration. No global library downgrade or `FONTCONFIG_FILE` export is needed.
+
+Apply with `sudo nixos-rebuild switch --flake ~/dotfiles#msiLaptop` (or `#desktop`)
+and restart affected applications. Explicit application-level `FONTCONFIG_FILE`
+overrides still take precedence; the previous `gtk_shell` override was removed.
+Run `nix build .#checks.x86_64-linux.fontconfig-compat` to check that both library
+versions load without warnings and preserve the configured generic font choices.
+
+
 ## Hermes
 
 Hermes container `extraOptions` are inserted into a shell command. Wrap arguments containing spaces, such as `NIX_CONFIG`, with `lib.escapeShellArg`.

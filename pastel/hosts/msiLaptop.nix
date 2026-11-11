@@ -27,7 +27,13 @@ in
     ++ [
       vital-fixed
       inputs.hermes-agent.packages.x86_64-linux.desktop
-      reaper
+      # .dynamic が RX セグメントと重なり、起動時にローダーが落ちるのを防ぐ。
+      (reaper.overrideAttrs (oldAttrs: {
+        patchelfFlags = (oldAttrs.patchelfFlags or [ ]) ++ [
+          "--page-size"
+          "65536"
+        ];
+      }))
     ];
 
   home.sessionVariables = {

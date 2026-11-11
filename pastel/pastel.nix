@@ -56,6 +56,7 @@
     ./programs/zed.nix
     ./programs/spotify.nix
     ./programs/quickshell.nix
+    ./programs/my-shell.nix
     ./programs/wlogout.nix
     ./programs/matugen.nix
     ./tools.nix

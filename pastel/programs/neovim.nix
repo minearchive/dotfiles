@@ -5,6 +5,12 @@
   programs.nixvim = {
     enable = true;
 
+    # asm-lsp delegates diagnostics to a compiler/assembler on PATH.
+    extraPackages = [
+      pkgs.gcc
+      pkgs.nasm
+    ];
+
     # See notes/nixvim-unfree-plugins.md
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [ "presence.nvim" ];
 
@@ -59,6 +65,14 @@
 
     plugins.lsp = {
       enable = true;
+      servers.asm_lsp = {
+        enable = true;
+        filetypes = [
+          "asm"
+          "nasm"
+          "vmasm"
+        ];
+      };
       servers.clangd = {
         enable = true;
       };

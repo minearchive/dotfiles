@@ -40,6 +40,9 @@
 
     kyoshin-flake.url = "github:minearchive/kyoshin-flake";
 
+    # The bar. `nix flake update my-shell` picks up new commits on the branch.
+    my-shell.url = "github:minearchive/shell/spike/antiwebui";
+
     matugen.url = "github:InioX/Matugen";
 
     nixcord = {
@@ -160,7 +163,36 @@
         wsl = mkHome [ ./wsl/wsl.nix ];
       };
 
-      checks.${system}.pre-commit-check = pre-commit-check;
+      checks.${system} = {
+        inherit pre-commit-check;
+
+        fontconfig-compat =
+          let
+            host = inputs.self.nixosConfigurations.msiLaptop.config;
+            defaults = host.fonts.fontconfig.defaultFonts;
+          in
+          pkgs.runCommand "fontconfig-compat-check"
+            {
+              FONTCONFIG_FILE = "${host.environment.etc.fonts.source}/fonts.conf";
+            }
+            ''
+              export HOME="$TMPDIR/home" XDG_CACHE_HOME="$TMPDIR/cache"
+              mkdir -p "$HOME" "$XDG_CACHE_HOME"
+              check() {
+                actual=$("$1" -f '%{family[0]}' "$2" 2> "$TMPDIR/warnings")
+                test ! -s "$TMPDIR/warnings" || { cat "$TMPDIR/warnings"; exit 1; }
+                test "$actual" = "$3" || { echo "$2: expected $3, got $actual"; exit 1; }
+              }
+              for matcher in \
+                ${pkgs.fontconfig.bin}/bin/fc-match \
+                ${inputs.nixpkgs-stable.legacyPackages.${system}.fontconfig.bin}/bin/fc-match; do
+                check "$matcher" sans-serif ${pkgs.lib.escapeShellArg (builtins.head defaults.sansSerif)}
+                check "$matcher" serif ${pkgs.lib.escapeShellArg (builtins.head defaults.serif)}
+                check "$matcher" monospace ${pkgs.lib.escapeShellArg (builtins.head defaults.monospace)}
+              done
+              touch "$out"
+            '';
+      };
 
       devShells.${system}.default = pkgs.mkShell {
         inherit (pre-commit-check) shellHook;

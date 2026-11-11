@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 {
   home.file.".config/matugen/config.toml".text = ''
     [config]
@@ -25,8 +25,8 @@
     output_path = "~/.config/zed/themes/matugen.json"
 
     [templates.shell]
-    input_path = "/home/minearchive/project/gtk_shell/example/template.toml"
-    output_path = "/home/minearchive/project/gtk_shell/example/theme.toml"
+    input_path = "${inputs.my-shell}/example/template.toml"
+    output_path = "~/.config/my_shell/theme.toml"
 
     [templates.herdr]
     input_path = "~/.local/share/matugen/template/herdr.toml"

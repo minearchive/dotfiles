@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   xdg.configFile."niri/config.kdl".text = ''
     input {
@@ -167,7 +167,7 @@
 
         Mod+Tab repeat=false { toggle-overview; }
 
-        Mod+Shift+Ctrl+T { spawn "sh" "/home/minearchive/.config/niri/wallpaper_change.sh"; }
+        Mod+Shift+Ctrl+T { spawn "sh" "${config.xdg.configHome}/niri/wallpaper_change.sh"; }
 
         XF86AudioMute { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
         XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "-l" "1.4" "@DEFAULT_AUDIO_SINK@" "5%+"; }

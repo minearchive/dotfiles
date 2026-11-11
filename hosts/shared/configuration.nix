@@ -1,5 +1,6 @@
 {
   inputs,
+  user,
   config,
   lib,
   pkgs,
@@ -48,8 +49,8 @@ let
 
   hermesGitConfig = pkgs.writeText "hermes-gitconfig" ''
     [user]
-      name = minearchive
-      email = 102400088+minearchive@users.noreply.github.com
+      name = ${user.name}
+      email = ${user.email}
     [init]
       defaultBranch = main
   '';
@@ -171,7 +172,7 @@ in
 
   services.xremap = {
     enable = true;
-    userName = "minearchive";
+    userName = user.name;
     serviceMode = "system";
     config = {
       modmap = [
@@ -219,7 +220,7 @@ in
       gdm.enable = true;
       autoLogin = {
         enable = true;
-        user = "minearchive";
+        user = user.name;
       };
     };
     desktopManager.gnome.enable = true;
@@ -262,7 +263,7 @@ in
 
   security.sudo.extraRules = [
     {
-      users = [ "minearchive" ];
+      users = [ user.name ];
       commands = [
         {
           command = "/run/current-system/sw/bin/podman";
@@ -273,7 +274,7 @@ in
   ];
 
   # Define a user account. Don't forget to set a password with 'passwd'.
-  users.users.minearchive = {
+  users.users.${user.name} = {
     isNormalUser = true;
     description = "MineArchive";
     extraGroups = [
@@ -501,9 +502,9 @@ in
     container = {
       enable = true;
       backend = "podman";
-      hostUsers = [ "minearchive" ];
+      hostUsers = [ user.name ];
       extraVolumes = [
-        "/home/minearchive/project:/home/hermes/project:rw"
+        "/home/${user.name}/project:/home/hermes/project:rw"
         "/nix/var/nix/daemon-socket:/nix/var/nix/daemon-socket:ro"
         "${hermesGitConfig}:/home/hermes/.gitconfig:ro"
       ];

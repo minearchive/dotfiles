@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 {
   programs.home-manager.enable = true;
 
   home = rec {
-    username = "minearchive";
+    username = user.name;
     homeDirectory = "/home/${username}";
     stateVersion = "26.05";
 

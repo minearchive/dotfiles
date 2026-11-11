@@ -114,6 +114,7 @@
     inputs:
     let
       system = "x86_64-linux";
+      user = import ./user.nix;
 
       pkgs = import inputs.nixpkgs {
         inherit system;
@@ -124,14 +125,14 @@
         modules:
         inputs.nixpkgs.lib.nixosSystem {
           inherit system modules;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs user; };
         };
 
       mkHome =
         modules:
         inputs.home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = { inherit inputs user; };
           inherit modules;
         };
 

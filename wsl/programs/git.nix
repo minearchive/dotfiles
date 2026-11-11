@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 {
   programs.git = {
     enable = true;
     settings = {
-      user.email = "102400088+minearchive@users.noreply.github.com";
-      user.name = "minearchive";
+      user.email = user.email;
+      user.name = user.name;
     };
   };
 

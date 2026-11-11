@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, user, ... }:
 {
   imports = [
     inputs.shojiwm.nixosModules.default
@@ -11,7 +11,7 @@
 
     initConfig = {
       enable = true;
-      users = [ "minearchive" ];
+      users = [ user.name ];
     };
   };
 }

@@ -483,8 +483,19 @@ in
   # Edit with: sudo env SOPS_AGE_SSH_PRIVATE_KEY_FILE=/etc/ssh/ssh_host_ed25519_key sops secrets/secrets.yaml
   sops.defaultSopsFile = ../../secrets/secrets.yaml;
   sops.secrets."hermes/openrouter_api_key" = { };
+  sops.secrets."env/mistral_vibe_key" = {
+    owner = "minearchive";
+  };
   sops.templates."hermes-env".content = ''
     OPENROUTER_API_KEY=${config.sops.placeholder."hermes/openrouter_api_key"}
+    MISTRAL_VIBE_API_KEY=${config.sops.placeholder."env/mistral_vibe_key"}
+  '';
+
+  # Read at shell startup so the key never lands in the Nix store.
+  environment.extraInit = ''
+    if [ -r ${config.sops.secrets."env/mistral_vibe_key".path} ]; then
+      export MISTRAL_API_KEY="$(cat ${config.sops.secrets."env/mistral_vibe_key".path})"
+    fi
   '';
 
   # ── hermes-agent ─────────────────────────────────────────────────────────
@@ -494,6 +505,16 @@ in
     enable = true;
     addToSystemPackages = true;
     extraPackages = hermesPackages;
+    # Unofficial Mistral Vibe model provider; pinned to a commit since it receives the API key.
+    extraPlugins = [
+      (pkgs.fetchFromGitHub {
+        owner = "nebneo";
+        repo = "hermes-mistral-vibe";
+        name = "mistral-vibe";
+        rev = "c0d7bc8d11306e18499c84dd94cc3581de550e55"; # v1.1.0
+        hash = "sha256-t8F+AZYE58jyZ9EZtJb8YVFWoHVnkdGHos07aAEbQqI=";
+      })
+    ];
     environmentFiles = [ config.sops.templates."hermes-env".path ];
     settings.model = {
       default = "deepseek/deepseek-v4-flash";

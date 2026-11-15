@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   config,
   ...
@@ -53,4 +54,10 @@
   networking.firewall.checkReversePath = false;
 
   services.samba.enable = true;
+
+  specialisation.vm.configuration = {
+    system.nixos.tags = [ "vm" ];
+    services.xserver.videoDrivers = lib.mkForce [ "modesetting" ];
+    hardware.nvidia-container-toolkit.enable = lib.mkForce false;
+  };
 }

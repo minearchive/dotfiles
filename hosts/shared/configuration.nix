@@ -91,10 +91,20 @@ in
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
+    timeout = 1;
+    systemd-boot.configurationLimit = 3;
   };
+
+  systemd.services.systemd-binfmt.enable = false;
+
+  systemd.services.NetworkManager-wait-online.wantedBy = lib.mkForce [ ];
+  systemd.services.waydroid-container.wantedBy = lib.mkForce [ ];
+  systemd.timers.clamav-freshclam.wantedBy = lib.mkForce [ ];
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.modemmanager.enable = false;
+  services.hardware.bolt.enable = false;
 
   # Set your time zone.
   time = {
@@ -224,7 +234,8 @@ in
       };
     };
     desktopManager.gnome.enable = true;
-    printing.enable = true;
+    printing.enable = false;
+    avahi.enable = false;
     pulseaudio.enable = false;
     pipewire = {
       enable = true;
@@ -247,11 +258,12 @@ in
         ];
       };
     };
-    tailscale.enable = true;
-    openssh.enable = true;
+    tailscale.enable = false;
+    openssh.enable = false;
+    openssh.generateHostKeys = true;
 
     clamav = {
-      daemon.enable = true;
+      daemon.enable = false;
       updater.enable = true;
     };
   };
@@ -370,8 +382,6 @@ in
 
   networking.firewall = {
     enable = true;
-    trustedInterfaces = [ "tailscale0" ];
-    allowedUDPPorts = [ config.services.tailscale.port ];
 
     allowedTCPPortRanges = [
       {
@@ -389,7 +399,7 @@ in
 
   virtualisation = {
     docker = {
-      enable = true;
+      enable = false;
       rootless = {
         enable = true;
         setSocketVariable = true; # $DOCKER_HOSTを設定
@@ -407,7 +417,7 @@ in
 
     appimage = {
       enable = true;
-      binfmt = true;
+      binfmt = false;
     };
 
     git = {
@@ -546,4 +556,6 @@ in
   };
 
   hardware.opentabletdriver.enable = true;
+
+  systemd.user.services.opentabletdriver.wantedBy = lib.mkForce [ ];
 }

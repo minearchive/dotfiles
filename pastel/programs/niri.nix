@@ -87,7 +87,7 @@
         place-within-backdrop true
     }
 
-    spawn-at-startup "gnome-keyring-daemon" "--start" "--components=pkcs11,secrets,ssh"
+    // GDM's PAM session already starts gnome-keyring-daemon.
     spawn-at-startup "swww-daemon"
     spawn-at-startup "sh" "-c" "for i in $(seq 1 50); do swww query >/dev/null 2>&1 && break; sleep 0.1; done; [ -s ~/.config/wallpaper.info ] && swww img \"$(cat ~/.config/wallpaper.info)\" --transition-type none --transition-duration 0"
     spawn-at-startup "my_shell"

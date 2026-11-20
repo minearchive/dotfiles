@@ -14,12 +14,15 @@ This repository manages the system configuration for NixOS and Home Manager usin
 - `wsl`: Windows Subsystem for Linux configuration.
 
 ### Home Configurations
-- `pastel`: The modern, active environment.
+Flake attributes (exactly as published by `flake.nix`): `pastel@msiLaptop`, `pastel@desktop`, `wsl`, `material`.
+
+- `pastel@msiLaptop` / `pastel@desktop`: The modern, active environment (`pastel/pastel.nix` + `pastel/hosts/<host>.nix`). There is **no** bare `pastel` attribute — `init.sh` derives the host-suffixed name.
   - **Window Manager:** Hyprland
   - **Shell:** fish
   - **UI Framework:** quickshell (QML-based)
   - **Key Tools:** `matugen` (Material You color generation), `fcitx5` (Input Method), `kitty`, `neovim`, `zen-browser`.
 - `wsl`: Lightweight configuration for WSL environments.
+- `material`: Deprecated; only touch when explicitly asked.
 
 ## Directory Structure
 - `hosts/`: NixOS system-level configurations per machine.

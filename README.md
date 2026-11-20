@@ -36,11 +36,16 @@ This repository manages system configurations for multiple NixOS hosts and Home 
 
 ### Home Manager Profiles
 
-| Profile | Desktop Environment | Core Focus / Active State |
-|:---|:---|:---|
-| `pastel` | **Hyprland + QuickShell** | **Current & Active Environment**. Premium Material Design 3 integration. |
-| `wsl` | Headless (CLI only) | Minimal CLI environment (Fish shell + LLM agents). |
-| `material` | *None* | **Deprecated**. Kept for historical reference. |
+The attributes below are exactly the `homeConfigurations` keys published by `flake.nix` — use them verbatim with `home-manager switch --flake .#<attribute>`.
+
+| Flake Attribute | Profile | Desktop Environment | Core Focus / Active State |
+|:---|:---|:---|:---|
+| `pastel@msiLaptop` | pastel | **Hyprland + quickshell** | **Current & Active Environment** on the Intel laptop. |
+| `pastel@desktop` | pastel | **Hyprland + quickshell** | **Current & Active Environment** on the NVIDIA desktop. |
+| `wsl` | wsl | Headless (CLI only) | Minimal CLI environment (Fish shell + LLM agents). |
+| `material` | material | *None* | **Deprecated**. Kept for historical reference. |
+
+`pastel` is split per host (`pastel/pastel.nix` + `pastel/hosts/<host>.nix`); there is no bare `pastel` attribute. `init.sh` derives the correct name from the host you select.
 
 ---
 
@@ -76,7 +81,8 @@ sh update-home.sh
 ```
 Or run Home Manager directly:
 ```bash
-NIXPKGS_ALLOW_UNFREE=1 home-manager switch --flake .#pastel -b backup --impure
+NIXPKGS_ALLOW_UNFREE=1 home-manager switch --flake .#pastel@<host> -b backup --impure
+# e.g., NIXPKGS_ALLOW_UNFREE=1 home-manager switch --flake .#pastel@msiLaptop -b backup --impure
 ```
 
 ---

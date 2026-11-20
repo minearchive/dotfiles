@@ -9,6 +9,7 @@
     ./hyprland.nix
     ./audio.nix
     ./msi-ec.nix
+    ./power.nix
     ../shared/niri.nix
     ../shared/showjiwm.nix
     ../shared/configuration.nix

@@ -16,6 +16,6 @@
   #   fan_mode:     auto | silent | basic | advanced
   #   cooler_boost: 0 | 1
   services.udev.extraRules = ''
-    SUBSYSTEM=="platform", KERNEL=="msi-ec", ATTR{shift_mode}="comfort", ATTR{fan_mode}="auto", RUN+="${pkgs.bash}/bin/bash -c 'chgrp wheel /sys/devices/platform/msi-ec/{shift_mode,fan_mode,cooler_boost}; chmod g+w /sys/devices/platform/msi-ec/{shift_mode,fan_mode,cooler_boost}'"
+    SUBSYSTEM=="platform", KERNEL=="msi-ec", ATTR{shift_mode}="comfort", ATTR{fan_mode}="auto", RUN+="${pkgs.bash}/bin/bash -c 'chgrp wheel /sys/devices/platform/msi-ec/{shift_mode,fan_mode,cooler_boost,super_battery}; chmod g+w /sys/devices/platform/msi-ec/{shift_mode,fan_mode,cooler_boost,super_battery}'"
   '';
 }

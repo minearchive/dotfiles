@@ -82,6 +82,9 @@
       servers.tinymist = {
         enable = true;
       };
+      servers.texlab = {
+        enable = true;
+      };
     };
 
     # Flutter-tools owns dartls; do not also enable plugins.lsp.servers.dartls.

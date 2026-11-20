@@ -76,6 +76,7 @@ in
       alacritty
       typst
       tinymist
+      texliveFull
       wl-mirror
       brightnessctl
       pandoc

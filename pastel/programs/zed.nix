@@ -101,6 +101,9 @@ in
     userSettings = {
       cli_default_open_behavior = "existing_window";
 
+      # Pin texlab to the Nix-provided binary instead of Zed's auto-download.
+      lsp.texlab.binary.path = "${pkgs.texlab}/bin/texlab";
+
       outline_panel = {
         dock = "left";
       };
@@ -158,6 +161,9 @@ in
       terminal = {
         shell = {
           program = "fish";
+        };
+        env = {
+          PI_IMAGE_PROTOCOL = "none";
         };
       };
     };

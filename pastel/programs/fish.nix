@@ -12,7 +12,6 @@
               return 1
           end
 
-          # 背景指定を削除し、透過 (\bg_transparent) に戻しました
           set -l encoded (printf "%s" "$argv[1]" | python3 -c "import urllib.parse, sys; print(urllib.parse.quote('\\\\dpi{300} \\\\color{white} ' + sys.stdin.read()))")
 
           curl -s "https://latex.codecogs.com/png.latex?$encoded" | kitten icat --stdin yes

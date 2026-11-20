@@ -5,16 +5,13 @@
   programs.nixvim = {
     enable = true;
 
-    # asm-lsp delegates diagnostics to a compiler/assembler on PATH.
     extraPackages = [
       pkgs.gcc
       pkgs.nasm
     ];
 
-    # See notes/nixvim-unfree-plugins.md
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [ "presence.nvim" ];
 
-    # Space as leader so the <leader>w window-nav fallbacks (see below) are ergonomic.
     globals = {
       mapleader = " ";
       maplocalleader = " ";
@@ -27,7 +24,6 @@
       number = true;
       signcolumn = "yes";
       termguicolors = true;
-      # Horizontal toggleterm + new splits open below/right.
       splitbelow = true;
       splitright = true;
     };
@@ -87,13 +83,9 @@
       };
     };
 
-    # Flutter-tools owns dartls; do not also enable plugins.lsp.servers.dartls.
-    # :FlutterRun starts the app; saving Dart files hot-reloads it after formatting.
-    # Use :FlutterRestart for changes that need a full hot restart, :FlutterQuit to stop.
     dependencies.flutter.package = pkgs.flutter;
     plugins.flutter-tools = {
       enable = true;
-      # The main flake's newer plugin fixes a nil-output crash on FlutterQuit.
       package = pkgs.vimPlugins.flutter-tools-nvim;
       settings = {
         flutter_path = "${pkgs.flutter}/bin/flutter";
@@ -101,9 +93,6 @@
       };
     };
 
-    # Rust: rustaceanvim drives rust-analyzer. The binary is provided by Nix
-    # (home.packages → rust-analyzer), so pin server.cmd to the store path
-    # instead of relying on mason.nvim / PATH.
     plugins.rustaceanvim = {
       enable = true;
       settings = {
@@ -116,13 +105,8 @@
                 buildScripts.enable = true;
               };
               procMacro.enable = true;
-              # Real-time diagnostics via cargo check on save.
-              # Swap to `check.command = "clippy"` if clippy is installed.
               checkOnSave = true;
-              # Code lenses (Run | Debug | references / implementations).
               lens.enable = true;
-              # Inline type hints (the editor toggle itself is enabled in the
-              # LspAttach autocmd below).
               inlayHints = {
                 bindingModeHints.enable = true;
                 closureReturnTypeHints.enable = "always";
@@ -139,10 +123,8 @@
       };
     };
 
-    # Cargo.toml dependency management
     plugins.crates.enable = true;
 
-    # Terminal: toggle a horizontal split at the bottom of the screen.
     plugins.toggleterm = {
       enable = true;
       settings = {
@@ -155,8 +137,6 @@
       };
     };
 
-    # Fuzzy finding. <C-f> = inside current buffer, <C-S-f> = grep across files
-    # (ripgrep is provided by Nix in home.packages).
     plugins.telescope = {
       enable = true;
       keymaps = {
@@ -179,7 +159,6 @@
       };
     };
 
-    # Buffers shown as tabs along the top.
     plugins.bufferline = {
       enable = true;
       settings.options = {
@@ -198,7 +177,6 @@
       };
     };
 
-    # Completion
     plugins.cmp = {
       enable = true;
       settings = {
@@ -225,7 +203,6 @@
     plugins.cmp-path.enable = true;
     plugins.luasnip.enable = true;
 
-    # Format on save: rustfmt for Rust, Flutter's bundled Dart SDK for Dart.
     plugins.conform-nvim = {
       enable = true;
       settings = {
@@ -274,7 +251,6 @@
         options.desc = "Code actions";
       }
 
-      # --- Terminal (toggleterm, horizontal at the bottom) ---
       {
         mode = "n";
         key = "<C-\\>";
@@ -294,7 +270,6 @@
         options.desc = "Terminal: leave insert mode";
       }
 
-      # --- Bufferline: tab switching ---
       {
         mode = "n";
         key = "<C-Tab>";
@@ -307,7 +282,6 @@
         action = "<cmd>BufferLineCyclePrev<CR>";
         options.desc = "Previous buffer";
       }
-      # Fallbacks
       {
         mode = "n";
         key = "<S-l>";
@@ -320,18 +294,12 @@
         action = "<cmd>BufferLineCyclePrev<CR>";
         options.desc = "Previous buffer";
       }
-
-      # --- Close current buffer ---
       {
         mode = "n";
         key = "<leader>c";
         action = "<cmd>bdelete<CR>";
         options.desc = "Close buffer";
       }
-    ];
-
-    extraPlugins = [
-      # pkgs.vimPlugins.quick-scope
     ];
   };
 }

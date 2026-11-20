@@ -14,9 +14,6 @@ let
     ];
     sourceRoot = ".";
 
-    # Zed matches fallback faces at the primary font's weight. Give SOROEMONO's
-    # bold outlines normal-weight metadata so Latin can remain Regular.
-    # Rename the derived family rather than modifying the upstream family.
     postPatch = ''
       python - <<'PY'
       from fontTools.ttLib import TTFont
@@ -76,7 +73,6 @@ in
     pkgs.noto-fonts-cjk-sans
   ];
 
-  # Discover the packaged fonts; Zed's own fallback lists control their order.
   fonts.fontconfig.enable = true;
 
   programs.zed-editor = {
@@ -101,7 +97,6 @@ in
     userSettings = {
       cli_default_open_behavior = "existing_window";
 
-      # Pin texlab to the Nix-provided binary instead of Zed's auto-download.
       lsp.texlab.binary.path = "${pkgs.texlab}/bin/texlab";
 
       outline_panel = {

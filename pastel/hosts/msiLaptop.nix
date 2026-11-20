@@ -1,13 +1,7 @@
 { pkgs, inputs, ... }:
 let
-  # nixpkgs の vital パッケージは curl を VST3/CLAP プラグインの RPATH に含めていないため、
-  # Bitwig のプラグインホスト内で libcurl の dlopen() が失敗して NULL 参照でクラッシュする。
-  # patchelf で curl のパスを直接 RPATH に追加して修正する。
   vital-fixed = pkgs.vital.overrideAttrs (oldAttrs: {
-    # curl を buildInputs に加えて autoPatchelfHook の検索対象にする
     buildInputs = oldAttrs.buildInputs ++ [ pkgs.curl ];
-    # autoPatchelf より前に NEEDED に libcurl を追加することで
-    # autoPatchelf 自身が RPATH を解決するよう誘導する
     preFixup = (oldAttrs.preFixup or "") + ''
       for plugin in \
         $out/lib/vst3/Vital.vst3/Contents/x86_64-linux/Vital.so \
@@ -19,22 +13,16 @@ let
   });
 in
 {
-  home.packages =
-    with pkgs;
-    [
-      # msiLaptop-specific packages
-    ]
-    ++ [
-      vital-fixed
-      inputs.hermes-agent.packages.x86_64-linux.desktop
-      # .dynamic が RX セグメントと重なり、起動時にローダーが落ちるのを防ぐ。
-      (reaper.overrideAttrs (oldAttrs: {
-        patchelfFlags = (oldAttrs.patchelfFlags or [ ]) ++ [
-          "--page-size"
-          "65536"
-        ];
-      }))
-    ];
+  home.packages = [
+    vital-fixed
+    inputs.hermes-agent.packages.x86_64-linux.desktop
+    (pkgs.reaper.overrideAttrs (oldAttrs: {
+      patchelfFlags = (oldAttrs.patchelfFlags or [ ]) ++ [
+        "--page-size"
+        "65536"
+      ];
+    }))
+  ];
 
   home.sessionVariables = {
     VST_PATH = "$HOME/.nix-profile/lib/vst:/run/current-system/sw/lib/vst:$HOME/.vst";
